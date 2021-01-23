@@ -1,0 +1,23 @@
+{
+  "name": "notaweatherapp",
+  "version": "1.0.0",
+  "description": "Not A Weather App",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "author": "Dominic Ginter",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^4.6.0",
+    "concurrently": "^5.3.0",
+    "express": "^4.17.1",
+    "react-bootstrap": "^1.4.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
