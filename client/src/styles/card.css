@@ -1,0 +1,15 @@
+.card-img-top {
+    height: 15vw;
+    object-fit: cover;
+}
+.cardBody {
+    text-align: center;
+    background-color: #f6f5f5;
+}
+.cardTitle {
+    font-size: 30px !important;
+}
+/* Changes the transparency of the fontawesome icons when hovered. */
+.icon:hover:hover {
+    opacity: 0.5 !important;
+}

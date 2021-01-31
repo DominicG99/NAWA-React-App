@@ -2,9 +2,10 @@ import React from "react";
 import { Navbar, Nav } from "react-bootstrap";
 import logo from "../images/placeholder-image.png";
 import { Link } from "react-router-dom";
+import "../styles/navbar.css";
 function MyNavbar() {
   return (
-    <Navbar bg="dark" variant="dark" expand="lg">
+    <Navbar className="navbarBackground" expand="lg">
       <Navbar.Brand href="#home">
         <img
           alt=""
