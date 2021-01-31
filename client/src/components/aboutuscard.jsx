@@ -5,6 +5,7 @@ import team from "../team.js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFilePdf } from "@fortawesome/free-solid-svg-icons";
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
+
 function createItem(member) {
   return (
     <Col lg={3} sm={6} md={6} xs={12} style={{ justifyContent: "center" }}>

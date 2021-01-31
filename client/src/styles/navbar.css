@@ -1,4 +1,4 @@
-/* Navbar Color */
+/* Navbar Color, also lets the navbar go down as the user scrolls. */
 .navbarBackground {
     background-color: #87cefa;
     position: fixed !important;

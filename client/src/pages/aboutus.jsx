@@ -6,6 +6,7 @@ import { Row, Col } from "react-bootstrap";
 import AboutUsCard from "../components/aboutuscard.jsx";
 import "../styles/aboutus.css";
 import ProjectDescription from "../components/projectdescription";
+
 const AboutUsPage = () => {
   return (
     <div className="pageBackground">
