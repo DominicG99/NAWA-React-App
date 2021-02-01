@@ -9,7 +9,7 @@ import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 function createItem(member) {
   return (
     <Col lg={3} sm={6} md={6} xs={12} style={{ justifyContent: "center" }}>
-      <Card border="light">
+      <Card className="card">
         <Card.Img
           className="image img-fluid"
           variant="top"

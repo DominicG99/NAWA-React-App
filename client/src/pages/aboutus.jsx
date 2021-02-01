@@ -1,6 +1,7 @@
 import React from "react";
 import MyNavbar from "../components/navbar";
 import Footer from "../components/footer";
+import InstructorCards from "../components/instructorcards";
 import { Row, Col } from "react-bootstrap";
 // import AboutUsCarouselItem from "../components/aboutuscarouselitem";
 import AboutUsCard from "../components/aboutuscard.jsx";
@@ -19,6 +20,7 @@ const AboutUsPage = () => {
       <ProjectDescription />
       {/* <AboutUsCarouselItem className="carousel" /> */}
       <AboutUsCard />
+      <InstructorCards />
       <Row>
         <Col>
           <Footer />

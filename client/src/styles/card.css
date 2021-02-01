@@ -13,3 +13,8 @@
 .icon:hover:hover {
     opacity: 0.5 !important;
 }
+/* Adds a black border around cards and makes them a custom shape :) */
+.card {
+    border: black !important;
+    clip-path: circle(58.9% at 50% 50%);
+}

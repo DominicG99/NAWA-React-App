@@ -10,5 +10,12 @@
 }
 
 .pageBackground {
-    background-color: #eeeeee;
+    background: rgb(135,206,250);
+background: linear-gradient(25deg, rgba(135,206,250,1) 0%, rgba(238,238,238,1) 14%, rgba(135,206,250,1) 29%, rgba(135,206,250,1) 43%, rgba(238,238,238,1) 58%, rgba(238,238,238,1) 72%, rgba(135,206,250,1) 86%);
+/* background-image: url(https://www.pixelstalk.net/wp-content/uploads/2016/12/Cloudy-Sky-Background-Full-HD.jpg);
+background-size: contain;
+background-repeat: no-repeat;
+background-color: gray;
+background-blend-mode: screen; */
+
 }

@@ -1,7 +1,8 @@
 /* Navbar Color, also lets the navbar go down as the user scrolls. */
 .navbarBackground {
-    background-color: #87cefa;
-    position: fixed !important;
+    background: rgb(135,206,250);
+    background: linear-gradient(128deg, rgba(135,206,250,1) 0%, rgba(187,187,187,1) 50%, rgba(135,206,250,1) 91%);
+    /* position: fixed !important; */
     width: 100%;
 }
 
