@@ -1,30 +1,30 @@
-import "./App.css";
-
+import React from "react";
+import Navbar from "./components/Navbar";
 import {
   BrowserRouter as Router,
-  Route,
   Switch,
+  Route,
   Redirect,
 } from "react-router-dom";
-//Pages
-import MainPage from "./pages/index";
-import NotFoundPage from "./pages/404";
-import AboutUsPage from "./pages/aboutus";
-import LoginPage from "./pages/login";
-import RegisterPage from "./pages/register";
+import "./App.css";
+import Home from "./components/pages/Home";
+import AboutUs from "./components/pages/AboutUs";
+import Register from "./components/pages/Register";
+import Footer from "./components/Footer";
 function App() {
   return (
-    //This helps have multiple webpages within React.
-    <Router>
-      <Switch>
-        <Route exact path="/" component={MainPage} />
-        <Route exact path="/about-us" component={AboutUsPage} />
-        <Route exact path="/login" component={LoginPage} />
-        <Route exact path="/register" component={RegisterPage} />
-        <Route exact path="/404" component={NotFoundPage} />
-        <Redirect to="/404" />
-      </Switch>
-    </Router>
+    <>
+      <Router>
+        <Navbar />
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/about-us" component={AboutUs} />
+          <Route exact path="/sign-up" component={Register} />
+          <Redirect to="404" />
+        </Switch>
+        <Footer />
+      </Router>
+    </>
   );
 }
 
