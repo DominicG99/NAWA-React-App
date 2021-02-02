@@ -5,7 +5,7 @@ const team = [
     resume: "../../resumes/Cole_Atkinson.pdf",
     linkedin: "https://www.linkedin.com/in/cole-atkinson-845552200/",
     github: "https://github.com/colioportfolio",
-    image: "placeholder-image.png",
+    image: "ColeAtkinson.png",
   },
   {
     id: 2,
@@ -13,7 +13,7 @@ const team = [
     resume: "../../resumes/Chase_Bosman",
     linkedin: "https://www.linkedin.com/in/chase-bosman/",
     github: "https://github.com/ChaseBosman",
-    image: "placeholder-image.png",
+    image: "ChaseBosman.jpg",
   },
   {
     id: 3,
@@ -29,7 +29,7 @@ const team = [
     resume: "../../resumes/James_Young.pdf",
     linkedin: "htpps://www.linkedin.com/in/jamesn-young",
     github: "https://github.com/",
-    image: "placeholder-image.png",
+    image: "JamesYoung.png",
   },
 ];
 
