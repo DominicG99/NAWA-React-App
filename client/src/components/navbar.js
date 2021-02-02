@@ -38,12 +38,7 @@ function NavBar() {
       <nav className={navbar ? "navbar active" : "navbar"}>
         <div className="navbar-container">
           <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
-            Not A Weather App
-            <img
-              src="/images/placeholder-image.png"
-              alt="logo"
-              className="navbar-img"
-            />
+            NJAWA
           </Link>
           <div className="menu-icon" onClick={handleClick}>
             <FontAwesomeIcon

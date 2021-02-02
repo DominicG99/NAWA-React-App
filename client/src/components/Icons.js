@@ -1,28 +1,35 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFilePdf } from "@fortawesome/free-solid-svg-icons";
+import { faFilePdf } from "@fortawesome/free-regular-svg-icons";
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
-import { Link } from "react-router-dom";
+import "./Icons.css";
 function Icons(props) {
   return (
     <div>
-      <Link to={props.resumeLink}>
+      <a target="_blank" href={props.resume} rel="noreferrer">
         <FontAwesomeIcon
           icon={faFilePdf}
-          size="2x"
-          style={{ color: "black" }}
+          size="3x"
+          style={{ color: "red" }}
+          className="icon"
         />
-      </Link>
-      <Link to={props.githubLink}>
-        <FontAwesomeIcon icon={faGithub} size="2x" style={{ color: "black" }} />
-      </Link>
-      <Link to={props.linkedInLink}>
+      </a>
+      <a target="_blank" href={props.githubLink} rel="noreferrer">
+        <FontAwesomeIcon
+          icon={faGithub}
+          size="3x"
+          style={{ color: "black", marginLeft: "10%", marginRight: "10%" }}
+          className="icon"
+        />
+      </a>
+      <a target="_blank" href={props.linkedInLink} rel="noreferrer">
         <FontAwesomeIcon
           icon={faLinkedin}
-          size="2x"
-          style={{ color: "black" }}
+          size="3x"
+          style={{ color: "#0e76a8" }}
+          className="icon"
         />
-      </Link>
+      </a>
     </div>
   );
 }

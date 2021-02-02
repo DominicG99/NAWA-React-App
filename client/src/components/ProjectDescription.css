@@ -1,0 +1,21 @@
+.descriptionContainer {
+    background-color: gray;
+    padding-top: 3%;
+    padding-bottom: 5%;
+    text-align: center;
+}
+
+.descriptionHeading {
+    margin-bottom: 3%;
+}
+
+.descriptionText {
+    margin-top: 3%;
+}
+
+.descriptionLine {
+    border: solid black 3px;
+    border-bottom: none;
+    width: 25%;
+    margin: 50px auto;
+}

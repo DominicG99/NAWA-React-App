@@ -7,7 +7,13 @@ import { faSignInAlt } from "@fortawesome/free-solid-svg-icons";
 function HeroSection() {
   return (
     <div className="hero-container">
-      <video src="/videos/Video1.mp4" autoPlay loop muted />
+      <video
+        src="/videos/Video1.mp4"
+        poster="../../images/poster.png"
+        autoPlay
+        loop
+        muted
+      />
       <h1>START YOUR ADVENTURE NOW</h1>
       <p>No time to waste.</p>
       <div className="hero-btns">

@@ -1,0 +1,24 @@
+.container {
+    margin-top: 7%;
+}
+
+.centerText {
+    text-align: center;
+}
+
+.dottedLine {
+    border: dotted black 6px;
+    border-bottom: none;
+    width: 25%;
+    margin: 20px auto;
+  }
+
+  .links {
+      text-align: center;
+      margin-top: 10%;
+      text-decoration: underline;
+  }
+
+  .links:hover {
+      opacity: 50%;
+  }

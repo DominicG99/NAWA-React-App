@@ -1,7 +1,17 @@
 import React from "react";
 import "../../App.css";
-import Cards from "../Cards";
+import ProjectDescription from "../ProjectDescription";
+import ProjectHeader from "../ProjectHeader";
+import RelatedResources from "../RelatedResources";
+import Team from "../Team";
 
 export default function AboutUs() {
-  return <Cards />;
+  return (
+    <div>
+      <ProjectHeader />
+      <ProjectDescription />
+      <Team />
+      <RelatedResources />
+    </div>
+  );
 }
