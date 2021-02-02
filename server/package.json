@@ -1,16 +1,23 @@
 {
-  "name": "server",
-  "version": "0.0.0",
-  "private": true,
+  "name": "notaweatherapp",
+  "version": "1.0.0",
+  "description": "Not A Weather App",
+  "main": "server.js",
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "client": "npm start --prefix ../client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
+  "author": "Dominic Ginter",
+  "license": "ISC",
   "dependencies": {
-    "cookie-parser": "^1.4.5",
-    "debug": "~2.6.9",
-    "express": "~4.16.1",
-    "http-errors": "~1.6.3",
-    "jade": "~1.11.0",
-    "morgan": "^1.9.1"
+    "babel-plugin-import": "^1.13.3",
+    "concurrently": "^5.3.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.11.14"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
   }
 }
