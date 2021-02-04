@@ -11,14 +11,6 @@ function NavBar() {
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
 
-  // const showButton = () => {
-  //   if (window.innerWidth <= 960) {
-  //     setButton(false);
-  //   } else {
-  //     setButton(true);
-  //   }
-  // };
-
   useEffect(() => {
     const showButton = () => {
       if (window.innerWidth <= 960) {
@@ -32,10 +24,6 @@ function NavBar() {
       window.removeEventListener("resize", showButton);
     };
   });
-  //Fixes button bug on navbar
-  // useEffect(() => {
-  //   showButton();
-  // }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -56,7 +44,7 @@ function NavBar() {
       <nav className={navbar ? "navbar active" : "navbar"}>
         <div className="navbar-container">
           <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
-            NJAWA
+            Logo
           </Link>
           <div className="menu-icon" onClick={handleClick}>
             <FontAwesomeIcon

@@ -2,3 +2,8 @@
 {
     opacity: 100% !important;
 }
+
+.ant-card-meta-title {
+    font-weight: 700;
+    font-size: 24px;
+  }

@@ -3,7 +3,7 @@ import { Row, Col } from "antd";
 import "antd/dist/antd.css";
 import "./RelatedResources.css";
 import LogoLink from "./LogoLink";
-import technologies from "../technologies";
+import technologies from "../information/technologies";
 
 function createLogoLink(technology) {
   return (

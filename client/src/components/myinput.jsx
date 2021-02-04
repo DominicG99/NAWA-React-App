@@ -8,6 +8,7 @@ function MyInput(props) {
       placeholder={props.placeholder}
       prefix={props.prefix}
       type={props.type}
+      style={props.style}
     />
   );
 }

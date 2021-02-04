@@ -1,15 +1,16 @@
 import React from "react";
 import { Form, Checkbox } from "antd";
-import FormItem from "./formitem";
-import MyInput from "./myinput";
-import MyButton from "./mybutton";
+import FormItem from "./FormItem";
+import MyInput from "./MyInput";
+import "antd/dist/antd.css";
+import { Button } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 const onFinish = (values) => {
   console.log("Received values of form: ", values);
 };
 
-function MyForm(props) {
+function LoginForm(props) {
   return (
     <Form
       name={props.name}
@@ -32,6 +33,7 @@ function MyForm(props) {
             placeholder="Email Address"
             prefix={<UserOutlined />}
             type="text"
+            style={{ width: "50%" }}
           />
         }
       />
@@ -48,6 +50,7 @@ function MyForm(props) {
             placeholder="Password"
             prefix={<LockOutlined />}
             type="password"
+            style={{ width: "50%", textAlign: "center" }}
           />
         }
       />
@@ -61,15 +64,12 @@ function MyForm(props) {
 
       <FormItem
         content={
-          <MyButton
-            type="primary"
-            htmlType="submit"
-            className="login-form-button"
-            text="Log in"
-          />
+          <Button type="primary" htmlType="submit">
+            Log In
+          </Button>
         }
       />
     </Form>
   );
 }
-export default MyForm;
+export default LoginForm;

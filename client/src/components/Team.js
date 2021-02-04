@@ -1,11 +1,10 @@
 import React from "react";
 import TeamCard from "./TeamCard";
-import team from "../team";
+import team from "../information/team";
 import { Row } from "antd";
 import Icons from "./Icons";
 import "./Team.css";
-import "../instructors";
-import instructors from "../instructors";
+import instructors from "../information/instructors";
 import InstructorCard from "./InstructorCard";
 function createMemberCard(member) {
   return (
@@ -30,6 +29,7 @@ function createInstructorCard(instructor) {
       key={instructor.id}
       name={instructor.name}
       image={`../images/${instructor.image}`}
+      text={instructor.description}
     />
   );
 }
@@ -40,12 +40,9 @@ function Team() {
       <h1>
         <strong>The Team</strong>
       </h1>
-      <Row style={{ marginTop: "5%", marginBottom: "10%" }}>
+      <Row style={{ marginTop: "5%", marginBottom: "5%" }}>
         {team.map(createMemberCard)}
       </Row>
-      <h1>
-        <strong>Instructors</strong>
-      </h1>
       <Row>{instructors.map(createInstructorCard)}</Row>
     </div>
   );

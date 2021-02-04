@@ -13,6 +13,7 @@ function ProjectDescription() {
             maxWidth: "120ch",
             textAlign: "center",
             margin: "0 auto",
+            whiteSpace: "pre-wrap",
           }}
         >
           Not a weather app is a leading-edge web based application that has the
@@ -33,6 +34,7 @@ function ProjectDescription() {
             maxWidth: "120ch",
             textAlign: "center",
             margin: "0 auto",
+            whiteSpace: "pre-wrap",
           }}
         >
           <br />
@@ -50,6 +52,7 @@ function ProjectDescription() {
             maxWidth: "120ch",
             textAlign: "center",
             margin: "0 auto",
+            whiteSpace: "pre-wrap",
           }}
         >
           <br />
