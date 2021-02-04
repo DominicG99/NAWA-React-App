@@ -7,7 +7,7 @@ const instructors = [
   {
     id: 2,
     name: "Devrin Lee",
-    image: "DavidFeilSeifer.jpg",
+    image: "placeholder-image.png",
   },
 ];
 export default instructors;

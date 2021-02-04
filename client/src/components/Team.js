@@ -10,13 +10,14 @@ import InstructorCard from "./InstructorCard";
 function createMemberCard(member) {
   return (
     <TeamCard
+      key={member.id}
       name={member.name}
       image={`../images/${member.image}`}
       text={
         <Icons
           resume={member.resume}
           githubLink={member.github}
-          linkedinLink={member.linkedin}
+          linkedInLink={member.linkedin}
         />
       }
     />
@@ -26,6 +27,7 @@ function createMemberCard(member) {
 function createInstructorCard(instructor) {
   return (
     <InstructorCard
+      key={instructor.id}
       name={instructor.name}
       image={`../images/${instructor.image}`}
     />

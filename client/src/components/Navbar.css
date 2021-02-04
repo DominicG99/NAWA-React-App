@@ -16,7 +16,7 @@
     z-index: 100;
   }
   .navbar.active {
-    background: white;
+    background: skyblue;
   }
   .navbar-container {
     display: flex;

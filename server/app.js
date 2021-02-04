@@ -38,7 +38,11 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render("error");
 });
+
 app.get("/*", (req, res) => {
   res.sendFile(path.join(__dirname, "build", "index.html"));
 });
+
+const port = process.env.PORT || 5000;
+app.listen(port);
 module.exports = app;

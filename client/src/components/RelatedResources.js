@@ -8,6 +8,7 @@ import technologies from "../technologies";
 function createLogoLink(technology) {
   return (
     <LogoLink
+      key={technology.id}
       image={technology.image}
       name={technology.name}
       website={`../images/${technology.website}`}

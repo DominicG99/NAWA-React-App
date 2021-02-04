@@ -3,7 +3,7 @@ import "./ProjectDescription.css";
 function ProjectDescription() {
   return (
     <div className="descriptionContainer">
-      <h1 classname="descriptionHeading">
+      <h1 className="descriptionHeading">
         <strong>Project Description</strong>
       </h1>
       <hr className="descriptionLine" />
