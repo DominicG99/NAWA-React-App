@@ -1,5 +1,5 @@
 import React from "react";
-import Navbar from "./components/Navbar";
+import MyNavbar from "./components/MyNavbar";
 import {
   BrowserRouter as Router,
   Switch,
@@ -10,19 +10,19 @@ import "./App.css";
 import Home from "./components/pages/Home";
 import AboutUs from "./components/pages/AboutUs";
 import Register from "./components/pages/Register";
-import Footer from "./components/Footer";
+import MyFooter from "./components/MyFooter";
 function App() {
   return (
     <>
       <Router>
-        <Navbar />
+        <MyNavbar />
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/about-us" component={AboutUs} />
           <Route exact path="/sign-up" component={Register} />
           <Redirect to="404" />
         </Switch>
-        <Footer />
+        <MyFooter />
       </Router>
     </>
   );

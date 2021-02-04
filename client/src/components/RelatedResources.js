@@ -11,7 +11,7 @@ function createLogoLink(technology) {
       key={technology.id}
       image={technology.image}
       name={technology.name}
-      website={`../images/${technology.website}`}
+      website={`${technology.website}`}
     />
   );
 }

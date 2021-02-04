@@ -4,7 +4,7 @@ import "./Navbar.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { Button } from "./Button";
-function NavBar() {
+function MyNavBar() {
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
   const [navbar, setNavbar] = useState(false);
@@ -94,4 +94,4 @@ function NavBar() {
   );
 }
 
-export default NavBar;
+export default MyNavBar;
