@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "./Navbar.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
-import { Button } from "./Button";
+import { Button } from "antd";
 function MyNavBar() {
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
@@ -87,7 +87,11 @@ function MyNavBar() {
               </Link>
             </li>
           </ul>
-          {button && <Button buttonStyle="btn--outline">register</Button>}
+          {button && (
+            <Button type="primary" ghost>
+              register
+            </Button>
+          )}
         </div>
       </nav>
     </>

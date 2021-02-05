@@ -1,5 +1,6 @@
 import React from "react";
 import MyNavbar from "./components/MyNavbar";
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -11,6 +12,7 @@ import Home from "./components/pages/Home";
 import AboutUs from "./components/pages/AboutUs";
 import Register from "./components/pages/Register";
 import MyFooter from "./components/MyFooter";
+
 function App() {
   return (
     <>

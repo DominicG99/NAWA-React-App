@@ -3,3 +3,4 @@ client/node_modules
 package-lock.json
 .vscode
 client/src/.eslintcache
+client/src/.env
