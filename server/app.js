@@ -1,15 +1,14 @@
 var express = require("express");
 var path = require("path");
-const mongoose = require("mongoose");
 var app = express();
 
-mongoose
-  .connect("mongodb://localhost:27017/NotJustAWeatherAppDB", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => console.log("Database Connected."))
-  .catch((err) => console.error("Couldn't connect to database.", err));
+//Set up mongoose connection
+var mongoose = require('mongoose');
+var mongoDB = 'mongodb+srv://jamesyoung:SeniorProject@notjustaweatherapp.xkgxt.mongodb.net/local_library?retryWrites=true&w=majority';
+mongoose.connect(mongodb+srv:clusterAnything.mongodb.net/test?retryWrites=true&w=majority, { user: process.env.MONGO_USER, pass: process.env.MONGO_PASSWORD, useNewUrlParser: true, useUnifiedTopology: true })
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+
 
 app.get("/*", (req, res) => {
   res.sendFile(path.join(__dirname, "build", "index.html"));

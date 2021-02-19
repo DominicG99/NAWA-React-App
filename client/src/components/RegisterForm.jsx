@@ -20,12 +20,86 @@ function LoginForm(props) {
       }}
       onFinish={onFinish}
     >
+    <FormItem
+        name="firstName"
+        rules={[
+          {
+            required: true,
+            message: "Required Field",
+          },
+        ]}
+        content={
+          <MyInput
+            placeholder="First Name"
+            prefix={<UserOutlined />}
+            type="text"
+            style={{ width: "25%" }}
+          />
+        }
+      />
+
+      <FormItem
+        name="lastName"
+        rules={[
+          {
+            required: true,
+            message: "Required Field",
+          },
+        ]}
+        content={
+          <MyInput
+            placeholder="Last Name"
+            prefix={<UserOutlined />}
+            type="text"
+            style={{ width: "25%" }}
+          />
+        }
+      />
+
+
+
+      <FormItem
+        name="password"
+        rules={[
+          {
+            required: true,
+            message: "Please input your Password!",
+          },
+        ]}
+        content={
+          <MyInput
+            placeholder="Password"
+            prefix={<LockOutlined />}
+            type="password"
+            style={{ width: "25%", textAlign: "center" }}
+          />
+        }
+      />
+
+        <FormItem
+        name="repeatPassword"
+        rules={[
+          {
+            required: true,
+            message: "Please repeat your Password!",
+          },
+        ]}
+        content={
+          <MyInput
+            placeholder="Repeat Password"
+            prefix={<LockOutlined />}
+            type="password"
+            style={{ width: "25%", textAlign: "center" }}
+          />
+        }
+      />
+
       <FormItem
         name="email"
         rules={[
           {
             required: true,
-            message: "Please input your Email!",
+            message: "Please input your email!",
           },
         ]}
         content={
@@ -33,45 +107,12 @@ function LoginForm(props) {
             placeholder="Email Address"
             prefix={<UserOutlined />}
             type="text"
-            style={{ width: "50%" }}
+            style={{ width: "35%" }}
           />
         }
       />
-      <FormItem
-        name="password"
-        rules={[
-          {
-            required: true,
-            message: "Please input your Password!",
-          },
-        ]}
-        content={
-          <MyInput
-            placeholder="Password"
-            prefix={<LockOutlined />}
-            type="password"
-            style={{ width: "50%", textAlign: "center" }}
-          />
-        }
-      />
-            <FormItem
-        name="password"
-        rules={[
-          {
-            required: true,
-            message: "Please input your Password!",
-          },
-        ]}
-        content={
-          <MyInput
-            placeholder="Password"
-            prefix={<LockOutlined />}
-            type="password"
-            style={{ width: "50%", textAlign: "center" }}
-          />
-        }
-      />
-      
+        
+
       <FormItem
         name="remember"
         valuePropName="checked"
@@ -87,6 +128,7 @@ function LoginForm(props) {
           </Button>
         }
       />
+
     </Form>
   );
 }

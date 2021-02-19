@@ -21,7 +21,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/about-us" component={AboutUs} />
-          <Route exact path="/sign-up" component={Register} />
+          <Route exact path="/register" component={Register} />
           <Redirect to="404" />
         </Switch>
         <MyFooter />
