@@ -6,7 +6,7 @@ function FormItem(props) {
     <Form.Item
       name={props.name}
       rules={props.rules}
-      valuePropName={props.valuePropName}
+      //valuePropName={props.valuePropName}
       noStyle={props.noStyle}
     >
       {props.content}
