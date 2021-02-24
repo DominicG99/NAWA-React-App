@@ -16,6 +16,7 @@ import AboutUs from "./components/pages/AboutUs";
 import Register from "./components/pages/Register";
 import MyFooter from "./components/MyFooter";
 import login from "./components/pages/login";
+import ProfilePage from "./components/pages/ProfilePage"
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
             <Route exact path="/" component={Home} />
             <Route exact path="/about-us" component={AboutUs} />
             <Route exact path="/register" component={Register} />
+            <Route exact path="/profile" component={ProfilePage} />
             <Route exact path="/login" component={login} />
             <Redirect to="404" />
           </Switch>

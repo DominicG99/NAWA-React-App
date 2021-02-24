@@ -80,7 +80,7 @@ function MyNavBar() {
             <li className="nav-item">
               <Link
                 to="/register"
-                className="nav-links-mobile"
+                className="nav-links"
                 onClick={closeMobileMenu}
               >
                 Sign Up
