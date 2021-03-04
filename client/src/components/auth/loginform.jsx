@@ -1,5 +1,4 @@
 import React from "react";
-import axios from "axios";
 import { Form, Checkbox } from "antd";
 import "antd/dist/antd.css";
 import { Button, Input } from "antd";

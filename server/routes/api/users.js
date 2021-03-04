@@ -1,98 +1,147 @@
-const express = require("express");
-const router = express.Router();
+const router = require("express").Router();
+const User = require("../../models/user");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const keys = require("../../config/keys");
+var bodyParser = require("body-parser");
+router.use(bodyParser.urlencoded({ extended: false }));
+router.use(bodyParser.json()); // support json encoded bodies
+// register
 
-// Load input validation
-const validateRegisterInput = require("../../validation/register");
-const validateLoginInput = require("../../validation/login");
-// Load User model
-const User = require("../../models/user");
+router.post("/register", async (req, res) => {
+  try {
+    const { email, password, password2 } = req.body;
+    console.log(req.body);
+    // validation
 
-// @route POST api/users/register
-// @desc Register user
-// @access Public
-router.post("/register", (req, res) => {
-  // Form validation
-  const { errors, isValid } = validateRegisterInput(req.body);
-  // Check validation
-  if (!isValid) {
-    return res.status(400).json(errors);
+    if (!email || !password || !password2)
+      return res
+        .status(400)
+        .json({ errorMessage: "Please enter all required fields." });
+
+    if (password.length < 6)
+      return res.status(400).json({
+        errorMessage: "Please enter a password of at least 6 characters.",
+      });
+
+    if (password !== passwordVerify)
+      return res.status(400).json({
+        errorMessage: "Please enter the same password twice.",
+      });
+
+    const existingUser = await User.findOne({ email });
+    if (existingUser)
+      return res.status(400).json({
+        errorMessage: "An account with this email already exists.",
+      });
+
+    // hash the password
+
+    const salt = await bcrypt.genSalt();
+    const passwordHash = await bcrypt.hash(password, salt);
+
+    // save a new user account to the db
+
+    const newUser = new User({
+      email,
+      passwordHash,
+    });
+
+    const savedUser = await newUser.save();
+
+    // sign the token
+
+    const token = jwt.sign(
+      {
+        user: savedUser._id,
+      },
+      process.env.JWT_SECRET
+    );
+
+    // send the token in a HTTP-only cookie
+
+    res
+      .cookie("token", token, {
+        httpOnly: true,
+        secure: true,
+        sameSite: "none",
+      })
+      .send();
+  } catch (err) {
+    console.error(err);
+    res.status(500).send();
   }
-  User.findOne({ email: req.body.email }).then((user) => {
-    if (user) {
-      return res.status(400).json({ email: "Email already exists" });
-    } else {
-      const newUser = new User({
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        email: req.body.email,
-        password: req.body.password,
-      });
-      // Hash password before saving in database
-      bcrypt.genSalt(10, (err, salt) => {
-        bcrypt.hash(newUser.password, salt, (err, hash) => {
-          if (err) throw err;
-          newUser.password = hash;
-          newUser
-            .save()
-            .then((user) => res.json(user))
-            .catch((err) => console.log(err));
-        });
-      });
-    }
-  });
 });
 
-// @route POST api/users/login
-// @desc Login user and return JWT token
-// @access Public
-router.post("/login", (req, res) => {
-  // Form validation
-  const { errors, isValid } = validateLoginInput(req.body);
-  // Check validation
-  if (!isValid) {
-    return res.status(400).json(errors);
+// log in
+
+router.post("/login", async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    // validate
+
+    if (!email || !password)
+      return res
+        .status(400)
+        .json({ errorMessage: "Please enter all required fields." });
+
+    const existingUser = await User.findOne({ email });
+    if (!existingUser)
+      return res.status(401).json({ errorMessage: "Wrong email or password." });
+
+    const passwordCorrect = await bcrypt.compare(
+      password,
+      existingUser.passwordHash
+    );
+    if (!passwordCorrect)
+      return res.status(401).json({ errorMessage: "Wrong email or password." });
+
+    // sign the token
+
+    const token = jwt.sign(
+      {
+        user: existingUser._id,
+      },
+      process.env.JWT_SECRET
+    );
+
+    // send the token in a HTTP-only cookie
+
+    res
+      .cookie("token", token, {
+        httpOnly: true,
+        secure: true,
+        sameSite: "none",
+      })
+      .send();
+  } catch (err) {
+    console.error(err);
+    res.status(500).send();
   }
-  const email = req.body.email;
-  const password = req.body.password;
-  // Find user by email
-  User.findOne({ email }).then((user) => {
-    // Check if user exists
-    if (!user) {
-      return res.status(404).json({ emailnotfound: "Email not found" });
-    }
-    // Check password
-    bcrypt.compare(password, user.password).then((isMatch) => {
-      if (isMatch) {
-        // User matched
-        // Create JWT Payload
-        const payload = {
-          id: user.id,
-          name: user.name,
-        };
-        // Sign token
-        jwt.sign(
-          payload,
-          keys.secretOrKey,
-          {
-            expiresIn: 31556926, // 1 year in seconds
-          },
-          (err, token) => {
-            res.json({
-              success: true,
-              token: "Bearer " + token,
-            });
-          }
-        );
-      } else {
-        return res
-          .status(400)
-          .json({ passwordincorrect: "Password incorrect" });
-      }
-    });
-  });
+});
+
+router.get("/logout", (req, res) => {
+  res
+    .cookie("token", "", {
+      httpOnly: true,
+      expires: new Date(0),
+      secure: true,
+      sameSite: "none",
+    })
+    .send();
+});
+
+router.get("/loggedIn", (req, res) => {
+  try {
+    const token = req.cookies.token;
+    if (!token) return res.json(false);
+
+    jwt.verify(token, process.env.JWT_SECRET);
+
+    res.send(true);
+  } catch (err) {
+    res.json(false);
+  }
 });
 
 module.exports = router;
