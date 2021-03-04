@@ -27,6 +27,8 @@ app.use(
   })
 );
 
+app.use(express.json());
+
 //Set up mongoose connection
 const mongoDB = require("./config/keys").mongoURI;
 

@@ -3,75 +3,72 @@ const User = require("../../models/user");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 var bodyParser = require("body-parser");
-router.use(bodyParser.urlencoded({ extended: false }));
+router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json()); // support json encoded bodies
 // register
 
+router.post("/", (req, res) => {
+  console.log(req.body);
+});
+
 router.post("/register", async (req, res) => {
   try {
-    const { email, password, password2 } = req.body;
+    const { email, password, password2, firstName, lastName } = req.body;
     console.log(req.body);
-    // validation
-
-    if (!email || !password || !password2)
+    if (!email || !password || !password2 || !firstName || !lastName) {
       return res
         .status(400)
-        .json({ errorMessage: "Please enter all required fields." });
-
-    if (password.length < 6)
+        .json({ errorMessage: "PLease enter all required fields." });
+    }
+    if (password.length < 6) {
       return res.status(400).json({
         errorMessage: "Please enter a password of at least 6 characters.",
       });
-
-    if (password !== passwordVerify)
+    }
+    if (password != password2) {
       return res.status(400).json({
         errorMessage: "Please enter the same password twice.",
       });
-
-    const existingUser = await User.findOne({ email });
-    if (existingUser)
+    }
+    const existerUser = await User.findOne({ email: email });
+    if (existerUser) {
       return res.status(400).json({
-        errorMessage: "An account with this email already exists.",
+        errorMessage: "User is already registered.",
       });
+    }
 
-    // hash the password
-
-    const salt = await bcrypt.genSalt();
+    //Hash password
+    const salt = await bcrypt.genSalt(10);
     const passwordHash = await bcrypt.hash(password, salt);
-
-    // save a new user account to the db
-
     const newUser = new User({
+      firstName,
+      lastName,
       email,
       passwordHash,
     });
 
     const savedUser = await newUser.save();
+    const secret = require("./config/keys").secretOrKey;
 
-    // sign the token
+    //log user in
 
+    //sign token
     const token = jwt.sign(
       {
         user: savedUser._id,
       },
-      process.env.JWT_SECRET
+      secretOrKey
     );
 
-    // send the token in a HTTP-only cookie
-
-    res
-      .cookie("token", token, {
-        httpOnly: true,
-        secure: true,
-        sameSite: "none",
-      })
-      .send();
+    //send token in HTTP cookie
+    res.cookie("token", token, {
+      httpOnly: true,
+    });
   } catch (err) {
     console.error(err);
     res.status(500).send();
   }
 });
-
 // log in
 
 router.post("/login", async (req, res) => {
