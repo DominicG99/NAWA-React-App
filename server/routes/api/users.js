@@ -13,8 +13,12 @@ router.post("/", (req, res) => {
 
 router.post("/register", async (req, res) => {
   try {
-    const { email, password, password2, firstName, lastName } = req.body;
-    console.log(req.body);
+    var { email, password, password2, firstName, lastName } = req.body;
+    email[Object.keys(req.body)[0]];
+    password[Object.keys(req.body)[1]];
+    password2[Object.keys(req.body)[2]];
+    firstName[Object.keys(req.body)[3]];
+    lastName[Object.keys(req.body)[4]];
     if (!email || !password || !password2 || !firstName || !lastName) {
       return res
         .status(400)
@@ -40,15 +44,16 @@ router.post("/register", async (req, res) => {
     //Hash password
     const salt = await bcrypt.genSalt(10);
     const passwordHash = await bcrypt.hash(password, salt);
+    password = passwordHash;
     const newUser = new User({
       firstName,
       lastName,
       email,
-      passwordHash,
+      password,
     });
 
     const savedUser = await newUser.save();
-    const secret = require("./config/keys").secretOrKey;
+    const secret = require("../config/keys").secretOrKey;
 
     //log user in
 
@@ -57,7 +62,7 @@ router.post("/register", async (req, res) => {
       {
         user: savedUser._id,
       },
-      secretOrKey
+      secret
     );
 
     //send token in HTTP cookie
@@ -140,5 +145,10 @@ router.get("/loggedIn", (req, res) => {
     res.json(false);
   }
 });
+
+// router.get("/userInformation", (req, res) =>
+// {
+//   //Use Mongoose to find the current user if they're logged?
+// }
 
 module.exports = router;
