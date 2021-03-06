@@ -8,7 +8,6 @@ import { UserOutlined, LockOutlined } from "@ant-design/icons";
 
 function RegisterForm() {
   function onFinish(values) {
-    console.log(typeof values.firstName);
     var data = {
       firstName: values.firstName,
       lastName: values.lastName,
@@ -16,12 +15,10 @@ function RegisterForm() {
       password: values.password,
       password2: values.confirm,
     };
-    console.log(typeof data);
     axios
       .post("http://localhost:5000/api/users/register", data)
       .then(async (res) => console.log("Data Sent."))
       .catch(async (err) => console.log(err.response.data));
-    console.log("Received values of form: ", data);
   }
   return (
     <Form

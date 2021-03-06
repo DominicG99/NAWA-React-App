@@ -1,12 +1,17 @@
 import React from "react";
 import { Form, Checkbox } from "antd";
+import axios from "axios";
 import "antd/dist/antd.css";
 import { Button, Input } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 
 function loginform() {
-  const onFinish = (values) => {
-    console.log("Success:", values);
+  const onFinish = (data) => {
+    console.log("Success:", data);
+    axios
+      .post("http://localhost:5000/api/users/login", data)
+      .then(async (res) => console.log("Data Sent."))
+      .catch(async (err) => console.log(err.response.data));
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -55,7 +60,7 @@ function loginform() {
 
       <Form.Item>
         <Button type="primary" htmlType="submit">
-          Submit
+          Log In
         </Button>
       </Form.Item>
     </Form>

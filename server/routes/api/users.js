@@ -13,12 +13,11 @@ router.post("/", (req, res) => {
 
 router.post("/register", async (req, res) => {
   try {
-    var { email, password, password2, firstName, lastName } = req.body;
-    email[Object.keys(req.body)[0]];
-    password[Object.keys(req.body)[1]];
-    password2[Object.keys(req.body)[2]];
-    firstName[Object.keys(req.body)[3]];
-    lastName[Object.keys(req.body)[4]];
+    var firstName = req.body[Object.keys(req.body)[0]];
+    var lastName = req.body[Object.keys(req.body)[1]];
+    var email = req.body[Object.keys(req.body)[2]];
+    var password = req.body[Object.keys(req.body)[3]];
+    var password2 = req.body[Object.keys(req.body)[4]];
     if (!email || !password || !password2 || !firstName || !lastName) {
       return res
         .status(400)
@@ -27,11 +26,6 @@ router.post("/register", async (req, res) => {
     if (password.length < 6) {
       return res.status(400).json({
         errorMessage: "Please enter a password of at least 6 characters.",
-      });
-    }
-    if (password != password2) {
-      return res.status(400).json({
-        errorMessage: "Please enter the same password twice.",
       });
     }
     const existerUser = await User.findOne({ email: email });
@@ -53,7 +47,7 @@ router.post("/register", async (req, res) => {
     });
 
     const savedUser = await newUser.save();
-    const secret = require("../config/keys").secretOrKey;
+    const secret = process.env.SECRET_OR_KEY;
 
     //log user in
 
@@ -78,8 +72,10 @@ router.post("/register", async (req, res) => {
 
 router.post("/login", async (req, res) => {
   try {
-    const { email, password } = req.body;
-
+    const email = req.body[Object.keys(req.body)[0]];
+    const password = req.body[Object.keys(req.body)[1]];
+    console.log(email);
+    console.log(password);
     // validate
 
     if (!email || !password)
@@ -89,14 +85,16 @@ router.post("/login", async (req, res) => {
 
     const existingUser = await User.findOne({ email });
     if (!existingUser)
-      return res.status(401).json({ errorMessage: "Wrong email or password." });
+      return res
+        .status(401)
+        .json({ errorMessage: "User is not yet registered." });
 
     const passwordCorrect = await bcrypt.compare(
       password,
-      existingUser.passwordHash
+      existingUser.password
     );
     if (!passwordCorrect)
-      return res.status(401).json({ errorMessage: "Wrong email or password." });
+      return res.status(401).json({ errorMessage: "Wrong Password" });
 
     // sign the token
 
@@ -104,7 +102,7 @@ router.post("/login", async (req, res) => {
       {
         user: existingUser._id,
       },
-      process.env.JWT_SECRET
+      process.env.SECRET_OR_KEY
     );
 
     // send the token in a HTTP-only cookie
@@ -138,7 +136,7 @@ router.get("/loggedIn", (req, res) => {
     const token = req.cookies.token;
     if (!token) return res.json(false);
 
-    jwt.verify(token, process.env.JWT_SECRET);
+    jwt.verify(token, process.env.SECRET_OR_KEY);
 
     res.send(true);
   } catch (err) {

@@ -5,7 +5,7 @@ const cors = require("cors");
 var path = require("path");
 const passport = require("passport");
 const users = require("./routes/api/users");
-
+require("dotenv").config();
 const app = express();
 
 //Bodyparser middleware
@@ -30,7 +30,7 @@ app.use(
 app.use(express.json());
 
 //Set up mongoose connection
-const mongoDB = require("./config/keys").mongoURI;
+const mongoDB = process.env.MONGO_URI;
 
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 
