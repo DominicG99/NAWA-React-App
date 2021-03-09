@@ -149,4 +149,4 @@ router.get("/loggedIn", (req, res) => {
 //   //Use Mongoose to find the current user if they're logged?
 // }
 
-module.exports = router;
+
