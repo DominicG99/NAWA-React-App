@@ -144,9 +144,23 @@ router.get("/loggedIn", (req, res) => {
   }
 });
 
+router.get("/register", async (req, res) => {
+    var firstName = req.body[Object.keys(req.body)[0]];
+    var lastName = req.body[Object.keys(req.body)[1]];
+    var email = req.body[Object.keys(req.body)[2]];
+    var password = req.body[Object.keys(req.body)[3]];
+    const newUser = new User({
+      firstName,
+      lastName,
+      email,
+      password,
+    });
+    return newUser;
+  });
+
 // router.get("/userInformation", (req, res) =>
 // {
 //   //Use Mongoose to find the current user if they're logged?
 // }
-
+//testing
 
