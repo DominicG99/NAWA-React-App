@@ -84,9 +84,11 @@ function MyNavBar() {
             </li>
           </ul>
           {button && (
-            <Button type="primary" ghost>
+            <Link to="/register">
+            <Button type="submit" ghost>
               register
             </Button>
+            </Link>
           )}
         </div>
       </nav>
