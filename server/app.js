@@ -1,29 +1,19 @@
 var express = require("express");
-const bodyParser = require("body-parser");
 var mongoose = require("mongoose");
 const cors = require("cors");
 var path = require("path");
+const cookieParser = require("cookie-parser");
 const passport = require("passport");
 const users = require("./routes/api/users");
 require("dotenv").config();
 const app = express();
 
-//Bodyparser middleware
-app.use(
-  bodyParser.urlencoded({
-    extended: false,
-  })
-);
+app.use(cookieParser());
 
-//Cors Configuration
-var corsOptions = {
-  origin: "http://localhost:3000",
-};
-
-app.use(cors(corsOptions));
 app.use(
-  bodyParser.urlencoded({
-    extended: true,
+  cors({
+    origin: "http://localhost:3000",
+    credentials: true,
   })
 );
 
@@ -34,11 +24,11 @@ const mongoDB = process.env.MONGO_URI;
 
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 
-// Passport middleware
-app.use(passport.initialize());
+// // Passport middleware
+// app.use(passport.initialize());
 
-// Passport config
-require("./config/passport")(passport);
+// // Passport config
+// require("./config/passport")(passport);
 
 // Routes
 app.use("/api/users", users);

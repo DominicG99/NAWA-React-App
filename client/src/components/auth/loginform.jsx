@@ -1,17 +1,25 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Form, Checkbox } from "antd";
 import axios from "axios";
 import "antd/dist/antd.css";
 import { Button, Input } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
+import AuthContext from "../../context/AuthContext";
+import { useHistory } from "react-router";
 
-function loginform() {
-  const onFinish = (data) => {
-    console.log("Success:", data);
-    axios
-      .post("http://localhost:5000/api/users/login", data)
+function LoginForm() {
+  const { getLoggedIn } = useContext(AuthContext);
+  const history = useHistory();
+  const onFinish = async (data) => {
+    await axios
+      .post("http://localhost:5000/api/users/login", data, {
+        withCredentials: true,
+        credentials: "include",
+      })
       .then(async (res) => console.log("Data Sent."))
       .catch(async (err) => console.log(err.response.data));
+    await getLoggedIn();
+    history.push("/");
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -67,4 +75,4 @@ function loginform() {
   );
 }
 
-export default loginform;
+export default LoginForm;

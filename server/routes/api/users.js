@@ -2,14 +2,7 @@ const router = require("express").Router();
 const User = require("../../models/user");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-var bodyParser = require("body-parser");
-router.use(bodyParser.urlencoded({ extended: true }));
-router.use(bodyParser.json()); // support json encoded bodies
 // register
-
-router.post("/", (req, res) => {
-  console.log(req.body);
-});
 
 router.post("/register", async (req, res) => {
   try {
@@ -62,6 +55,8 @@ router.post("/register", async (req, res) => {
     //send token in HTTP cookie
     res.cookie("token", token, {
       httpOnly: true,
+      sameSite: "None",
+      secure: false,
     });
   } catch (err) {
     console.error(err);
@@ -74,10 +69,7 @@ router.post("/login", async (req, res) => {
   try {
     const email = req.body[Object.keys(req.body)[0]];
     const password = req.body[Object.keys(req.body)[1]];
-    console.log(email);
-    console.log(password);
     // validate
-
     if (!email || !password)
       return res
         .status(400)
@@ -110,8 +102,8 @@ router.post("/login", async (req, res) => {
     res
       .cookie("token", token, {
         httpOnly: true,
-        secure: true,
-        sameSite: "none",
+        sameSite: "None",
+        secure: false,
       })
       .send();
   } catch (err) {
@@ -125,7 +117,6 @@ router.get("/logout", (req, res) => {
     .cookie("token", "", {
       httpOnly: true,
       expires: new Date(0),
-      secure: true,
       sameSite: "none",
     })
     .send();
@@ -143,10 +134,5 @@ router.get("/loggedIn", (req, res) => {
     res.json(false);
   }
 });
-
-// router.get("/userInformation", (req, res) =>
-// {
-//   //Use Mongoose to find the current user if they're logged?
-// }
 
 module.exports = router;

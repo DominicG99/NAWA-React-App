@@ -1,10 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import AuthContext from "../context/AuthContext";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { Button } from "antd";
+import LogOutBtn from "./auth/LogOutBtn";
 function MyNavBar() {
+  const { loggedIn } = useContext(AuthContext);
+  console.log(loggedIn);
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
   const [navbar, setNavbar] = useState(false);
@@ -38,7 +42,6 @@ function MyNavBar() {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-
   return (
     <>
       <nav className={navbar ? "navbar active" : "navbar"}>
@@ -68,26 +71,45 @@ function MyNavBar() {
                 About Us
               </Link>
             </li>
-            <li className="nav-item">
-              <Link
-                to="/profile"
-                className="nav-links"
-                onClick={closeMobileMenu}
-              >
-                Profile
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/login" className="nav-links" onClick={closeMobileMenu}>
-                Login
-              </Link>
-            </li>
+
+            {loggedIn === false && (
+              <>
+                <li className="nav-item">
+                  <Link
+                    to="/login"
+                    className="nav-links"
+                    onClick={closeMobileMenu}
+                  >
+                    Login
+                  </Link>
+                </li>{" "}
+                <Link to="/register" onClick={closeMobileMenu}>
+                  {button && (
+                    <Button type="primary" ghost>
+                      register
+                    </Button>
+                  )}
+                </Link>
+              </>
+            )}
+            {/* If the user IS logged in, add some other stuff*/}
+            {loggedIn === true && (
+              <>
+                <li className="nav-item">
+                  <Link
+                    to="/profile"
+                    className="nav-links"
+                    onClick={closeMobileMenu}
+                  >
+                    Profile
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <LogOutBtn />
+                </li>{" "}
+              </>
+            )}
           </ul>
-          {button && (
-            <Button type="primary" ghost>
-              register
-            </Button>
-          )}
         </div>
       </nav>
     </>

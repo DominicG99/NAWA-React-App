@@ -1,6 +1,7 @@
 import React from "react";
-import LoginForm from "./loginform";
+import LoginForm from "./LoginForm";
 import "./loginpage.css";
+
 function loginpage() {
   return (
     <div className="loginContainer">
