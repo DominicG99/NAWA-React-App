@@ -1,9 +1,9 @@
   
 video {
-    object-fit: fill;
+    object-fit: cover;
     width: 100%;
     height: 100%;
-    position: relative;
+    position: fixed;
     z-index: -1;
   }
   
@@ -12,9 +12,19 @@ video {
     height: 100vh;
     width: 100%;
     display: flex;
+    flex-direction: column;
     box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.2);
-    object-fit: cover;
   }
+
+  .hero-overlay
+  {
+    margin-top: 20%;
+    text-align: center;
+    color: white;
+
+  }
+
+  
   
   
   
