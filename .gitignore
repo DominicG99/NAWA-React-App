@@ -6,3 +6,4 @@ client/src/.eslintcache
 client/src/.env
 client/.eslintcache
 server/config/keys
+server/.env
