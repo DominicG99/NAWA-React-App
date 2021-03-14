@@ -7,7 +7,7 @@ function WeatherData() {
 
   const fetchData = async () => {
     const response = await axios.get(
-      'http://54.183.152.114/weather/multiple?city1=Auburn&city2=Auburn&state1=CA&state2=CA'
+      'http://54.183.152.114/weather/multiple?city1=Auburn&city2=Auburn&state1=CA&state2=CA', {withCredentials: false}
     );
 
     setForecasts(response.data);
