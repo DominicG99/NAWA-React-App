@@ -3,6 +3,7 @@ import "../App.css";
 import "./HeroSection.css";
 import { Row, Col } from "antd";
 import LocationInput from "./LocationInput";
+
 function HeroSection() {
   return (
     <div className="hero-container">
@@ -24,4 +25,5 @@ function HeroSection() {
   );
 }
 
+export let hardCount = 0;
 export default HeroSection;

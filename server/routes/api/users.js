@@ -124,6 +124,7 @@ router.get("/logout", (req, res) => {
 
 router.get("/loggedIn", (req, res) => {
   try {
+    console.log("hiHi")
     const token = req.cookies.token;
     if (!token) return res.json(false);
 
@@ -132,6 +133,37 @@ router.get("/loggedIn", (req, res) => {
     res.send(true);
   } catch (err) {
     res.json(false);
+  }
+});
+
+router.get("/userInfo", async (req, res) => {
+  try {
+    //User.findOne({firstName: "Noob"}).exec (function (err, User){
+  //    if (err) {
+  //      console.log("err");
+  //    } else {
+  //      var myName = User.email;
+  //      res.end(myName);
+  //    }
+  //  })
+  
+
+  //const userId = req.body.firstName;
+  //console.log("id is: " + userId);
+  //const email = req.body[Object.keys(req.body)[2]];
+    userEmail = "noobnooberson2@gmail.com"
+    User.findOne({email: userEmail}).exec (function (err, User){
+      if (err) {
+        console.log("err");
+      } else {
+        var firstName = User.firstName;
+        console.log(firstName)
+        res.end(firstName);
+      }
+    })
+  }
+  catch{
+
   }
 });
 
