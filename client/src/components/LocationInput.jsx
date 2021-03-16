@@ -3,10 +3,19 @@ import FloatLabel from "./FloatLabel";
 import AlgoliaPlaces from "algolia-places-react";
 import { Form } from "antd";
 import { Button } from "antd";
+import MapPage from "./pages/MapPage"
+
 function LocationInput() {
+  
   const onFinish = (data) => {
-    console.log(data);
+    let lat = data.destination.suggestion.latlng.lat
+    let lng = data.destination.suggestion.latlng.lng
+    console.log(lat)
+    console.log(lng)
+    console.log(data)
+    //onClick = {(lat) => window.location.href='/map'}
   };
+
   return (
     <Form
       name="Location Input"
@@ -39,6 +48,7 @@ function LocationInput() {
         />
       </Form.Item>
       <Form.Item style={{ marginLeft: "40%" }}>
+  
         <Button type="primary" htmlType="submit">
           GO
         </Button>
@@ -46,5 +56,7 @@ function LocationInput() {
     </Form>
   );
 }
+
+
 
 export default LocationInput;

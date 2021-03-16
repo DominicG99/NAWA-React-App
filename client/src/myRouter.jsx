@@ -14,6 +14,7 @@ import Register from "./components/pages/Register";
 import MyFooter from "./components/MyFooter";
 import login from "./components/pages/login";
 import ProfilePage from "./components/pages/ProfilePage";
+import MapPage from "./components/pages/MapPage";
 function MyRouter() {
   const { loggedIn } = useContext(AuthContext);
   console.log(loggedIn);
@@ -23,6 +24,7 @@ function MyRouter() {
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/about-us" component={AboutUs} />
+        <Route exact path="/map" component={MapPage}/>
         {loggedIn === false && (
           <>
             <Route exact path="/register" component={Register} />

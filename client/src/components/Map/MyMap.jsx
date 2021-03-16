@@ -32,7 +32,7 @@ function MyMap() {
         });
         map.addControl(directions, "top-left");
         //HardCoded origin and destination.
-        directions.setOrigin("LasW Vegas, NV");
+        directions.setOrigin("");
         directions.setDestination("Reno, NV");
         setMap(map);
         map.resize();
@@ -43,6 +43,6 @@ function MyMap() {
   }, [map]);
 
   return <div ref={(el) => (mapContainer.current = el)} style={styles} />;
-}
+};
 
 export default MyMap;
