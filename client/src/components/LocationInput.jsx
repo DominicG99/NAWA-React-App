@@ -17,12 +17,14 @@ function LocationInput() {
     let dest_admin = data.destination.suggestion.administrative
     let dest_lat = data.destination.suggestion.latlng.lat
     let dest_lng = data.destination.suggestion.latlng.lng
-    console.log(start_city)
-    console.log(dest_city)
-    console.log(start_admin)
-    console.log(dest_admin)
-    console.log(data)
-    history.push('/map')
+    history.push({pathname: '/map', 
+    state:{
+        city1:start_city,
+        admin1:start_admin,
+        city2:dest_city,
+        admin2:dest_admin
+    }
+    })
   };
 
   return (
