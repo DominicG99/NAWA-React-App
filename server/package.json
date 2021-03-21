@@ -2,7 +2,7 @@
   "name": "notaweatherapp",
   "version": "1.0.0",
   "description": "Not A Weather App",
-  "main": "server.js",
+  "main": "app.js",
   "scripts": {
     "start": "node app.js",
     "server": "nodemon app.js",
@@ -22,6 +22,7 @@
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "express-validator": "^6.10.0",
     "is-empty": "^1.2.0",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.6.4",

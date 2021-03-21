@@ -16,7 +16,7 @@ function LoginForm() {
         withCredentials: true,
         credentials: "include",
       })
-      .then(async (res) => console.log("Data Sent."))
+      .then(async (res) => console.log(res.data))
       .catch(async (err) => console.log(err.response.data));
     await getLoggedIn();
     history.push("/");

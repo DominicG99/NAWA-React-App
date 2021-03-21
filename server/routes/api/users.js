@@ -2,8 +2,11 @@ const router = require("express").Router();
 const User = require("../../models/user");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-// register
+const auth = require("../../middleware/auth");
 
+var userInfo = {};
+
+// register
 router.post("/register", async (req, res) => {
   try {
     var firstName = req.body[Object.keys(req.body)[0]];
@@ -81,6 +84,10 @@ router.post("/login", async (req, res) => {
         .status(401)
         .json({ errorMessage: "User is not yet registered." });
 
+    userInfo = await await User.findOne({ email }).select(
+      "-password -date -_id -__v"
+    );
+
     const passwordCorrect = await bcrypt.compare(
       password,
       existingUser.password
@@ -89,7 +96,6 @@ router.post("/login", async (req, res) => {
       return res.status(401).json({ errorMessage: "Wrong Password" });
 
     // sign the token
-
     const token = jwt.sign(
       {
         user: existingUser._id,
@@ -105,6 +111,7 @@ router.post("/login", async (req, res) => {
         sameSite: "None",
         secure: false,
       })
+      .json({ userInfo })
       .send();
   } catch (err) {
     console.error(err);
@@ -113,6 +120,7 @@ router.post("/login", async (req, res) => {
 });
 
 router.get("/logout", (req, res) => {
+  userInfo = {};
   res
     .cookie("token", "", {
       httpOnly: true,
@@ -124,7 +132,6 @@ router.get("/logout", (req, res) => {
 
 router.get("/loggedIn", (req, res) => {
   try {
-    console.log("hiHi")
     const token = req.cookies.token;
     if (!token) return res.json(false);
 
@@ -136,35 +143,8 @@ router.get("/loggedIn", (req, res) => {
   }
 });
 
-router.get("/userInfo", async (req, res) => {
-  try {
-    //User.findOne({firstName: "Noob"}).exec (function (err, User){
-  //    if (err) {
-  //      console.log("err");
-  //    } else {
-  //      var myName = User.email;
-  //      res.end(myName);
-  //    }
-  //  })
-  
-
-  //const userId = req.body.firstName;
-  //console.log("id is: " + userId);
-  //const email = req.body[Object.keys(req.body)[2]];
-    userEmail = "noobnooberson2@gmail.com"
-    User.findOne({email: userEmail}).exec (function (err, User){
-      if (err) {
-        console.log("err");
-      } else {
-        var firstName = User.firstName;
-        console.log(firstName)
-        res.end(firstName);
-      }
-    })
-  }
-  catch{
-
-  }
+router.get("/userInfo", (req, res) => {
+  res.json(userInfo);
 });
 
 module.exports = router;
