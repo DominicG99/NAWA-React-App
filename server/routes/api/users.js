@@ -2,11 +2,18 @@ const router = require("express").Router();
 const User = require("../../models/user");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+<<<<<<< HEAD
 var count = 0;
 var countOne = 0;
 var countTwo = 0;
 // register
+=======
+const auth = require("../../middleware/auth");
 
+var userInfo = {};
+>>>>>>> 5b9b74f75ce682417486e4845984ccf45f4ee156
+
+// register
 router.post("/register", async (req, res) => {
   try {
     var firstName = req.body[Object.keys(req.body)[0]];
@@ -84,6 +91,10 @@ router.post("/login", async (req, res) => {
         .status(401)
         .json({ errorMessage: "User is not yet registered." });
 
+    userInfo = await await User.findOne({ email }).select(
+      "-password -date -_id -__v"
+    );
+
     const passwordCorrect = await bcrypt.compare(
       password,
       existingUser.password
@@ -92,7 +103,6 @@ router.post("/login", async (req, res) => {
       return res.status(401).json({ errorMessage: "Wrong Password" });
 
     // sign the token
-
     const token = jwt.sign(
       {
         user: existingUser._id,
@@ -108,6 +118,7 @@ router.post("/login", async (req, res) => {
         sameSite: "None",
         secure: false,
       })
+      .json({ userInfo })
       .send();
   } catch (err) {
     console.error(err);
@@ -116,6 +127,7 @@ router.post("/login", async (req, res) => {
 });
 
 router.get("/logout", (req, res) => {
+  userInfo = {};
   res
     .cookie("token", "", {
       httpOnly: true,
@@ -127,7 +139,6 @@ router.get("/logout", (req, res) => {
 
 router.get("/loggedIn", (req, res) => {
   try {
-    console.log("hiHi")
     const token = req.cookies.token;
     if (!token) return res.json(false);
 
@@ -139,6 +150,7 @@ router.get("/loggedIn", (req, res) => {
   }
 });
 
+<<<<<<< HEAD
 router.get("/userFirstName", async (req, res) => {
   try {
       console.log("counting...")
@@ -182,6 +194,10 @@ router.get("/userLastName", async (req, res) => {
   catch{
 
   }
+=======
+router.get("/userInfo", (req, res) => {
+  res.json(userInfo);
+>>>>>>> 5b9b74f75ce682417486e4845984ccf45f4ee156
 });
 
 
