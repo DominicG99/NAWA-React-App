@@ -2,6 +2,9 @@ const router = require("express").Router();
 const User = require("../../models/user");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+var count = 0;
+var countOne = 0;
+var countTwo = 0;
 // register
 
 router.post("/register", async (req, res) => {
@@ -136,35 +139,76 @@ router.get("/loggedIn", (req, res) => {
   }
 });
 
-router.get("/userInfo", async (req, res) => {
+router.get("/userFirstName", async (req, res) => {
   try {
-    //User.findOne({firstName: "Noob"}).exec (function (err, User){
-  //    if (err) {
-  //      console.log("err");
-  //    } else {
-  //      var myName = User.email;
-  //      res.end(myName);
-  //    }
-  //  })
-  
+      console.log("counting...")
+  //   var hardBreak = 0;
+  //   var userEmail = "noobnooberson2@gmail.com"
+  //   User.findOne({email: userEmail}).exec (function (err, User){
+  //     if (err) {
+  //       console.log("err");
+  //     } else {
+  //         var firstName = User;
+  //         console.log(firstName);
+  //         res.json(firstName);
+  //     }
+  //   })
+  // count++;
+   }
+   catch{
 
-  //const userId = req.body.firstName;
-  //console.log("id is: " + userId);
-  //const email = req.body[Object.keys(req.body)[2]];
+  }
+
+});
+
+router.get("/userLastName", async (req, res) => {
+  try {
+    if (countOne === 0){
+      console.log("counting...")
+    var hardBreak = 0;
     userEmail = "noobnooberson2@gmail.com"
     User.findOne({email: userEmail}).exec (function (err, User){
       if (err) {
         console.log("err");
       } else {
-        var firstName = User.firstName;
-        console.log(firstName)
-        res.end(firstName);
+          var lastName = User.lastName;
+          console.log('last name is: ', lastName);
+          res.json(lastName);
       }
     })
+    }
+  countOne++;
   }
   catch{
 
   }
 });
+
+
+router.get("/userEmail", async (req, res) => {
+  try {
+    if (countTwo === 0){
+      console.log("counting...")
+    var hardBreak = 0;
+    userEmail = "noobnooberson2@gmail.com"
+    User.findOne({email: userEmail}).exec (function (err, User){
+      if (err) {
+        console.log("err");
+      } else {
+          var email = User.email;
+          res.end(email);
+          hardBreak = hardBreak + 1;
+          
+      }
+    })
+    }
+  countTwo++;
+  }
+  catch{
+
+  }
+});
+
+
 
 module.exports = router;
