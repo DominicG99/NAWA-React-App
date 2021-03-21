@@ -4,13 +4,15 @@ import MapContainer from "../Map/MapContainer";
 import "antd/dist/antd.css";
 
 function MapPage(props) {
-    console.log(props.location.state.city1)
-    console.log(props.location.state.admin1)
-    console.log(props.location.state.city2)
-    console.log(props.location.state.admin2)
+    
   return (
     <div>
-      <MapContainer />
+      <MapContainer 
+        city1 = {props.location.state.city1} 
+        admin1 = {props.location.state.admin1} 
+        city2 = {props.location.state.city2} 
+        admin2 = {props.location.state.admin2} 
+    />
     </div>
   );
 }

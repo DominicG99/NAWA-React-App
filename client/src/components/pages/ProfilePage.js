@@ -1,7 +1,6 @@
 import React from "react";
 import "../../App.css";
 import ProfilePage from "../auth/ProfilePage";
-import HeroSection from "../HeroSection";
 import { hardCount } from "../HeroSection";
 
 
