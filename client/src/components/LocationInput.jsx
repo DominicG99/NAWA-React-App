@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import FloatLabel from "./FloatLabel";
+import React from "react";
 import AlgoliaPlaces from "algolia-places-react";
 import { Form } from "antd";
 import { Button } from "antd";
