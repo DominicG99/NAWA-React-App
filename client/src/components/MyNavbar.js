@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { Button } from "antd";
 import LogOutBtn from "./auth/LogOutBtn";
+
 function MyNavBar() {
   const { loggedIn } = useContext(AuthContext);
   console.log(loggedIn);
@@ -47,7 +48,7 @@ function MyNavBar() {
       <nav className={navbar ? "navbar active" : "navbar"}>
         <div className="navbar-container">
           <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
-            Logo
+            <img src="./images/Sun.png" alt="weather" width="35" height="35"/>
           </Link>
           <div className="menu-icon" onClick={handleClick}>
             <FontAwesomeIcon

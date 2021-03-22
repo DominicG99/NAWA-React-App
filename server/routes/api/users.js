@@ -2,16 +2,10 @@ const router = require("express").Router();
 const User = require("../../models/user");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-<<<<<<< HEAD
-var count = 0;
-var countOne = 0;
-var countTwo = 0;
-// register
-=======
 const auth = require("../../middleware/auth");
+const user = require("../../models/user");
 
 var userInfo = {};
->>>>>>> 5b9b74f75ce682417486e4845984ccf45f4ee156
 
 // register
 router.post("/register", async (req, res) => {
@@ -141,16 +135,14 @@ router.get("/loggedIn", (req, res) => {
   try {
     const token = req.cookies.token;
     if (!token) return res.json(false);
-
     jwt.verify(token, process.env.SECRET_OR_KEY);
-
     res.send(true);
   } catch (err) {
     res.json(false);
   }
 });
 
-<<<<<<< HEAD
+
 router.get("/userFirstName", async (req, res) => {
   try {
       console.log("counting...")
@@ -173,57 +165,14 @@ router.get("/userFirstName", async (req, res) => {
 
 });
 
-router.get("/userLastName", async (req, res) => {
-  try {
-    if (countOne === 0){
-      console.log("counting...")
-    var hardBreak = 0;
-    userEmail = "noobnooberson2@gmail.com"
-    User.findOne({email: userEmail}).exec (function (err, User){
-      if (err) {
-        console.log("err");
-      } else {
-          var lastName = User.lastName;
-          console.log('last name is: ', lastName);
-          res.json(lastName);
-      }
-    })
-    }
-  countOne++;
-  }
-  catch{
-
-  }
-=======
 router.get("/userInfo", (req, res) => {
-  res.json(userInfo);
->>>>>>> 5b9b74f75ce682417486e4845984ccf45f4ee156
+  console.log(userInfo);
+  res.json({ userInfo} )
+     .send();
 });
 
 
-router.get("/userEmail", async (req, res) => {
-  try {
-    if (countTwo === 0){
-      console.log("counting...")
-    var hardBreak = 0;
-    userEmail = "noobnooberson2@gmail.com"
-    User.findOne({email: userEmail}).exec (function (err, User){
-      if (err) {
-        console.log("err");
-      } else {
-          var email = User.email;
-          res.end(email);
-          hardBreak = hardBreak + 1;
-          
-      }
-    })
-    }
-  countTwo++;
-  }
-  catch{
 
-  }
-});
 
 
 
