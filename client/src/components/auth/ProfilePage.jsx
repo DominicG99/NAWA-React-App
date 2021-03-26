@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import UserContext from "../../context/UserContext";
 import "./profilepage.css";
 import { Layout, Menu } from 'antd';
+import { Link } from "react-router-dom"
 const {Sider} = Layout;
 
 //Form -> Form.Item -> Submit button
@@ -30,6 +31,7 @@ function ProfilePage() {
         <Menu theme="dark" mode="inline" defaultSelectedKeys={['4']}>
           <Menu.Item key="1" >
             Edit Profile
+            <Link to ="/editProfile" />
           </Menu.Item>
           <Menu.Item key="2" >
             Change Password

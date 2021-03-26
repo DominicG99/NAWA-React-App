@@ -171,8 +171,17 @@ router.get("/userInfo", (req, res) => {
      .send();
 });
 
-
-
+router.post("/updateData", (req, res) => {
+  try {
+    var firstName = req.body[Object.keys(req.body)[0]];
+    var lastName = req.body[Object.keys(req.body)[1]];
+    var email = userInfo.email;
+    console.log(userInfo.id)
+  } catch (err) {
+    console.error(err);
+    res.status(500).send();
+  }
+});
 
 
 

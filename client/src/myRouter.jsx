@@ -14,6 +14,7 @@ import Register from "./components/pages/Register";
 import MyFooter from "./components/MyFooter";
 import login from "./components/pages/login";
 import ProfilePage from "./components/pages/ProfilePage";
+import EditProfile from "./components/pages/EditProfile";
 import MapPage from "./components/pages/MapPage";
 function MyRouter() {
   const { loggedIn } = useContext(AuthContext);
@@ -34,6 +35,7 @@ function MyRouter() {
         {loggedIn === true && (
           <>
             <Route exact path="/profile" component={ProfilePage} />
+            <Route exact path='/editProfile' component={EditProfile} />
           </>
         )}
 
