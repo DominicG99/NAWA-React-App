@@ -4,10 +4,10 @@ import "./EditProfile.css";
 
 function EditProfilePage() {
   return (
-    <div class="editProfileContainer">
-      <h1 class="header">Edit your profile here:</h1>
-      <div class="centered">
-         <EditProfileForm />
+    <div className="editProfileContainer">
+      <h1 className="header">Edit your profile here:</h1>
+      <div className="centered">
+        <EditProfileForm />
       </div>
     </div>
   );
