@@ -166,20 +166,50 @@ router.get("/userFirstName", async (req, res) => {
 });
 
 router.get("/userInfo", (req, res) => {
-  console.log(userInfo);
+  //console.log(userInfo);
   res.json({ userInfo} )
      .send();
 });
 
-router.post("/updateData", (req, res) => {
+router.post("/updateData", async (req, res) => {
   try {
+    const query = {email: userInfo.email};
     var firstName = req.body[Object.keys(req.body)[0]];
     var lastName = req.body[Object.keys(req.body)[1]];
-    var email = userInfo.email;
-    console.log(userInfo.id)
-  } catch (err) {
-    console.error(err);
-    res.status(500).send();
+    var email = req.body[Object.keys(req.body)[2]];
+    var password = req.body[Object.keys(req.body)[3]];
+    var password2 = req.body[Object.keys(req.body)[4]];
+    const options = {upsert: true, returnNewDocument: false};
+
+    const salt = await bcrypt.genSalt(10);
+    const passwordHash = await bcrypt.hash(password, salt);
+    password = passwordHash;
+   
+    var replacement = {
+      firstName,
+      lastName,
+      email,
+      password,
+      password2,
+    }
+    console.log(query);
+    //console.log(updatedUser);
+    console.log(userInfo.email);
+    User.findOneAndReplace(
+      {"email": userInfo.email},
+      replacement, 
+      options).exec (function (err, User){
+        if (err) {
+              console.log(err);
+               } else {
+                 userInfo = replacement;
+                  console.log(User)
+               }
+        })
+    }
+  catch (err) {
+  console.error(err);
+  res.status(500).send();
   }
 });
 

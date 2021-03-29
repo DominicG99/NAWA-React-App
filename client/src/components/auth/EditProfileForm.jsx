@@ -13,6 +13,9 @@ function EditProfileForm() {
     var data = {
       firstName: values.firstName,
       lastName: values.lastName,
+      email: values.email,
+      password: values.password,
+      password2: values.confirm,
     };
     axios
       .post("http://localhost:5000/api/users/updateData", data, {
@@ -45,7 +48,7 @@ function EditProfileForm() {
       >
         <Input placeholder="Change your last name" />
       </Form.Item>
-      {/* <Form.Item
+      { <Form.Item
         style={{ width: "25%"}}
         name="email"
         rules={[
@@ -57,9 +60,9 @@ function EditProfileForm() {
         ]}
       >
        <Input placeholder="Change your email" />
-      </Form.Item> */}
+      </Form.Item> }
 
-      {/* <Form.Item
+      { <Form.Item
         name="password"
         placeholder="password"
         rules={[
@@ -73,7 +76,36 @@ function EditProfileForm() {
       >
         <Input.Password
           placeholder="Change your password" />
-      </Form.Item> */}
+      </Form.Item> }
+
+      
+     { <Form.Item
+        name="confirm"
+        dependencies={["password"]}
+        hasFeedback
+        style={{ width: "25%" }}
+        rules={[
+          {
+            required: true,
+            message: "Please confirm your password!",
+          },
+          ({ getFieldValue }) => ({
+            validator(_, value) {
+              if (!value || getFieldValue("password") === value) {
+                return Promise.resolve();
+              }
+
+              return Promise.reject(
+                "The two passwords that you entered do not match!"
+              );
+            },
+          }),
+        ]}
+      >
+        <Input placeholder="Confirm password"></Input>
+      </Form.Item> }
+
+      
 
      
       <Form.Item>

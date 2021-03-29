@@ -8,6 +8,7 @@ const {Sider} = Layout;
 //Form -> Form.Item -> Submit button
 function ProfilePage() {
   const { userInfo } = useContext(UserContext);
+  
   return (
     <div className="fullPage">
         <h1>
@@ -32,9 +33,6 @@ function ProfilePage() {
           <Menu.Item key="1" >
             Edit Profile
             <Link to ="/editProfile" />
-          </Menu.Item>
-          <Menu.Item key="2" >
-            Change Password
           </Menu.Item>
           <Menu.Item key="3" >
             Edit Preferences

@@ -22,7 +22,7 @@ function RegisterForm() {
         withCredentials: true,
         credentials: "include",
       })
-      .then(async (res) => history.push("/"))
+      .then(history.push("/login"))
       .catch(async (err) => console.log(err.response.data));
   }
   return (
