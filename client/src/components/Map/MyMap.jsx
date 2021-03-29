@@ -10,10 +10,11 @@ const styles = {
   position: "relative",
 };
 
-function MyMap() {
+function MyMap(props) {
   const [map, setMap] = useState(null);
   const mapContainer = useRef(null);
-
+  console.log(props.origin);
+  console.log(props.destination);
   useEffect(() => {
     const initializeMap = ({ setMap, mapContainer }) => {
       const map = new mapboxgl.Map({
@@ -30,10 +31,9 @@ function MyMap() {
           accessToken: process.env.REACT_APP_MAPBOX_API_KEY,
           controls: { inputs: true, instructions: false },
         });
-        map.addControl(directions, "top-left");
-        //HardCoded origin and destination.
-        directions.setOrigin("");
-        directions.setDestination("Reno, NV");
+        directions.setOrigin(props.origin);
+        directions.setDestination(props.destination);
+        //map.addControl(directions, "top-left");
         setMap(map);
         map.resize();
       });
@@ -43,6 +43,6 @@ function MyMap() {
   }, [map]);
 
   return <div ref={(el) => (mapContainer.current = el)} style={styles} />;
-};
+}
 
 export default MyMap;

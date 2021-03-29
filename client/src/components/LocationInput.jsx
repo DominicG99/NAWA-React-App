@@ -1,29 +1,34 @@
-import React from "react";
+import React, { useContext } from "react";
 import AlgoliaPlaces from "algolia-places-react";
 import { Form } from "antd";
 import { Button } from "antd";
-import { useHistory } from 'react-router-dom';
-
+import { useHistory } from "react-router-dom";
+import LocationContext from "../context/LocationContext";
 function LocationInput() {
-    let history = useHistory();
-
+  let history = useHistory();
+  const { getLocation } = useContext(LocationContext);
   const onFinish = (data) => {
-    let start_city = data.start.suggestion.name
-    let start_admin = data.start.suggestion.administrative
-    let start_lat = data.destination.suggestion.latlng.lat
-    let start_lng = data.destination.suggestion.latlng.lng
-    let dest_city = data.destination.suggestion.name
-    let dest_admin = data.destination.suggestion.administrative
-    let dest_lat = data.destination.suggestion.latlng.lat
-    let dest_lng = data.destination.suggestion.latlng.lng
-    history.push({pathname: '/map', 
-    state:{
-        city1:start_city,
-        admin1:start_admin,
-        city2:dest_city,
-        admin2:dest_admin
-    }
-    })
+    let start_city = data.start.suggestion.name;
+    let start_admin = data.start.suggestion.administrative;
+    let start_lat = data.destination.suggestion.latlng.lat;
+    let start_lng = data.destination.suggestion.latlng.lng;
+    let dest_city = data.destination.suggestion.name;
+    let dest_admin = data.destination.suggestion.administrative;
+    let dest_lat = data.destination.suggestion.latlng.lat;
+    let dest_lng = data.destination.suggestion.latlng.lng;
+    let origin = start_city + ", " + start_admin;
+    let dest = dest_city + ", " + dest_admin;
+    history.push({
+      pathname: "/map",
+      state: {
+        city1: start_city,
+        admin1: start_admin,
+        city2: dest_city,
+        admin2: dest_admin,
+        origin: origin,
+        destination: dest,
+      },
+    });
   };
 
   return (
