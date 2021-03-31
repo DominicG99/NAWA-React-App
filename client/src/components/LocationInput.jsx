@@ -46,7 +46,7 @@ function LocationInput() {
             apiKey: process.env.ALGOLIA_API_KEY,
             language: "en",
             countries: ["us"],
-            type: "city",
+            type: "address, city",
           }}
         />
       </Form.Item>

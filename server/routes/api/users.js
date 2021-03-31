@@ -4,6 +4,9 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const auth = require("../../middleware/auth");
 const user = require("../../models/user");
+const app = require("../../app");
+const LocationInformation = require("../../models/locationInformation");
+const { db } = require("../../models/user");
 
 var userInfo = {};
 
@@ -15,6 +18,25 @@ router.post("/register", async (req, res) => {
     var email = req.body[Object.keys(req.body)[2]];
     var password = req.body[Object.keys(req.body)[3]];
     var password2 = req.body[Object.keys(req.body)[4]];
+    var description = req.body[Object.keys(req.body)[5]];
+
+    console.log(description);
+
+    const newLocation = new LocationInformation({
+      description,
+      email,
+    });
+
+    newLocation.save();
+
+    //const description = new LocationInformation(req.body);
+//    await location.save();
+//    console.log(location)
+//   const user = await User.findById.apply({_id: location.user})
+//   user.info.push(location);
+//   await user.save();
+
+
     if (!email || !password || !password2 || !firstName || !lastName) {
       return res
         .status(400)
@@ -66,6 +88,12 @@ router.post("/register", async (req, res) => {
     console.error(err);
     res.status(500).send();
   }
+
+
+
+
+
+
 });
 // log in
 
@@ -213,6 +241,40 @@ router.post("/updateData", async (req, res) => {
   }
 });
 
+router.post("/preferences", async (req, res) => {
+  try {
+    var favoriteFood = req.body[Object.keys(req.body)[0]];
+    var description = req.body[Object.keys(req.body)[1]];
+    var email = userInfo.email;
+    console.log(email);
+    console.log(description);
+    console.log(favoriteFood);
+    const newLocation = new LocationInformation({
+      email,
+      description,
+      favoriteFood,
+    });
+     newLocation.save();
+    }
+  catch (err) {
+    console.error(err);
+    res.status(500).send();
+    }
+  });
 
 
-module.exports = router;
+  module.exports = router;
+
+//router.post('/addloctionInformation', async (req, res) =>{//
+//  try {
+//    const location = new locationInformation(req.body);
+//    await location.save();
+//
+//    const user = await User.findById({_id: locaiton.User})
+//    user.locationInformation.push(location);
+//    await user.save();
+//
+//    res.status(200).json({success:true, data: location})
+//  } catch (err){
+//    res.status(400).json({success: false, message:err.message})
+//  }

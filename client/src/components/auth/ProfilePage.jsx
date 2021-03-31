@@ -36,6 +36,7 @@ function ProfilePage() {
           </Menu.Item>
           <Menu.Item key="3" >
             Edit Preferences
+            <Link to ="/preferences" />
           </Menu.Item>
         </Menu>
       </Sider>

@@ -10,13 +10,16 @@ import { useHistory } from "react-router";
 function RegisterForm() {
   const history = useHistory();
   function onFinish(values) {
+   
     var data = {
       firstName: values.firstName,
       lastName: values.lastName,
       email: values.email,
       password: values.password,
       password2: values.confirm,
+      location: values.test
     };
+    console.log(data)
     axios
       .post("http://localhost:5000/api/users/register", data, {
         withCredentials: true,
@@ -105,6 +108,19 @@ function RegisterForm() {
           prefix={<LockOutlined className="site-form-item-icon" />}
         />
       </Form.Item>
+
+      <Form.Item
+       name="test"
+        rules={[{ required: true, message: "Please input your test" }]}
+        style={{ width: "25%" }}
+      >
+        <Input prefix={<UserOutlined className="site-form-item-icon" />} />
+      </Form.Item>
+
+
+
+
+
       <Form.Item>
         <Button type="primary" htmlType="submit">
           Register
