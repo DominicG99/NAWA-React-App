@@ -73,7 +73,8 @@ function stateNameToAbbreviation(abbreviation) {
 	return null;
 }
 
-function WeatherData(props) {
+function WeatherData(props) 
+{
     let abbreviated_admin1 = stateNameToAbbreviation(props.admin1);
     let abbreviated_admin2 = stateNameToAbbreviation(props.admin2);
     console.log(props.city1);
@@ -81,7 +82,7 @@ function WeatherData(props) {
     console.log(props.city2);
     console.log(abbreviated_admin2);
 
-    var uri = "http://54.183.152.114/weather/multiple?city1=" + props.city1 + "&city2=" 
+    var uri = "http://54.219.249.115/weather/multiple?city1=" + props.city1 + "&city2=" 
         + props.city2 + "&state1=" + abbreviated_admin1 + "&state2=" + abbreviated_admin2;
     console.log(uri);
 
@@ -116,11 +117,20 @@ function WeatherData(props) {
 
             return (
               <div className="forecast" key={index}>
-                <h3>Forecast {index} days out from now</h3>
+                <h3>Forecast  for {forecast.date}</h3>
                 <h2>{forecast.name}</h2>
                 <div className="details">
-                  <p>❄️ Min: {forecast.min} degrees celcius</p>
-                  <p>🌡️ Max: {forecast.max} degrees celcius</p>
+                  <p>❄️ Min Temp: {forecast.minTemp} degrees celcius</p>
+                  <p>🌡️ Max Temp: {forecast.maxTemp} degrees celcius</p>
+                  <p>Max Wind Speed: {forecast.maxWindSpeed} KM/h</p>
+                  <p>Max Wind Gust: {forecast.maxWindGust} KM/h</p>
+                  <p>Min Humidity: {forecast.minHumidity}%</p>
+                  <p>Max Humidity: {forecast.maxHumidity}%</p>
+                  <p>Min Visibility: {forecast.minVisibility} meters</p>
+                  <p>Max Avg Probability Precip: {forecast.maxAvgProbabilityOfPrecipitation}%</p>
+                  <p>Max Probability Precip in day: {forecast.maxProbabilityOfPrecipitation}%</p>
+                  <p>Max Snowfall Total: {forecast.maxSnowfallTotal} mm</p>
+
                 </div>
               </div>
             );
