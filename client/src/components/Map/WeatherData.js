@@ -93,6 +93,10 @@ function WeatherData(props) {
 
     setForecasts(response.data);
     console.log(response.data)
+	axios.post("http://localhost:5000/api/users/weatherData", response.data, {
+        withCredentials: true,
+        credentials: "include",
+      })
 };
 
   return (
@@ -114,7 +118,6 @@ function WeatherData(props) {
               <div className="forecast" key={index}>
                 <h3>Forecast {index} days out from now</h3>
                 <h2>{forecast.name}</h2>
-
                 <div className="details">
                   <p>❄️ Min: {forecast.min} degrees celcius</p>
                   <p>🌡️ Max: {forecast.max} degrees celcius</p>

@@ -5,6 +5,10 @@ const Schema = mongoose.Schema;
 //add midpoints later
 
 const favoriteSchema = new Schema({
+    email: {
+        type: String, 
+        required: true, 
+    },
     startLat: {
         type: Number,
         required: true,

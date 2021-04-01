@@ -1,26 +1,30 @@
 const mongoose = require('mongoose');
 const {Schema} = require('mongoose');
 
-const historySchema = new Schema({
+const saveRouteSchema = new Schema({
     email: {
         type: String,
         //required: true,
     },
     startLat: {
         type: Number,
-        required: true,
     },
     startLng: {
         type: Number,
-        required: true,
     },
-    endLat:{
+    endLat: {
         type: Number,
-        required: true,
     },
-    endLng: {
+    description: {
+        type: String,
+    },
+    midpoint1: {
         type: Number,
-        required: true,
+        required: false,
+    },
+    midpoint2: {
+        type: Number,
+        required: false, 
     },
     date: {
         type: Date,
@@ -29,5 +33,3 @@ const historySchema = new Schema({
 });
 
 module.exports = HistoricInformation = mongoose.model('historicInformation', historySchema);
-
-

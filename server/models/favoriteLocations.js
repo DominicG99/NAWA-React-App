@@ -5,7 +5,10 @@ const Schema = mongoose.Schema;
 //try to have this work with the Map API to quick save deal. 
 
 const favoriteLocationsSchema = new Schema({
-    
+    email: {
+        type: String,
+        required: true,
+    },
 
 
 })

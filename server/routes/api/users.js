@@ -6,9 +6,41 @@ const auth = require("../../middleware/auth");
 const user = require("../../models/user");
 const app = require("../../app");
 const LocationInformation = require("../../models/locationInformation");
+const HistoricInformation = require("../../models/historicInformation");
+const Preferences = require("../../models/preferences");
 const { db } = require("../../models/user");
 
 var userInfo = {};
+
+
+//Historical routes captured from locationInput
+router.post("/historyCords", async (req, res) => {
+  try{
+    var email = userInfo.email;
+    var startLat = req.body[Object.keys(req.body)[0]];
+    var startLng = req.body[Object.keys(req.body)[1]];
+    console.log("this is printing");
+    console.log(startLat)
+    console.log(startLng)
+    const newHistory = new HistoricInformation({
+      email,
+      startLat,
+      startLng,
+    });
+    newHistory.save();
+
+    
+
+
+
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).send();
+  }
+
+});
+
 
 // register
 router.post("/register", async (req, res) => {
@@ -95,7 +127,17 @@ router.post("/register", async (req, res) => {
 
 
 });
+
+
+
+
 // log in
+
+
+
+
+
+
 
 router.post("/login", async (req, res) => {
   try {
@@ -220,6 +262,7 @@ router.post("/updateData", async (req, res) => {
       password,
       password2,
     }
+
     console.log(query);
     //console.log(updatedUser);
     console.log(userInfo.email);
@@ -249,18 +292,32 @@ router.post("/preferences", async (req, res) => {
     console.log(email);
     console.log(description);
     console.log(favoriteFood);
-    const newLocation = new LocationInformation({
+    const newPreferences = new Preferences({
       email,
       description,
       favoriteFood,
     });
-     newLocation.save();
+     newPreferences.save();
     }
   catch (err) {
     console.error(err);
     res.status(500).send();
     }
   });
+
+ router.post("/weatherData", async (req, res) => {
+   try{
+    var obj1 = req.body[Object.keys(req.body)[0]];
+    var obj2 = req.body[Object.keys(req.body)[1]];
+    var obj3 = req.body[Object.keys(req.body)[2]];
+    var obj4 = req.body[Object.keys(req.body)[3]];
+    console.log(obj1, "data... ", obj2);
+   }
+   catch (err) {
+    console.error(err);
+    res.status(500).send();
+    }
+ })
 
 
   module.exports = router;
