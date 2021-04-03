@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import axios from "axios";
 import AlgoliaPlaces from "algolia-places-react";
 import { Form } from "antd";
 import { Button } from "antd";
@@ -7,6 +8,7 @@ import LocationContext from "../context/LocationContext";
 function LocationInput() {
   let history = useHistory();
   const { getLocation } = useContext(LocationContext);
+
   const onFinish = (data) => {
     let start_city = data.start.suggestion.name;
     let start_admin = data.start.suggestion.administrative;
@@ -18,6 +20,24 @@ function LocationInput() {
     let dest_lng = data.destination.suggestion.latlng.lng;
     let origin = start_city + ", " + start_admin;
     let dest = dest_city + ", " + dest_admin;
+
+    console.log(start_lat);
+
+    var hisValues = {
+      startLat: start_lat,
+      startLng: start_lng,
+    };
+
+    console.log(data);
+
+  axios
+    .post("http://localhost:5000/api/users/historyCords", hisValues, {
+      withCredentials: true,
+      credentials: "include",
+    })
+    .then(async (res) => history.push("/"))
+    .catch(async (err) => console.log(err.response.data));
+
     history.push({
       pathname: "/map",
       state: {
@@ -27,9 +47,14 @@ function LocationInput() {
         admin2: dest_admin,
         origin: origin,
         destination: dest,
+        //lat: dest_lat,
+        //lng: dest_lng,
       },
     });
+    console.log(hisValues)
+
   };
+  
 
   return (
     <Form
@@ -46,7 +71,7 @@ function LocationInput() {
             apiKey: process.env.ALGOLIA_API_KEY,
             language: "en",
             countries: ["us"],
-            type: "city",
+            //type: "address",
           }}
         />
       </Form.Item>
@@ -58,7 +83,7 @@ function LocationInput() {
             apiKey: process.env.ALGOLIA_API_KEY,
             language: "en",
             countries: ["us"],
-            type: "city",
+            //type: "address",
           }}
         />
       </Form.Item>

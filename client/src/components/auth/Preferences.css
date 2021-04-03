@@ -1,0 +1,15 @@
+.editProfileContainer {
+    padding: 10rem;
+    background-color: rgba(38, 110, 116, 0.349);
+}
+
+.header {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: 200;
+}
+
+.centered {
+  margin: auto;
+  width: 100%;
+  padding: 10px;
+}

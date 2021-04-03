@@ -23,15 +23,15 @@ function MyMap(props) {
       });
 
       map.on("load", () => {
-        const directions = new MapboxDirections({
-          unit: "metric",
+        var directions = new MapboxDirections({
+          //unit: "metric",
           profile: "mapbox/driving",
           accessToken: process.env.REACT_APP_MAPBOX_API_KEY,
-          controls: { inputs: true, instructions: false },
+          //controls: { inputs: true, instructions: true },
         });
         directions.setOrigin(props.origin);
         directions.setDestination(props.destination);
-        //map.addControl(directions, "top-left");
+        map.addControl(directions, "top-left");
         setMap(map);
         map.resize();
       });

@@ -14,6 +14,7 @@ import Register from "./components/pages/Register";
 import MyFooter from "./components/MyFooter";
 import login from "./components/pages/login";
 import ProfilePage from "./components/pages/ProfilePage";
+import Preferences from "./components/pages/Preferences";
 import EditProfile from "./components/pages/EditProfile";
 import MapPage from "./components/pages/MapPage";
 function MyRouter() {
@@ -36,6 +37,7 @@ function MyRouter() {
           <>
             <Route exact path="/profile" component={ProfilePage} />
             <Route exact path='/editProfile' component={EditProfile} />
+            <Route exact path='/preferences' component={Preferences} />
           </>
         )}
 

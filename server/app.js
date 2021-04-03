@@ -5,6 +5,7 @@ var path = require("path");
 const cookieParser = require("cookie-parser");
 const passport = require("passport");
 const users = require("./routes/api/users");
+const { MongoClient } = require("mongodb");
 require("dotenv").config();
 const app = express();
 
@@ -23,6 +24,20 @@ app.use(express.json());
 const mongoDB = process.env.MONGO_URI;
 
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
+
+//async function main(){
+ // const mongoDB = process.env.MONGO_URI;
+  //const path = new MongoClient(mongoDB,{ useNewUrlParser: true, useUnifiedTopology: true });
+ // try{
+ //   await path.connect();
+ // } catch (e){
+ //   console.error(e);
+ // } finally{
+ //   await client.close();
+ // }
+//}
+
+
 
 // // Passport middleware
 // app.use(passport.initialize());

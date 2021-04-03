@@ -4,8 +4,43 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const auth = require("../../middleware/auth");
 const user = require("../../models/user");
+const app = require("../../app");
+const LocationInformation = require("../../models/locationInformation");
+const HistoricInformation = require("../../models/historicInformation");
+const Preferences = require("../../models/preferences");
+const { db } = require("../../models/user");
 
 var userInfo = {};
+
+
+//Historical routes captured from locationInput
+router.post("/historyCords", async (req, res) => {
+  try{
+    var email = userInfo.email;
+    var startLat = req.body[Object.keys(req.body)[0]];
+    var startLng = req.body[Object.keys(req.body)[1]];
+    console.log("this is printing");
+    console.log(startLat)
+    console.log(startLng)
+    const newHistory = new HistoricInformation({
+      email,
+      startLat,
+      startLng,
+    });
+    newHistory.save();
+
+    
+
+
+
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).send();
+  }
+
+});
+
 
 // register
 router.post("/register", async (req, res) => {
@@ -15,6 +50,25 @@ router.post("/register", async (req, res) => {
     var email = req.body[Object.keys(req.body)[2]];
     var password = req.body[Object.keys(req.body)[3]];
     var password2 = req.body[Object.keys(req.body)[4]];
+    var description = req.body[Object.keys(req.body)[5]];
+
+    console.log(description);
+
+    const newLocation = new LocationInformation({
+      description,
+      email,
+    });
+
+    newLocation.save();
+
+    //const description = new LocationInformation(req.body);
+//    await location.save();
+//    console.log(location)
+//   const user = await User.findById.apply({_id: location.user})
+//   user.info.push(location);
+//   await user.save();
+
+
     if (!email || !password || !password2 || !firstName || !lastName) {
       return res
         .status(400)
@@ -66,8 +120,24 @@ router.post("/register", async (req, res) => {
     console.error(err);
     res.status(500).send();
   }
+
+
+
+
+
+
 });
+
+
+
+
 // log in
+
+
+
+
+
+
 
 router.post("/login", async (req, res) => {
   try {
@@ -166,23 +236,102 @@ router.get("/userFirstName", async (req, res) => {
 });
 
 router.get("/userInfo", (req, res) => {
-  console.log(userInfo);
+  //console.log(userInfo);
   res.json({ userInfo} )
      .send();
 });
 
-router.post("/updateData", (req, res) => {
+router.post("/updateData", async (req, res) => {
   try {
+    const query = {email: userInfo.email};
     var firstName = req.body[Object.keys(req.body)[0]];
     var lastName = req.body[Object.keys(req.body)[1]];
-    var email = userInfo.email;
-    console.log(userInfo.id)
-  } catch (err) {
-    console.error(err);
-    res.status(500).send();
+    var email = req.body[Object.keys(req.body)[2]];
+    var password = req.body[Object.keys(req.body)[3]];
+    var password2 = req.body[Object.keys(req.body)[4]];
+    const options = {upsert: true, returnNewDocument: false};
+
+    const salt = await bcrypt.genSalt(10);
+    const passwordHash = await bcrypt.hash(password, salt);
+    password = passwordHash;
+   
+    var replacement = {
+      firstName,
+      lastName,
+      email,
+      password,
+      password2,
+    }
+
+    console.log(query);
+    //console.log(updatedUser);
+    console.log(userInfo.email);
+    User.findOneAndReplace(
+      {"email": userInfo.email},
+      replacement, 
+      options).exec (function (err, User){
+        if (err) {
+              console.log(err);
+               } else {
+                 userInfo = replacement;
+                  console.log(User)
+               }
+        })
+    }
+  catch (err) {
+  console.error(err);
+  res.status(500).send();
   }
 });
 
+router.post("/preferences", async (req, res) => {
+  try {
+    var favoriteFood = req.body[Object.keys(req.body)[0]];
+    var description = req.body[Object.keys(req.body)[1]];
+    var email = userInfo.email;
+    console.log(email);
+    console.log(description);
+    console.log(favoriteFood);
+    const newPreferences = new Preferences({
+      email,
+      description,
+      favoriteFood,
+    });
+     newPreferences.save();
+    }
+  catch (err) {
+    console.error(err);
+    res.status(500).send();
+    }
+  });
+
+ router.post("/weatherData", async (req, res) => {
+   try{
+    var obj1 = req.body[Object.keys(req.body)[0]];
+    var obj2 = req.body[Object.keys(req.body)[1]];
+    var obj3 = req.body[Object.keys(req.body)[2]];
+    var obj4 = req.body[Object.keys(req.body)[3]];
+    console.log(obj1, "data... ", obj2);
+   }
+   catch (err) {
+    console.error(err);
+    res.status(500).send();
+    }
+ })
 
 
-module.exports = router;
+  module.exports = router;
+
+//router.post('/addloctionInformation', async (req, res) =>{//
+//  try {
+//    const location = new locationInformation(req.body);
+//    await location.save();
+//
+//    const user = await User.findById({_id: locaiton.User})
+//    user.locationInformation.push(location);
+//    await user.save();
+//
+//    res.status(200).json({success:true, data: location})
+//  } catch (err){
+//    res.status(400).json({success: false, message:err.message})
+//  }
