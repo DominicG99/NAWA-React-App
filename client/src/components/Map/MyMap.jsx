@@ -13,8 +13,6 @@ const styles = {
 function MyMap(props) {
   const [map, setMap] = useState(null);
   const mapContainer = useRef(null);
-  console.log(props.origin);
-  console.log(props.destination);
   useEffect(() => {
     const initializeMap = ({ setMap, mapContainer }) => {
       const map = new mapboxgl.Map({
