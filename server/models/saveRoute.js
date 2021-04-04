@@ -26,6 +26,18 @@ const saveRouteSchema = new Schema({
         type: Number,
         required: false, 
     },
+    midpoint3: {
+        type: Number, 
+        required: false,
+    },
+    midpoint4: {
+        type: Number,
+        required: false,
+    },
+    midpoint5: {
+        type: Number,
+        required: false,
+    },
     date: {
         type: Date,
         default: Date.now,
