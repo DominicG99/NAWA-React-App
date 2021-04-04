@@ -4,8 +4,8 @@ import { Form } from "antd";
 import "antd/dist/antd.css";
 
 import { Button, Input } from "antd";
-import { UserOutlined, LockOutlined } from "@ant-design/icons";
-import { Redirect, useHistory } from "react-router";
+//import { UserOutlined, LockOutlined } from "@ant-design/icons";
+import { useHistory } from "react-router";
 
 function EditProfileForm() {
   const history = useHistory();
@@ -48,66 +48,67 @@ function EditProfileForm() {
       >
         <Input placeholder="Change your last name" />
       </Form.Item>
-      { <Form.Item
-        style={{ width: "25%"}}
-        name="email"
-        rules={[
-          {
-            required: true,
-            message: "Please input your email!",
-            type: "email",
-          },
-        ]}
-      >
-       <Input placeholder="Change your email" />
-      </Form.Item> }
-
-      { <Form.Item
-        name="password"
-        placeholder="password"
-        rules={[
-          {
-            required: true,
-            message: "Please input your password!",
-          },
-        ]}
-        hasFeedback
-        style={{ width: "25%" }}
-      >
-        <Input.Password
-          placeholder="Change your password" />
-      </Form.Item> }
-
-      
-     { <Form.Item
-        name="confirm"
-        dependencies={["password"]}
-        hasFeedback
-        style={{ width: "25%" }}
-        rules={[
-          {
-            required: true,
-            message: "Please confirm your password!",
-          },
-          ({ getFieldValue }) => ({
-            validator(_, value) {
-              if (!value || getFieldValue("password") === value) {
-                return Promise.resolve();
-              }
-
-              return Promise.reject(
-                "The two passwords that you entered do not match!"
-              );
+      {
+        <Form.Item
+          style={{ width: "25%" }}
+          name="email"
+          rules={[
+            {
+              required: true,
+              message: "Please input your email!",
+              type: "email",
             },
-          }),
-        ]}
-      >
-        <Input placeholder="Confirm password"></Input>
-      </Form.Item> }
+          ]}
+        >
+          <Input placeholder="Change your email" />
+        </Form.Item>
+      }
 
-      
+      {
+        <Form.Item
+          name="password"
+          placeholder="password"
+          rules={[
+            {
+              required: true,
+              message: "Please input your password!",
+            },
+          ]}
+          hasFeedback
+          style={{ width: "25%" }}
+        >
+          <Input.Password placeholder="Change your password" />
+        </Form.Item>
+      }
 
-     
+      {
+        <Form.Item
+          name="confirm"
+          dependencies={["password"]}
+          hasFeedback
+          style={{ width: "25%" }}
+          rules={[
+            {
+              required: true,
+              message: "Please confirm your password!",
+            },
+            ({ getFieldValue }) => ({
+              validator(_, value) {
+                if (!value || getFieldValue("password") === value) {
+                  return Promise.resolve();
+                }
+
+                return Promise.reject(
+                  "The two passwords that you entered do not match!"
+                );
+              },
+            }),
+          ]}
+        >
+          <Input placeholder="Confirm password"></Input>
+        </Form.Item>
+      }
+
       <Form.Item>
         <Button type="primary" htmlType="submit">
           Apply Changes

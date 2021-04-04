@@ -10,7 +10,15 @@ function MapContainer(props) {
     <div className="mapcontainer">
       <Row>
         <Col xs={{ span: 24, offset: 4 }} lg={{ span: 12, offset: 6 }}>
-          <MyMap origin={props.origin} destination={props.destination} />;
+          <MyMap
+            origin={props.origin}
+            destination={props.destination}
+            start_lat={props.start_lat}
+            start_lng={props.start_lng}
+            dest_lat={props.dest_lat}
+            dest_lng={props.dest_lng}
+          />
+          ;
           <WeatherData
             city1={props.city1}
             admin1={props.admin1}
