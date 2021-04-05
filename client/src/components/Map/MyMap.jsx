@@ -9,6 +9,7 @@ const styles = {
   height: "calc(70vh - 80px)",
   position: "relative",
 };
+
 function MyMap(props) {
   console.log(props);
   const [map, setMap] = useState(null);
@@ -21,7 +22,6 @@ function MyMap(props) {
         center: [props.start_lng, props.start_lat],
         zoom: 5,
       });
-
       map.on("load", () => {
         var directions = new MapboxDirections({
           //unit: "metric",
@@ -29,11 +29,17 @@ function MyMap(props) {
           accessToken: process.env.REACT_APP_MAPBOX_API_KEY,
           controls: { inputs: false, instructions: false },
         });
-        console.log([props.start_lng, props.start_lat]);
-        console.log([props.dest_lng, props.dest_lat]);
+        console.log(props.mid0_lat);
         directions.setOrigin([props.start_lng, props.start_lat]);
-        //directions.addWaypoint(1, [-119.8162, 29.5453]);
-        //directions.addWaypoint(2, [-119.8162, 59.5453]);
+        if (props.mid0_lat) {
+          directions.addWaypoint(1, [props.mid0_lng, props.mid0_lat]);
+        }
+        if (props.mid1_lat) {
+          directions.addWaypoint(2, [props.mid1_lng, props.mid1_lat]);
+        }
+        if (props.mid2_lat) {
+          directions.addWaypoint(3, [props.mid2_lng, props.mid2_lat]);
+        }
         directions.setDestination([props.dest_lng, props.dest_lat]);
 
         map.addControl(directions, "top-left");

@@ -4,6 +4,7 @@ import MapContainer from "../Map/MapContainer";
 import "antd/dist/antd.css";
 
 function MapPage(props) {
+  console.log(props);
   return (
     <div>
       <MapContainer
@@ -17,6 +18,12 @@ function MapPage(props) {
         start_lng={props.location.state.start_lng}
         dest_lat={props.location.state.dest_lat}
         dest_lng={props.location.state.dest_lng}
+        mid0_lat={props.location.state.mid0_lat}
+        mid0_lng={props.location.state.mid0_lng}
+        mid1_lat={props.location.state.mid1_lat}
+        mid1_lng={props.location.state.mid1_lng}
+        mid2_lat={props.location.state.mid2_lat}
+        mid2_lng={props.location.state.mid2_lng}
       />
     </div>
   );

@@ -7,40 +7,78 @@ const user = require("../../models/user");
 const app = require("../../app");
 const LocationInformation = require("../../models/locationInformation");
 const HistoricInformation = require("../../models/historicInformation");
+const SaveRoute = require("../../models/saveRoute");
 const Preferences = require("../../models/preferences");
 const { db } = require("../../models/user");
 
 var userInfo = {};
 
-
 //Historical routes captured from locationInput
 router.post("/historyCords", async (req, res) => {
-  try{
+  try {
     var email = userInfo.email;
     var startLat = req.body[Object.keys(req.body)[0]];
     var startLng = req.body[Object.keys(req.body)[1]];
     console.log("this is printing");
-    console.log(startLat)
-    console.log(startLng)
+    console.log(startLat);
+    console.log(startLng);
     const newHistory = new HistoricInformation({
       email,
       startLat,
       startLng,
+      destLat,
+      destLng,
+      //m1lat,
+      //m1lng,
+      //m2lat,
+      //m2lng,
+      //m3lat,
+      //m3lng,
     });
     newHistory.save();
-
-    
-
-
-
-
   } catch (err) {
     console.error(err);
     res.status(500).send();
   }
-
 });
 
+//Pretty much same as historyCords, although will allow for user to save route, add image to this db as well
+router.post("/savedRoute", async (req, res) => {
+  try {
+    var email = userInfo.email;
+    var startLat = req.body[Object.keys(req.body)[0]];
+    var startLng = req.body[Object.keys(req.body)[1]];
+    var destLat = req.body[Object.keys(req.body)[2]];
+    var destLng = req.body[Object.keys(req.body)[3]];
+
+    console.log("this is printing");
+    console.log(startLat);
+    console.log(startLng);
+    console.log(destLat);
+    console.log(destLng);
+
+    const newSave = new SaveRoute({
+      email,
+      startLat,
+      startLng,
+      destLat,
+      destLng,
+      //m1lat,
+      //m1lng,
+      //m2lat,
+      //m2lng,
+      //m3lat,
+      //m3lng,
+    });
+
+    newSave.save();
+  } catch (err) {
+    console.error(err);
+    res.status(500).send();
+  }
+});
+
+///////////Update Saved and Historical Routes - Done through Saved/History Page/////////
 
 // register
 router.post("/register", async (req, res) => {
@@ -62,12 +100,11 @@ router.post("/register", async (req, res) => {
     newLocation.save();
 
     //const description = new LocationInformation(req.body);
-//    await location.save();
-//    console.log(location)
-//   const user = await User.findById.apply({_id: location.user})
-//   user.info.push(location);
-//   await user.save();
-
+    //    await location.save();
+    //    console.log(location)
+    //   const user = await User.findById.apply({_id: location.user})
+    //   user.info.push(location);
+    //   await user.save();
 
     if (!email || !password || !password2 || !firstName || !lastName) {
       return res
@@ -120,25 +157,9 @@ router.post("/register", async (req, res) => {
     console.error(err);
     res.status(500).send();
   }
-
-
-
-
-
-
 });
 
-
-
-
 // log in
-
-
-
-
-
-
-
 router.post("/login", async (req, res) => {
   try {
     const email = req.body[Object.keys(req.body)[0]];
@@ -212,75 +233,69 @@ router.get("/loggedIn", (req, res) => {
   }
 });
 
-
 router.get("/userFirstName", async (req, res) => {
   try {
-      console.log("counting...")
-  //   var hardBreak = 0;
-  //   var userEmail = "noobnooberson2@gmail.com"
-  //   User.findOne({email: userEmail}).exec (function (err, User){
-  //     if (err) {
-  //       console.log("err");
-  //     } else {
-  //         var firstName = User;
-  //         console.log(firstName);
-  //         res.json(firstName);
-  //     }
-  //   })
-  // count++;
-   }
-   catch{
-
-  }
-
+    console.log("counting...");
+    //   var hardBreak = 0;
+    //   var userEmail = "noobnooberson2@gmail.com"
+    //   User.findOne({email: userEmail}).exec (function (err, User){
+    //     if (err) {
+    //       console.log("err");
+    //     } else {
+    //         var firstName = User;
+    //         console.log(firstName);
+    //         res.json(firstName);
+    //     }
+    //   })
+    // count++;
+  } catch {}
 });
 
 router.get("/userInfo", (req, res) => {
   //console.log(userInfo);
-  res.json({ userInfo} )
-     .send();
+  res.json({ userInfo }).send();
 });
 
 router.post("/updateData", async (req, res) => {
   try {
-    const query = {email: userInfo.email};
+    const query = { email: userInfo.email };
     var firstName = req.body[Object.keys(req.body)[0]];
     var lastName = req.body[Object.keys(req.body)[1]];
     var email = req.body[Object.keys(req.body)[2]];
     var password = req.body[Object.keys(req.body)[3]];
     var password2 = req.body[Object.keys(req.body)[4]];
-    const options = {upsert: true, returnNewDocument: false};
+    const options = { upsert: true, returnNewDocument: false };
 
     const salt = await bcrypt.genSalt(10);
     const passwordHash = await bcrypt.hash(password, salt);
     password = passwordHash;
-   
+
     var replacement = {
       firstName,
       lastName,
       email,
       password,
       password2,
-    }
+    };
 
     console.log(query);
     //console.log(updatedUser);
     console.log(userInfo.email);
     User.findOneAndReplace(
-      {"email": userInfo.email},
-      replacement, 
-      options).exec (function (err, User){
-        if (err) {
-              console.log(err);
-               } else {
-                 userInfo = replacement;
-                  console.log(User)
-               }
-        })
-    }
-  catch (err) {
-  console.error(err);
-  res.status(500).send();
+      { email: userInfo.email },
+      replacement,
+      options
+    ).exec(function (err, User) {
+      if (err) {
+        console.log(err);
+      } else {
+        userInfo = replacement;
+        console.log(User);
+      }
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send();
   }
 });
 
@@ -297,30 +312,27 @@ router.post("/preferences", async (req, res) => {
       description,
       favoriteFood,
     });
-     newPreferences.save();
-    }
-  catch (err) {
+    newPreferences.save();
+  } catch (err) {
     console.error(err);
     res.status(500).send();
-    }
-  });
+  }
+});
 
- router.post("/weatherData", async (req, res) => {
-   try{
+router.post("/weatherData", async (req, res) => {
+  try {
     var obj1 = req.body[Object.keys(req.body)[0]];
     var obj2 = req.body[Object.keys(req.body)[1]];
     var obj3 = req.body[Object.keys(req.body)[2]];
     var obj4 = req.body[Object.keys(req.body)[3]];
     console.log(obj1, "data... ", obj2);
-   }
-   catch (err) {
+  } catch (err) {
     console.error(err);
     res.status(500).send();
-    }
- })
+  }
+});
 
-
-  module.exports = router;
+module.exports = router;
 
 //router.post('/addloctionInformation', async (req, res) =>{//
 //  try {

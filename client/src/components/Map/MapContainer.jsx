@@ -6,6 +6,7 @@ import "./MapContainer.css";
 import "antd/dist/antd.css";
 import { Col, Row } from "antd";
 function MapContainer(props) {
+  console.log(props);
   return (
     <div className="mapcontainer">
       <Row>
@@ -17,6 +18,12 @@ function MapContainer(props) {
             start_lng={props.start_lng}
             dest_lat={props.dest_lat}
             dest_lng={props.dest_lng}
+            mid0_lat={props.mid0_lat}
+            mid0_lng={props.mid0_lng}
+            mid1_lat={props.mid1_lat}
+            mid1_lng={props.mid1_lng}
+            mid2_lat={props.mid2_lat}
+            mid2_lng={props.mid2_lng}
           />
           ;
           <WeatherData
