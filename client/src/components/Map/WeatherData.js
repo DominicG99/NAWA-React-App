@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './WeatherData.css';
+import ReactTooltip from "react-tooltip";
 
 //stateNameToAbbreviation() Citation/Source:
 //Thank you to https://gist.github.com/calebgrove/c285a9510948b633aa47 for making it easy to find a solution to this
@@ -120,17 +121,55 @@ function WeatherData(props)
                 <h3>Forecast  for {forecast.date}</h3>
                 <h2>{forecast.name}</h2>
                 <div className="details">
-                  <p>Low Temp: {forecast.minTemp} degrees celcius</p>
-                  <p>High Temp: {forecast.maxTemp} degrees celcius</p>
-                  <p>Max Wind Speeds: {forecast.maxWindSpeed} KM/h</p>
-                  <p>Max Wind Gusts: {forecast.maxWindGust} KM/h</p>
-                  <p>Minimum Humidity: {forecast.minHumidity}%</p>
-                  <p>Max Humidity: {forecast.maxHumidity}%</p>
-                  <p>Minimum Visibility: {forecast.minVisibility} meters</p>
-                  <p>Max Chance of Precipitation Occuring at a single time: {forecast.maxAvgProbabilityOfPrecipitation}%</p>
-                  <p>Highest Average Chance of Precipitation: {forecast.maxProbabilityOfPrecipitation}%</p>
-                  <p>Max Snowfall Total: {forecast.maxSnowfallTotal} mm</p>
+                  <p data-tip data-for="LowTemp">Low Temp: {forecast.minTemp} degrees celcius</p>
+                  <ReactTooltip id="LowTemp" place="top" effect="solid">
+                     This is the low temperature along the route.
+                    </ReactTooltip>
 
+                  <p data-tip data-for="HighTemp">High Temp: {forecast.maxTemp} degrees celcius</p>
+                  <ReactTooltip id="HighTemp" place="top" effect="solid">
+                     This is the High temperature along the route.
+                    </ReactTooltip>
+
+                  <p data-tip data-for="windSpeeds">Max Wind Speeds: {forecast.maxWindSpeed} KM/h</p>
+                  <ReactTooltip id="windSpeeds" place="top" effect="solid">
+                     This is the max wind speeds along the route.
+                    </ReactTooltip>
+
+                  <p data-tip data-for="windGusts">Max Wind Gusts: {forecast.maxWindGust} KM/h</p>
+                  <ReactTooltip id="windGusts" place="top" effect="solid">
+                     This is the max wind gusts along the route.
+                    </ReactTooltip>
+
+                  <p data-tip data-for="minHumidity">Minimum Humidity: {forecast.minHumidity}%</p>
+                  <ReactTooltip id="minHumidity" place="top" effect="solid">
+                     This is the minimum humidity along the route.
+                    </ReactTooltip>
+
+                  <p data-tip data-for="maxHumidity">Max Humidity: {forecast.maxHumidity}%</p>
+                  <ReactTooltip id="maxHumidity" place="top" effect="solid">
+                     This is the maximum humidity along the route.
+                    </ReactTooltip>
+
+                  <p data-tip data-for="minimumVisibility">Minimum Visibility: {forecast.minVisibility} meters</p>
+                  <ReactTooltip id="minimumVisibility" place="top" effect="solid">
+                     This is the minimum visibility along the route.
+                    </ReactTooltip>
+
+                  <p data-tip data-for="maxChanceOfPrecip">Max Chance of Precipitation at a single time: {forecast.maxAvgProbabilityOfPrecipitation}%</p>
+                  <ReactTooltip id="maxChanceOfPrecip" place="top" effect="solid">
+                     This is the maximum chance of precipitation at a single time along the route.
+                    </ReactTooltip>
+
+                  <p data-tip data-for="highestAvgChanceOfPrecip">Highest Average Chance of Precipitation: {forecast.maxProbabilityOfPrecipitation}%</p>
+                  <ReactTooltip id="highestAvgChanceOfPrecip" place="top" effect="solid">
+                     This is the highest chance of precipitation averaged for the entire day.
+                    </ReactTooltip>
+
+                  <p data-tip data-for="maxSnowfall">Max Snowfall Total: {forecast.maxSnowfallTotal} mm</p>
+                  <ReactTooltip id="maxSnowfall" place="top" effect="solid">
+                     This is the max snowfall accumulation at a single location along the route.
+                    </ReactTooltip>
                 </div>
               </div>
             );
