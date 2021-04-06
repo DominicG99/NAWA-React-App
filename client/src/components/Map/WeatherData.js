@@ -120,15 +120,15 @@ function WeatherData(props)
                 <h3>Forecast  for {forecast.date}</h3>
                 <h2>{forecast.name}</h2>
                 <div className="details">
-                  <p>❄️ Min Temp: {forecast.minTemp} degrees celcius</p>
-                  <p>🌡️ Max Temp: {forecast.maxTemp} degrees celcius</p>
-                  <p>Max Wind Speed: {forecast.maxWindSpeed} KM/h</p>
-                  <p>Max Wind Gust: {forecast.maxWindGust} KM/h</p>
-                  <p>Min Humidity: {forecast.minHumidity}%</p>
+                  <p>Low Temp: {forecast.minTemp} degrees celcius</p>
+                  <p>High Temp: {forecast.maxTemp} degrees celcius</p>
+                  <p>Max Wind Speeds: {forecast.maxWindSpeed} KM/h</p>
+                  <p>Max Wind Gusts: {forecast.maxWindGust} KM/h</p>
+                  <p>Minimum Humidity: {forecast.minHumidity}%</p>
                   <p>Max Humidity: {forecast.maxHumidity}%</p>
-                  <p>Min Visibility: {forecast.minVisibility} meters</p>
-                  <p>Max Avg Probability Precip: {forecast.maxAvgProbabilityOfPrecipitation}%</p>
-                  <p>Max Probability Precip in day: {forecast.maxProbabilityOfPrecipitation}%</p>
+                  <p>Minimum Visibility: {forecast.minVisibility} meters</p>
+                  <p>Max Chance of Precipitation Occuring at a single time: {forecast.maxAvgProbabilityOfPrecipitation}%</p>
+                  <p>Highest Average Chance of Precipitation: {forecast.maxProbabilityOfPrecipitation}%</p>
                   <p>Max Snowfall Total: {forecast.maxSnowfallTotal} mm</p>
 
                 </div>
