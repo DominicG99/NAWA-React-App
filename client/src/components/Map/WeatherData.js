@@ -106,7 +106,7 @@ function WeatherData(props)
       {/* Fetch data from API */}
       <div>
         <button className="fetch-button" onClick={fetchData}>
-          Fetch Data
+          Load Route Forecast
         </button>
         <br />
       </div>
