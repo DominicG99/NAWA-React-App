@@ -9,8 +9,57 @@ const LocationInformation = require("../../models/locationInformation");
 const HistoricInformation = require("../../models/historicInformation");
 const SaveRoute = require("../../models/saveRoute");
 const { db } = require("../../models/user");
-
+const MyImage = require("../../models/image");
+var multer = require("multer");
 var userInfo = {};
+
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    var dirName = path.join(process.cwd(), "./files/");
+    console.log(dirName);
+    if (!fs.existsSync(dirName)) {
+      fs.mkdirSync(dirName);
+    }
+    cb(null, dirName);
+  },
+
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + "-" + file.originalname);
+  },
+});
+var upload = multer({ storage: storage });
+
+router.post("/imageData", async (req, res) => {
+  try {
+    var email = userInfo.email;
+    var pictureURL = req.body[Object.keys(req.body)[0]];
+    const newImage = new MyImage({
+      email,
+      pictureURL,
+    });
+    console.log(pictureURL);
+    newImage.save();
+  } catch (err) {
+    console.error(err);
+    res.status(500).send();
+  }
+});
+
+router.get("/retrieveImage", async (req, res) => {
+  var email = userInfo.email;
+  try {
+    const existingUser = await MyImage.findOne({ email });
+    if (existingUser) {
+      pictureURL = { myImage: existingUser.pictureURL };
+      res.json({ pictureURL }).send();
+    } else {
+      console.log("Bruh");
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).send();
+  }
+});
 
 //Historical routes captured from locationInput
 router.post("/historyCords", async (req, res) => {

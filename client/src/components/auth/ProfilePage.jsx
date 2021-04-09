@@ -32,7 +32,10 @@ function ProfilePage() {
             Edit Preferences
             <Link to="/preferences" />
           </Menu.Item>
-          <Menu.Item key="4">Upload Image</Menu.Item>
+          <Menu.Item key="4">
+            Upload Image
+            <Link to="/images" />
+            </Menu.Item>
         </Menu>
       </Sider>
     </div>
