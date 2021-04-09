@@ -1,12 +1,11 @@
 #footer {
-  background-color: white;
   padding: 1.5rem 0 .5rem 0 !important;
   display: flex !important;
   flex-direction: column !important;
   justify-content: center !important;
   align-items: center !important;
-  color: #242424;
-  position: relative;
+  color: #0f4c75;
+  position: fixed;
   width: 100%;
   bottom: 0;
  }

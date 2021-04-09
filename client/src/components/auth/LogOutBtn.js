@@ -3,7 +3,7 @@ import { Button } from "antd";
 import axios from "axios";
 import AuthContext from "../../context/AuthContext";
 import { useHistory } from "react-router";
-
+import "../Navbar.css";
 function LogOutBtn() {
   const { getLoggedIn } = useContext(AuthContext);
   const history = useHistory();
@@ -13,7 +13,7 @@ function LogOutBtn() {
     history.push("/");
   }
   return (
-    <Button type="primary" onClick={logOut}>
+    <Button className="navbarButton" type="primary" onClick={logOut}>
       Log Out
     </Button>
   );

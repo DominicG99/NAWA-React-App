@@ -55,7 +55,7 @@ function EditProfileForm() {
           rules={[
             {
               required: true,
-              message: "Please input your email!",
+
               type: "email",
             },
           ]}
@@ -71,7 +71,6 @@ function EditProfileForm() {
           rules={[
             {
               required: true,
-              message: "Please input your password!",
             },
           ]}
           hasFeedback

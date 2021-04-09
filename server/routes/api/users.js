@@ -8,7 +8,6 @@ const app = require("../../app");
 const LocationInformation = require("../../models/locationInformation");
 const HistoricInformation = require("../../models/historicInformation");
 const SaveRoute = require("../../models/saveRoute");
-const Preferences = require("../../models/preferences");
 const { db } = require("../../models/user");
 
 var userInfo = {};
@@ -19,9 +18,13 @@ router.post("/historyCords", async (req, res) => {
     var email = userInfo.email;
     var startLat = req.body[Object.keys(req.body)[0]];
     var startLng = req.body[Object.keys(req.body)[1]];
+    var destLat = req.body[Object.keys(req.body)[2]];
+    var destLng = req.body[Object.keys(req.body)[3]];
     console.log("this is printing");
     console.log(startLat);
     console.log(startLng);
+    console.log(destLat);
+    console.log(destLng);
     const newHistory = new HistoricInformation({
       email,
       startLat,
@@ -293,26 +296,6 @@ router.post("/updateData", async (req, res) => {
         console.log(User);
       }
     });
-  } catch (err) {
-    console.error(err);
-    res.status(500).send();
-  }
-});
-
-router.post("/preferences", async (req, res) => {
-  try {
-    var favoriteFood = req.body[Object.keys(req.body)[0]];
-    var description = req.body[Object.keys(req.body)[1]];
-    var email = userInfo.email;
-    console.log(email);
-    console.log(description);
-    console.log(favoriteFood);
-    const newPreferences = new Preferences({
-      email,
-      description,
-      favoriteFood,
-    });
-    newPreferences.save();
   } catch (err) {
     console.error(err);
     res.status(500).send();

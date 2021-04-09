@@ -1,4 +1,49 @@
-.registerContainer {
-    padding: 10rem;
-    background-color: gray;
+.registerFormContainer{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 9%;
+    padding: 5%;
+    height: 65%;
+    width: 50%;
+    background-color: white;
+    -webkit-box-shadow: 0px 11px 13px -1px rgba(0,0,0,0.84);
+-moz-box-shadow: 0px 11px 13px -1px rgba(0,0,0,0.84);
+box-shadow: 0px 11px 13px -1px rgba(0,0,0,0.84);
+}
+
+.registerButton {
+    width: 100%;
+    background-color: #3282b8;
+    border-color: #3282b8 ;
+    border-radius: 20px !important;
+}
+.registerButton:hover {
+    opacity: 50%;
+    background-color: #3282b8;
+    border-color: #3282b8 ;
+}
+.registerForm {
+    width: 85%;
+    margin: auto;
+    margin-top: 7%;
+}
+
+.registerHeader {
+    margin-top: -5%;
+    font-size: 60px;
+    color: #1b262c;
+}
+
+.alreadyRegistered {
+    font-size: 16px;
+    text-align: center;
+}
+
+.loginNow {
+    color: #3282b8;
+}
+
+.loginNow:hover {
+    color: #3282b8;
+    opacity: 50%;
 }

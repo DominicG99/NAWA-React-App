@@ -1,9 +1,9 @@
 import React from "react";
 import LoginPage from "../auth/loginpage";
-
+import "./login.css";
 function login() {
   return (
-    <div>
+    <div className="loginContiner">
       <LoginPage />
     </div>
   );

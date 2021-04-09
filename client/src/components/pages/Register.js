@@ -1,11 +1,10 @@
 import React from "react";
-import "../../App.css";
-import RegisterPage from "../auth/RegisterPage";
-
+import RegisterForm from "../auth/RegisterForm";
+import "./register.css";
 export default function Register() {
   return (
-    <div>
-      <RegisterPage />
+    <div className="registerContainer">
+      <RegisterForm />
     </div>
   );
 }

@@ -1,4 +1,43 @@
 .loginContainer {
     padding: 10rem;
-    background-color: forestgreen;
+}
+
+.formContainer {
+    margin: auto;
+    padding: 8%;
+    height: 85%;
+    width: 50%;
+    background-color: white;
+    -webkit-box-shadow: 0px 11px 13px -1px rgba(0,0,0,0.84);
+-moz-box-shadow: 0px 11px 13px -1px rgba(0,0,0,0.84);
+box-shadow: 0px 11px 13px -1px rgba(0,0,0,0.84);
+}
+
+.loginButton {
+    width: 100%;
+    background-color: #3282b8;
+    border-color: #3282b8 ;
+    border-radius: 20px !important;
+}
+.loginButton:hover {
+    opacity: 50%;
+    background-color: #3282b8;
+    border-color: #3282b8 ;
+}
+.firstLast {
+    width: 50%;
+}
+
+.notRegistered {
+    font-size: 16px;
+    text-align: center;
+}
+
+.createAccount {
+    color: #3282b8;
+}
+
+.createAccount:hover {
+    color: #3282b8;
+    opacity: 50%;
 }

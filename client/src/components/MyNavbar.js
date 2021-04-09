@@ -1,74 +1,26 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useContext } from "react";
 import AuthContext from "../context/AuthContext";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { Button } from "antd";
 import LogOutBtn from "./auth/LogOutBtn";
 
 function MyNavBar() {
   const { loggedIn } = useContext(AuthContext);
   console.log(loggedIn);
-  const [click, setClick] = useState(false);
-  const [button, setButton] = useState(true);
-  const [navbar, setNavbar] = useState(false);
-  const handleClick = () => setClick(!click);
-  const closeMobileMenu = () => setClick(false);
 
-  useEffect(() => {
-    const showButton = () => {
-      if (window.innerWidth <= 960) {
-        setButton(false);
-      } else {
-        setButton(true);
-      }
-    };
-    window.addEventListener("resize", showButton);
-    return () => {
-      window.removeEventListener("resize", showButton);
-    };
-  });
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY >= 80) {
-        setNavbar(true);
-      } else {
-        setNavbar(false);
-      }
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
   return (
     <>
-      <nav className={navbar ? "navbar active" : "navbar"}>
+      <nav className="navbar">
         <div className="navbar-container">
-          <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
-            <img src="./images/Sun.png" alt="weather" width="35" height="35"/>
-          </Link>
-          <div className="menu-icon" onClick={handleClick}>
-            <FontAwesomeIcon
-              icon={click ? faTimes : faBars}
-              size="2x"
-              className="fa-times"
-            />
-          </div>
-          <ul className={click ? "nav-menu active" : "nav-menu"}>
+          <ul className="nav-menu">
             <li className="nav-item">
-              <Link to="/" className="nav-links" onClick={closeMobileMenu}>
+              <Link to="/" className="nav-links">
                 Home
               </Link>
             </li>
             <li className="nav-item">
-              <Link
-                to="/about-us"
-                className="nav-links"
-                onClick={closeMobileMenu}
-              >
+              <Link to="/about-us" className="nav-links">
                 About Us
               </Link>
             </li>
@@ -76,20 +28,14 @@ function MyNavBar() {
             {loggedIn === false && (
               <>
                 <li className="nav-item">
-                  <Link
-                    to="/login"
-                    className="nav-links"
-                    onClick={closeMobileMenu}
-                  >
+                  <Link to="/login" className="nav-links">
                     Login
                   </Link>
                 </li>{" "}
-                <Link to="/register" onClick={closeMobileMenu}>
-                  {button && (
-                    <Button type="primary" ghost>
-                      register
-                    </Button>
-                  )}
+                <Link to="/register">
+                  <Button type="primary" className="navbarButton">
+                    register
+                  </Button>
                 </Link>
               </>
             )}
@@ -97,11 +43,7 @@ function MyNavBar() {
             {loggedIn === true && (
               <>
                 <li className="nav-item">
-                  <Link
-                    to="/profile"
-                    className="nav-links"
-                    onClick={closeMobileMenu}
-                  >
+                  <Link to="/profile" className="nav-links">
                     Profile
                   </Link>
                 </li>

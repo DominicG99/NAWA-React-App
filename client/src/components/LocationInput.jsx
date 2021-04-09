@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import axios from "axios";
+import AuthContext from "../context/AuthContext";
 import AlgoliaPlaces from "algolia-places-react";
 import { Form } from "antd";
 import { Button } from "antd";
@@ -7,20 +8,19 @@ import { useHistory } from "react-router-dom";
 import FadeIn from "react-fade-in";
 
 function LocationInput() {
-  let mid0lat,
-    mid0lng,
-    mid1lat,
-    mid1lng,
-    mid2lat,
-    mid2lng = 0;
+  const { loggedIn } = useContext(AuthContext);
   const [inputList, setInputList] = useState([]);
   const onAddBtnClick = (event) => {
     if (inputList.length <= 2) {
       setInputList(
         inputList.concat(
           <FadeIn>
-            <Form.Item name={"mid" + inputList.length} key={inputList.length}>
+            <Form.Item
+              name={"mid" + inputList.length}
+              key={"key" + inputList.length}
+            >
               <AlgoliaPlaces
+                key={"key" + inputList.length}
                 placeholder=""
                 options={{
                   appId: process.env.ALGOLIA_APP_ID,
@@ -36,15 +36,16 @@ function LocationInput() {
       );
     }
   };
-  const onDeleteBtnClick = (event) => {
-    if (inputList.length > 0) {
-      setInputList(inputList.pop());
-    }
-  };
   let history = useHistory();
   //const { getLocation } = useContext(LocationContext);
 
   const onFinish = (data) => {
+    let mid0lat,
+      mid0lng,
+      mid1lat,
+      mid1lng,
+      mid2lat,
+      mid2lng = 0;
     console.log(data);
     let start_city = data.start.suggestion.name;
     let start_admin = data.start.suggestion.administrative;
@@ -56,7 +57,6 @@ function LocationInput() {
     let dest_admin = data.destination.suggestion.administrative;
     let origin = start_city + ", " + start_admin;
     let dest = dest_city + ", " + dest_admin;
-
     //midpoint0
     if (data.mid0 !== undefined) {
       mid0lat = data.mid0.suggestion.latlng.lat;
@@ -88,22 +88,16 @@ function LocationInput() {
       m3lat: mid2lat,
       m3lng: mid2lng,
     };
-
-    axios
-      .post("http://localhost:5000/api/users/historyCords", hisValues, {
+    if (loggedIn === true) {
+      axios.post("http://localhost:5000/api/users/historyCords", hisValues, {
         withCredentials: true,
         credentials: "include",
-      })
-      .then(async (res) => history.push("/"))
-      .catch(async (err) => console.log(err.response.data));
-
-    axios
-      .post("http://localhost:5000/api/users/savedRoute", hisValues, {
+      });
+      axios.post("http://localhost:5000/api/users/savedRoute", hisValues, {
         withCredentials: true,
         credentials: "include",
-      })
-      .then(async (res) => history.push("/"))
-      .catch(async (err) => console.log(err.response.data));
+      });
+    }
 
     history.push({
       pathname: "/map",
@@ -168,9 +162,6 @@ function LocationInput() {
         </Form.Item>
         <Button type="primary" onClick={onAddBtnClick}>
           Add Midpoint
-        </Button>
-        <Button type="danger" onClick={onDeleteBtnClick}>
-          Delete Midpoint
         </Button>
         {inputList}
       </Form>

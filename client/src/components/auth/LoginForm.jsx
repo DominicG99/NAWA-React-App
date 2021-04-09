@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Form, Checkbox } from "antd";
+import { Form } from "antd";
 import axios from "axios";
 import "antd/dist/antd.css";
 import { Button, Input } from "antd";
@@ -7,7 +7,8 @@ import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import AuthContext from "../../context/AuthContext";
 import UserContext from "../../context/UserContext";
 import { useHistory } from "react-router";
-
+import { Link } from "react-router-dom";
+import "./loginpage.css";
 function LoginForm() {
   const { getLoggedIn } = useContext(AuthContext);
   const { getUserInfo } = useContext(UserContext);
@@ -30,51 +31,62 @@ function LoginForm() {
   };
 
   return (
-    <Form
-      style={{ width: "25%" }}
-      name="basic"
-      initialValues={{
-        remember: true,
-      }}
-      onFinish={onFinish}
-      onFinishFailed={onFinishFailed}
-    >
-      <Form.Item
-        name="email"
-        rules={[
-          {
-            required: true,
-            message: "Please input your email!",
-          },
-        ]}
+    <div className="formContainer">
+      <h1 className="loginHeader">Login</h1>
+      <Form
+        className="form"
+        name="basic"
+        initialValues={{
+          remember: true,
+        }}
+        onFinish={onFinish}
+        onFinishFailed={onFinishFailed}
       >
-        <Input prefix={<UserOutlined className="site-form-item-icon" />} />
-      </Form.Item>
+        <Form.Item
+          className="formInput"
+          name="email"
+          rules={[
+            {
+              required: true,
+              message: "Please input your email!",
+            },
+          ]}
+        >
+          <Input
+            placeholder="Email"
+            prefix={<UserOutlined className="site-form-item-icon" />}
+          />
+        </Form.Item>
 
-      <Form.Item
-        name="password"
-        rules={[
-          {
-            required: true,
-            message: "Please input your password!",
-          },
-        ]}
-      >
-        <Input.Password
-          prefix={<LockOutlined className="site-form-item-icon" />}
-        />
-      </Form.Item>
+        <Form.Item
+          className="formInput"
+          name="password"
+          rules={[
+            {
+              required: true,
+              message: "Please input your password!",
+            },
+          ]}
+        >
+          <Input.Password
+            placeholder="Password"
+            prefix={<LockOutlined className="site-form-item-icon" />}
+          />
+        </Form.Item>
 
-      <Form.Item name="remember" valuePropName="checked">
-        <Checkbox>Remember me</Checkbox>
-      </Form.Item>
-
-      <Form.Item>
-        <Button type="primary" htmlType="submit">
-          Log In
-        </Button>
-      </Form.Item>
-    </Form>
+        <Form.Item>
+          <Button type="primary" htmlType="submit" className="loginButton">
+            Log In
+          </Button>
+        </Form.Item>
+      </Form>
+      <p className="notRegistered">
+        Not registered?{" "}
+        <Link className="createAccount" to="/register">
+          Create an account
+        </Link>
+      </p>
+    </div>
   );
 }
 
