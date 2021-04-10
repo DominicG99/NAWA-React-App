@@ -34,7 +34,7 @@ function MyNavBar() {
                 </li>{" "}
                 <Link to="/register">
                   <Button type="primary" className="navbarButton">
-                    register
+                    Register
                   </Button>
                 </Link>
               </>

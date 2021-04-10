@@ -6,7 +6,7 @@ import { Form } from "antd";
 import { Button } from "antd";
 import { useHistory } from "react-router-dom";
 import FadeIn from "react-fade-in";
-
+import { Row, Col } from "antd";
 function LocationInput() {
   const { loggedIn } = useContext(AuthContext);
   const [inputList, setInputList] = useState([]);
@@ -16,10 +16,15 @@ function LocationInput() {
         inputList.concat(
           <FadeIn>
             <Form.Item
+              style={{
+                width: "33%",
+                margin: "auto",
+              }}
               name={"mid" + inputList.length}
               key={"key" + inputList.length}
             >
               <AlgoliaPlaces
+                placeholder="Midpoint"
                 key={"key" + inputList.length}
                 placeholder=""
                 options={{
@@ -126,14 +131,22 @@ function LocationInput() {
   return (
     <FadeIn delay={250} transitionDuration={2000}>
       <Form
+        style={{ textAlign: "center" }}
         name="Location Input"
-        style={{ width: "25%", margin: "auto" }}
         onFinish={onFinish}
         // onFinishFailed={onFinishFailed}
       >
-        <Form.Item name="start">
+        <Form.Item
+          style={{
+            width: "33%",
+            marginBottom: "0%",
+            marginLeft: "auto",
+            marginRight: "auto",
+          }}
+          name="start"
+        >
           <AlgoliaPlaces
-            placeholder=""
+            placeholder="Starting Location"
             options={{
               appId: process.env.ALGOLIA_APP_ID,
               apiKey: process.env.ALGOLIA_API_KEY,
@@ -143,9 +156,13 @@ function LocationInput() {
             }}
           />
         </Form.Item>
-        <Form.Item name="destination">
+
+        <Form.Item
+          style={{ width: "33%", marginLeft: "auto", marginRight: "auto" }}
+          name="destination"
+        >
           <AlgoliaPlaces
-            placeholder=""
+            placeholder="Destination"
             options={{
               appId: process.env.ALGOLIA_APP_ID,
               apiKey: process.env.ALGOLIA_API_KEY,
@@ -155,12 +172,32 @@ function LocationInput() {
             }}
           />
         </Form.Item>
-        <Form.Item style={{ marginLeft: "40%" }}>
-          <Button type="primary" htmlType="submit">
-            GO
+
+        <Form.Item>
+          <Button
+            style={{
+              width: "33%",
+              backgroundColor: "#3282b8",
+              color: "white",
+              borderColor: "#3282b8",
+            }}
+            type="primary"
+            htmlType="submit"
+          >
+            Start Adventure!
           </Button>
         </Form.Item>
-        <Button type="primary" onClick={onAddBtnClick}>
+        <Button
+          style={{
+            width: "33%",
+            backgroundColor: "#3282b8",
+            color: "white",
+            borderColor: "#3282b8",
+            marginBottom: "1.2%",
+          }}
+          type="primary"
+          onClick={onAddBtnClick}
+        >
           Add Midpoint
         </Button>
         {inputList}
