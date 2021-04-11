@@ -19,14 +19,13 @@ function RegisterForm() {
       password2: values.confirm,
       location: values.test,
     };
-    console.log(data);
     axios
       .post("http://localhost:5000/api/users/register", data, {
         withCredentials: true,
         credentials: "include",
       })
-      .then(history.push("/login"))
-      .catch(async (err) => console.log(err.response.data));
+      .catch(async (err) => console.log(err.response.data))
+      .then(history.push("/login"));
   }
   return (
     <div className="registerFormContainer">
@@ -44,6 +43,7 @@ function RegisterForm() {
           rules={[{ required: true, message: "Please input your first name!" }]}
         >
           <Input
+            className="registerInput"
             placeholder="First Name"
             prefix={<UserOutlined className="site-form-item-icon" />}
           />
@@ -53,6 +53,7 @@ function RegisterForm() {
           rules={[{ required: true, message: "Please input your last name!" }]}
         >
           <Input
+            className="registerInput"
             placeholder="Last Name"
             prefix={<UserOutlined className="site-form-item-icon" />}
           />
@@ -69,6 +70,7 @@ function RegisterForm() {
           ]}
         >
           <Input
+            className="registerInput"
             placeholder="Email Address"
             prefix={<UserOutlined className="site-form-item-icon" />}
           />
@@ -85,6 +87,7 @@ function RegisterForm() {
           hasFeedback
         >
           <Input.Password
+            className="registerInput"
             placeholder="Password"
             prefix={<LockOutlined className="site-form-item-icon" />}
           />
@@ -113,6 +116,7 @@ function RegisterForm() {
           ]}
         >
           <Input.Password
+            className="registerInput"
             placeholder="Confirm Password"
             prefix={<LockOutlined className="site-form-item-icon" />}
           />
@@ -125,7 +129,10 @@ function RegisterForm() {
         </Form.Item>
       </Form>
       <p className="alreadyRegistered">
-        Already registered? <Link className="loginNow">Login now</Link>
+        Already registered?{" "}
+        <Link to="/login" className="loginNow">
+          Login now
+        </Link>
       </p>
     </div>
   );

@@ -13,8 +13,6 @@ import AboutUs from "./components/pages/AboutUs";
 import Register from "./components/pages/Register";
 import MyFooter from "./components/MyFooter";
 import login from "./components/pages/login";
-import ProfilePage from "./components/pages/ProfilePage";
-import Preferences from "./components/pages/Preferences";
 import EditProfile from "./components/pages/EditProfile";
 import MapPage from "./components/pages/MapPage";
 import Image from "./components/pages/Image";
@@ -35,11 +33,8 @@ function MyRouter() {
         )}
         {loggedIn === true && (
           <>
-            <Route exact path="/profile" component={ProfilePage} />
-            <Route exact path="/editProfile" component={EditProfile} />
-            <Route exact path="/preferences" component={Preferences} />
+            <Route exact path="/profile" component={EditProfile} />
             <Route exact path="/images" component={Image} />
-
           </>
         )}
 

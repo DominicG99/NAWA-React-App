@@ -9,9 +9,15 @@ function MapContainer(props) {
   console.log(props);
   return (
     <Row style={{ marginTop: "10%" }}>
+      <Col lg={{ span: 6 }}>
+        <h1>Trip Information for</h1>
+        <h3>
+          {props.city1}, {props.admin1} to {props.city2}, {props.admin2}
+        </h3>
+      </Col>
       <Col
         xs={{ span: 24, offset: 4 }}
-        lg={{ span: 12, offset: 6 }}
+        lg={{ span: 12, offset: 0 }}
         className="theMap"
       >
         <MyMap

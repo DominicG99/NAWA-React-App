@@ -1,11 +1,14 @@
 import React from "react";
-import "../../App.css";
-import EditProfilePage from "../auth/EditProfile";
-
+import EditProfileForm from "../auth/EditProfileForm";
+import UserProfileInformation from "../auth/UserProfileInformation";
+import ImageUpload from "../ImageUpload";
+import "./editprofile.css";
 export default function EditProfile() {
   return (
-    <div>
-      <EditProfilePage />
+    <div className="profileContainer">
+      <UserProfileInformation />
+      <ImageUpload />
+      {/* <EditProfileForm /> */}
     </div>
   );
 }

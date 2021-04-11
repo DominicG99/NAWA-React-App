@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import UserContext from "../../context/UserContext";
-import "./profilepage.css";
 import { Layout, Menu } from "antd";
 import { Link } from "react-router-dom";
 const { Sider } = Layout;
@@ -35,7 +34,7 @@ function ProfilePage() {
           <Menu.Item key="4">
             Upload Image
             <Link to="/images" />
-            </Menu.Item>
+          </Menu.Item>
         </Menu>
       </Sider>
     </div>

@@ -4,7 +4,6 @@ import { Form } from "antd";
 import "antd/dist/antd.css";
 
 import { Button, Input } from "antd";
-//import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import { useHistory } from "react-router";
 
 function EditProfileForm() {

@@ -6,10 +6,6 @@ function MapPage(props) {
   console.log(props);
   return (
     <div className="mapContainer">
-      <h1>
-        {props.location.state.city1}, {props.location.state.admin1} to{" "}
-        {props.location.state.city2}, {props.location.state.admin2}
-      </h1>
       <MapContainer
         city1={props.location.state.city1}
         admin1={props.location.state.admin1}
