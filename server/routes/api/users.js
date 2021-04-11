@@ -10,11 +10,19 @@ const HistoricInformation = require("../../models/historicInformation");
 const SaveRoute = require("../../models/saveRoute");
 const { db } = require("../../models/user");
 const MyImage = require("../../models/image");
+const imageUpload = require("../../models/fileUpload");
 let multer = require('multer');
 let upload = multer();
 var userInfo = {};
 const { UploadImage } = require("../../controller/uploadImage");
+const ImageUploadRouter = require("express").Router();
+
 const parser = require("../../middleware/cloudinary.config");
+const { Router } = require("express");
+
+
+
+
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
     var dirName = path.join(process.cwd(), "./files/");
@@ -31,42 +39,34 @@ var storage = multer.diskStorage({
 });
 upload = multer({ storage: storage });
 
-router.post("/imageData", upload.single('file'), async (req, res) => {
-  try {
-    var email = userInfo.email;
-    let formData = req.body;
-    console.log('form data', formData);
-  //   var formData = new formData();
-  //   var formData = req.body[Object.keys(req.body)[0]];
-  //   console.log(formData);
-  //   for(var pair of formData.entries()) {
-  //     console.log(pair[0]+ ', '+ pair[1]);
-  //  }
-    const newImage = new MyImage({
-      email,
-      formData,
-    });
-    newImage.save();
-  } catch (err) {
-    console.error(err);
-    res.status(500).send();
-  }
+
+
+router.post("/image", parser.single("image"), UploadImage, async (req, res) => {
+ 
+      email = userInfo.email;
+      console.log("This is pringting");
+
 });
+
+
+
+
+
+
 
 router.get("/retrieveImage", async (req, res) => {
   var email = userInfo.email;
   console.log("emailskis: ", email);
   try {
-    const existingUser = await MyImage.findOne({ email });
+    const existingUser = await imageUpload.findOne({ email });
     if (existingUser) {
-
-      var picture = existingUser.toObject();
-      
-      myEmail = existingUser.email;
-      console.log("formData 2: ", picture.pictureURL, "Emailomode: ", myEmail);
-      res.json(picture.pictureURL).send();
+      var url = existingUser.image;
+      var email = existingUser.email;
+      console.log("URL is: ", url, email);
+      res.json(url).send();
     } else {
       console.log("Bruh");
+      res.send("./images/placeholder-image.png");
     }
   } catch (err) {
     console.error(err);
@@ -379,6 +379,7 @@ router.post("/weatherData", async (req, res) => {
   }
 });
 router.post("/image", parser.single("image"), UploadImage);
+
 module.exports = router;
 
 //router.post('/addloctionInformation', async (req, res) =>{//

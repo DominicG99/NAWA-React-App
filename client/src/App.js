@@ -4,6 +4,7 @@ import "./App.css";
 import axios from "axios";
 import { AuthContextProvider } from "./context/AuthContext";
 import { UserContextProvider } from "./context/UserContext";
+import { ImageContextProvider} from "./context/ImageContext";
 import { LocationContextProvider } from "./context/LocationContext";
 import MyRouter from "./myRouter";
 
@@ -14,7 +15,9 @@ function App() {
     <UserContextProvider>
       <AuthContextProvider>
         <LocationContextProvider>
-          <MyRouter />
+          <ImageContextProvider>
+            <MyRouter />
+          </ImageContextProvider>
         </LocationContextProvider>
       </AuthContextProvider>
     </UserContextProvider>

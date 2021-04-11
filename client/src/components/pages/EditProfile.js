@@ -7,7 +7,7 @@ export default function EditProfile() {
   return (
     <div className="profileContainer">
       <UserProfileInformation />
-      <ImageUpload />
+      <ImageUpload/>
       {/* <EditProfileForm /> */}
     </div>
   );

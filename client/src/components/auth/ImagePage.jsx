@@ -17,7 +17,7 @@ function handleClick(e) {
   .then((response) => {
     console.log("this is the url: ", response.data);
     var base64Data = response.data;
-    var x = 0
+    var x = []
     for (var i = 0; i < 4000; i++){
       console.log(x)
       x++;

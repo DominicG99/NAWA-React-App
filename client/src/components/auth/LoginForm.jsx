@@ -6,12 +6,14 @@ import { Button, Input } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import AuthContext from "../../context/AuthContext";
 import UserContext from "../../context/UserContext";
+import ImageContext from "../../context/ImageContext";
 import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
 import "./loginpage.css";
 function LoginForm() {
   const { getLoggedIn } = useContext(AuthContext);
   const { getUserInfo } = useContext(UserContext);
+  const { getImageInfo } = useContext(ImageContext);
   const history = useHistory();
   const onFinish = async (data) => {
     await axios
@@ -21,8 +23,9 @@ function LoginForm() {
       })
       .then(async (res) => console.log(res.data))
       .catch(async (err) => console.log(err.response.data));
-    await getLoggedIn();
-    await getUserInfo();
+     getLoggedIn();
+     getUserInfo();
+     getImageInfo();
     history.push("/profile");
   };
 
