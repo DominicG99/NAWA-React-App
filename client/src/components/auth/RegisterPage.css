@@ -32,6 +32,7 @@ box-shadow: 0px 11px 13px -1px rgba(0,0,0,0.84);
     margin-top: -5%;
     font-size: 60px;
     color: #1b262c;
+    text-align: center;
 }
 
 .alreadyRegistered {
@@ -46,4 +47,8 @@ box-shadow: 0px 11px 13px -1px rgba(0,0,0,0.84);
 .loginNow:hover {
     color: #3282b8;
     opacity: 50%;
+}
+
+.registerInput:hover {
+    border-color: #3282b8 !important;
 }

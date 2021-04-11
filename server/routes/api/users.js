@@ -13,7 +13,8 @@ const MyImage = require("../../models/image");
 let multer = require('multer');
 let upload = multer();
 var userInfo = {};
-
+const { UploadImage } = require("../../controller/uploadImage");
+const parser = require("../../middleware/cloudinary.config");
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
     var dirName = path.join(process.cwd(), "./files/");
@@ -377,7 +378,7 @@ router.post("/weatherData", async (req, res) => {
     res.status(500).send();
   }
 });
-
+router.post("/image", parser.single("image"), UploadImage);
 module.exports = router;
 
 //router.post('/addloctionInformation', async (req, res) =>{//

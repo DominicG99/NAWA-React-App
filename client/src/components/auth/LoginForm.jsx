@@ -23,7 +23,7 @@ function LoginForm() {
       .catch(async (err) => console.log(err.response.data));
     await getLoggedIn();
     await getUserInfo();
-    history.push("/");
+    history.push("/profile");
   };
 
   const onFinishFailed = (errorInfo) => {

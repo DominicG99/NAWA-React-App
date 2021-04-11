@@ -6,7 +6,6 @@ import { Form } from "antd";
 import { Button } from "antd";
 import { useHistory } from "react-router-dom";
 import FadeIn from "react-fade-in";
-import { Row, Col } from "antd";
 function LocationInput() {
   const { loggedIn } = useContext(AuthContext);
   const [inputList, setInputList] = useState([]);
