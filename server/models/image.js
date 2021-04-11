@@ -6,8 +6,8 @@ const Schema = mongoose.Schema;
       type: String,
       required: true,
     },
-    pictureURL: {
-      type: String,
+    formData: {
+      type: Object,
       required: true,
     }
 });

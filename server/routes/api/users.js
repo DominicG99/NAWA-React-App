@@ -10,7 +10,8 @@ const HistoricInformation = require("../../models/historicInformation");
 const SaveRoute = require("../../models/saveRoute");
 const { db } = require("../../models/user");
 const MyImage = require("../../models/image");
-var multer = require("multer");
+let multer = require('multer');
+let upload = multer();
 var userInfo = {};
 
 var storage = multer.diskStorage({
@@ -27,17 +28,23 @@ var storage = multer.diskStorage({
     cb(null, Date.now() + "-" + file.originalname);
   },
 });
-var upload = multer({ storage: storage });
+upload = multer({ storage: storage });
 
-router.post("/imageData", async (req, res) => {
+router.post("/imageData", upload.single('file'), async (req, res) => {
   try {
     var email = userInfo.email;
-    var pictureURL = req.body[Object.keys(req.body)[0]];
+    let formData = req.body;
+    console.log('form data', formData);
+  //   var formData = new formData();
+  //   var formData = req.body[Object.keys(req.body)[0]];
+  //   console.log(formData);
+  //   for(var pair of formData.entries()) {
+  //     console.log(pair[0]+ ', '+ pair[1]);
+  //  }
     const newImage = new MyImage({
       email,
-      pictureURL,
+      formData,
     });
-    console.log(pictureURL);
     newImage.save();
   } catch (err) {
     console.error(err);
@@ -47,11 +54,16 @@ router.post("/imageData", async (req, res) => {
 
 router.get("/retrieveImage", async (req, res) => {
   var email = userInfo.email;
+  console.log("emailskis: ", email);
   try {
     const existingUser = await MyImage.findOne({ email });
     if (existingUser) {
-      pictureURL = { myImage: existingUser.pictureURL };
-      res.json({ pictureURL }).send();
+
+      var picture = existingUser.toObject();
+      
+      myEmail = existingUser.email;
+      console.log("formData 2: ", picture.pictureURL, "Emailomode: ", myEmail);
+      res.json(picture.pictureURL).send();
     } else {
       console.log("Bruh");
     }
@@ -60,6 +72,8 @@ router.get("/retrieveImage", async (req, res) => {
     res.status(500).send();
   }
 });
+
+
 
 //Historical routes captured from locationInput
 router.post("/historyCords", async (req, res) => {

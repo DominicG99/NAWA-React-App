@@ -32,6 +32,7 @@
     "multer-gridfs-storage": "^4.2.0",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
+    "react-images-upload": "^1.2.8",
     "react-scripts": "^4.0.3",
     "validator": "^13.5.2"
   },
