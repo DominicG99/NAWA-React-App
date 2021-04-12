@@ -3,7 +3,7 @@
 }
 
 .titleLine {
-    border: dashed black 8px;
+    border: dashed black 20px;
     border-bottom: none;
     width: 5%;
     margin: 20px auto;
@@ -19,4 +19,37 @@
     text-align: center;
     margin-bottom: 3%;
     margin-top: 3%;
+}
+
+.mainHeading{
+    margin-Top: 4%;
+    text-Align: center;
+    font-size: 130px;
+    color: white;
+
+}
+
+.classHeading{
+    margin-Top: 5%;
+    color: white;
+    font-size: 30px;
+    text-align: center;
+}
+
+.schoolHeading{
+    color: white;
+    font-size: 20px;
+    text-align: center;
+}
+
+.semesterHeading{
+    color: white;
+    font-size: 20px;
+    text-align: center;
+}
+
+.schoolHeading{
+    color: white;
+    font-size: 20px;
+    text-align: center;
 }
