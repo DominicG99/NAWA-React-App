@@ -9,12 +9,6 @@
     margin: 20px auto;
 }
 
-.headerContainer {
-    margin: 10% auto auto auto;
-    width: 25%;
-  padding: 10px;
-}
-
 .subHeading {
     text-align: center;
     margin-bottom: 3%;
@@ -22,7 +16,7 @@
 }
 
 .mainHeading{
-    margin-Top: 4%;
+    margin-Top: 5%;
     text-Align: center;
     font-size: 130px;
     color: white;
@@ -49,6 +43,12 @@
 }
 
 .schoolHeading{
+    color: white;
+    font-size: 20px;
+    text-align: center;
+}
+
+.teamHeading{
     color: white;
     font-size: 20px;
     text-align: center;

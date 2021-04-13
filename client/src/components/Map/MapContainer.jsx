@@ -1,12 +1,39 @@
-import React from "react";
+import React, { useContext } from "react";
 import MyMap from "./MyMap";
 import WeatherData from "./WeatherData";
-
+import { Button } from "antd";
+import axios from "axios";
+import AuthContext from "../../context/AuthContext";
 import "./MapContainer.css";
 import "antd/dist/antd.css";
 import { Col, Row } from "antd";
-function MapContainer(props) 
-{
+function MapContainer(props) {
+  var hisValues = {
+    email: props.email,
+    startLat: props.start_lat,
+    startLng: props.start_lng,
+    destLat: props.dest_lat,
+    destLng: props.dest_lng,
+    startCity: props.city1,
+    startAdmin: props.admin1,
+    destCity: props.city2,
+    destAdmin: props.admin2,
+    m1lat: props.mid0_lat,
+    m1lng: props.mid0_lng,
+    m2lat: props.mid1_lat,
+    m2lng: props.mid1_lng,
+    m3lat: props.mid2_lat,
+    m3lng: props.mid2_lng,
+  };
+  const { loggedIn } = useContext(AuthContext);
+  const onFavoriteBtnClick = (event) => {
+    if (loggedIn === true) {
+      axios.post("http://localhost:5000/api/users/savedRoute", hisValues, {
+        withCredentials: true,
+        credentials: "include",
+      });
+    }
+  };
   console.log(props);
   
   return (
@@ -50,9 +77,21 @@ function MapContainer(props)
     admin2={props.admin2}
     />
     ; 
+    <Button
+        style={{
+          width: "33%",
+          backgroundColor: "#3282b8",
+          color: "white",
+          borderColor: "#3282b8",
+          marginBottom: "1.2%",
+        }}
+        type="primary"
+        onClick={onFavoriteBtnClick}
+      >
+        Favorite This Route!
+      </Button>
   </div>
   );
-  
 }
 
 export default MapContainer;

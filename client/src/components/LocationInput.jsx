@@ -6,7 +6,9 @@ import { Form } from "antd";
 import { Button } from "antd";
 import { useHistory } from "react-router-dom";
 import FadeIn from "react-fade-in";
+import UserContext from "../context/UserContext";
 function LocationInput() {
+  const { userInfo } = useContext(UserContext);
   const { loggedIn } = useContext(AuthContext);
   const [inputList, setInputList] = useState([]);
   const onAddBtnClick = (event) => {
@@ -49,8 +51,7 @@ function LocationInput() {
       mid1lat,
       mid1lng,
       mid2lat,
-      mid2lng = 0;
-    console.log(data);
+      mid2lng = undefined;
     let start_city = data.start.suggestion.name;
     let start_admin = data.start.suggestion.administrative;
     let start_lat = data.start.suggestion.latlng.lat;
@@ -80,11 +81,15 @@ function LocationInput() {
     //console.log(start_lat);
 
     var hisValues = {
+      email: userInfo.userInfo.email,
       startLat: start_lat,
       startLng: start_lng,
       destLat: dest_lat,
       destLng: dest_lng,
-
+      startCity: start_city,
+      startAdmin: start_admin,
+      destCity: dest_city,
+      destAdmin: dest_admin,
       m1lat: mid0lat,
       m1lng: mid0lng,
       m2lat: mid1lat,
@@ -97,15 +102,12 @@ function LocationInput() {
         withCredentials: true,
         credentials: "include",
       });
-      axios.post("http://localhost:5000/api/users/savedRoute", hisValues, {
-        withCredentials: true,
-        credentials: "include",
-      });
     }
 
     history.push({
       pathname: "/map",
       state: {
+        email: userInfo.userInfo.email,
         city1: start_city,
         admin1: start_admin,
         city2: dest_city,
@@ -124,7 +126,6 @@ function LocationInput() {
         mid2_lng: mid2lng,
       },
     });
-    //console.log(hisValues);
   };
 
   return (

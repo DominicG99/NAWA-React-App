@@ -8,7 +8,7 @@ const instructors = [
   {
     id: 2,
     name: "Devrin Lee",
-    image: "placeholder-image.png",
+    image: "profileplaceholder.png",
     description: "Instructor",
   },
 ];
