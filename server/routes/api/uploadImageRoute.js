@@ -2,7 +2,7 @@ const ImageUploadRouter = require("express").Router();
 const MyImage = require("../../models/fileUpload");
 
 const { UploadImage } = require("../../controller/uploadImage");
-var userInfo = {}
+
 
 const parser = require("../../middleware/cloudinary.config");
 
@@ -17,16 +17,6 @@ function getUserName(){
 
 
 
-ImageUploadRouter.post("/image", parser.single("image"), UploadImage, (req, res) => {
-    try {
-        userInfo = getUserName();
-        email = userInfo.email;
-        console.log("User email is: ", email);
-    }
-    catch {
 
-    }
-
-});
 
 module.exports = ImageUploadRouter;

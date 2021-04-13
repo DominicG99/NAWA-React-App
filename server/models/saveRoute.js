@@ -8,24 +8,59 @@ const saveRouteSchema = new Schema({
   },
   startLat: {
     type: Number,
+    required: true,
   },
   startLng: {
     type: Number,
+    required: true,
   },
-  endLat: {
+  destLat: {
     type: Number,
+    required: true,
   },
-  description: {
+  destLng: {
+    type: Number,
+    required: true,
+  },
+  startCity: {
     type: String,
+    required: true,
   },
-  mid1lat: {
-    type: Number,
+  startAdmin: {
+    type: String,
+    required: true,
   },
-  mid2lat: {
-    type: Number,
+  destCity: {
+    type: String,
+    required: true,
   },
-  mid3lat: {
-    type: Number,
+  destAdmin: {
+    type: String,
+    required: true,
+  },
+  m1lat: {
+    type: String,
+    required: false,
+  },
+  m1lng: {
+    type: String,
+    required: false,
+  },
+  m2lat: {
+    type: String,
+    required: false,
+  },
+  m2lng: {
+    type: String,
+    required: false,
+  },
+  m3lat: {
+    type: String,
+    required: false,
+  },
+  m3lng: {
+    type: String,
+    required: false,
   },
   date: {
     type: Date,

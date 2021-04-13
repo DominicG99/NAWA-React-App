@@ -3,10 +3,10 @@ import MapContainer from "../Map/MapContainer";
 import "antd/dist/antd.css";
 import "./mappage.css";
 function MapPage(props) {
-  console.log(props);
   return (
     <div className="mapContainer">
       <MapContainer
+        email={props.location.state.email}
         city1={props.location.state.city1}
         admin1={props.location.state.admin1}
         city2={props.location.state.city2}

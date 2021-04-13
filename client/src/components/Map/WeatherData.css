@@ -47,7 +47,7 @@
     border-radius: 5px;
     padding: 20px;
     margin: 10px;
-    width: .5%;
+    width: 35%;
     color: #333;
     flex-basis: width;
     background-color: rgb(165, 230, 230);
@@ -66,5 +66,5 @@
   }
   
   .details {
-    text-align: left;
+    text-align: center;
   }

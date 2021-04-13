@@ -6,6 +6,7 @@ import Icons from "./Icons";
 import "./Team.css";
 import instructors from "../information/instructors";
 import InstructorCard from "./InstructorCard";
+
 function createMemberCard(member) {
   return (
     <TeamCard
