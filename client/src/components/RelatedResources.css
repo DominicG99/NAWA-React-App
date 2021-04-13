@@ -22,3 +22,7 @@
   .links:hover {
       opacity: 50%;
   }
+
+.gutter-row{
+    margin-bottom: 2%;
+}

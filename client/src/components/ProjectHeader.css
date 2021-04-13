@@ -22,7 +22,7 @@
 }
 
 .mainHeading{
-    margin-Top: 4%;
+    margin-Top: 5%;
     text-Align: center;
     font-size: 130px;
     color: white;
@@ -49,6 +49,12 @@
 }
 
 .schoolHeading{
+    color: white;
+    font-size: 20px;
+    text-align: center;
+}
+
+.teamHeading{
     color: white;
     font-size: 20px;
     text-align: center;
