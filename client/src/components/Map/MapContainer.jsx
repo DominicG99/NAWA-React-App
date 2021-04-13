@@ -69,16 +69,13 @@ function MapContainer(props) {
         <div className = ".buttonArea">
           <Row>
             <h1 className = "tripInformation">
-              Your Trip Information:
+              Your Trip Information: 
             </h1>
-            <
           </Row>
-          
-
         </div>
         <div classname = "saveButtonContainer"
         style={{
-            marginLeft: '%',
+            marginLeft: '46%',
             marginTop: '30px',
         }}>
             <button className="save-button" onClick={onFavoriteBtnClick}>
