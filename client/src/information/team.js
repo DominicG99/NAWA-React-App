@@ -6,7 +6,7 @@ const team = [
     linkedin: "https://linkedin.com/in/cole-atkinson-845552200/",
     github: "https://github.com/colioportfolio",
     image: "ColeAtkinson.png",
-    description: ""
+    description: "",
   },
   {
     id: 2,
@@ -15,8 +15,7 @@ const team = [
     linkedin: "https://linkedin.com/in/chase-bosman/",
     github: "https://github.com/ChaseBosman",
     image: "ChaseBosman.jpg",
-    description: ""
-    
+    description: "",
   },
   {
     id: 3,

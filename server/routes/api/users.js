@@ -57,25 +57,16 @@ router.get("/retrieveImage", async (req, res) => {
   }
 });
 
-router.get("/savedRoute", async (req, res) => {
-  var email = userInfo.email;
-  const existingRoute = await SaveRoute.find({ email });
-  try {
-    if (existingRoute) {
-      console.log("existingRoute:", existingRoute.startLat);
-    }
-  } catch {}
-});
-
 router.get("/historyCords", async (req, res) => {
   var email = userInfo.email;
   console.log(email);
   const existingRoute = await HistoricInformation.find({ email });
   try {
     if (existingRoute) {
-      if (existingRoute.length() > 10) {
-        existingRoute = existingRoute.splice(10);
-      }
+      // if (existingRoute.length < 10) {
+      //   console.log("woow");
+      //   // existingRoute = existingRoute.splice(10);
+      // }
 
       res.json(existingRoute).send();
       console.log("existing route: ", existingRoute);
@@ -84,6 +75,7 @@ router.get("/historyCords", async (req, res) => {
     console.log("Route failed");
   }
 });
+
 //Historical routes captured from locationInput
 router.post("/historyCords", async (req, res) => {
   try {
@@ -125,7 +117,19 @@ router.post("/historyCords", async (req, res) => {
     res.status(500).send();
   }
 });
-
+router.get("/savedRoute", async (req, res) => {
+  var email = userInfo.email;
+  console.log(email);
+  const existingRoute = await SaveRoute.find({ email });
+  try {
+    if (existingRoute) {
+      res.json(existingRoute).send();
+      console.log("existing route: ", existingRoute);
+    }
+  } catch {
+    console.log("Route failed");
+  }
+});
 //Pretty much same as historyCords, although will allow for user to save route, add image to this db as well
 router.post("/savedRoute", async (req, res) => {
   console.log("savedRoute trigged");
