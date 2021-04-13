@@ -36,6 +36,10 @@ var storage = multer.diskStorage({
 });
 upload = multer({ storage: storage });
 
+router.post("/image", parser.single("image"), UploadImage);
+
+router.post("/changeImage");
+
 router.get("/retrieveImage", async (req, res) => {
   var email = userInfo.email;
   console.log("emailskis: ", email);
