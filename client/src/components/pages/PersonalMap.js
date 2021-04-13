@@ -1,8 +1,8 @@
 import React from "react";
-import MapContainer from "../Map/MapContainer";
+import PersonalMapContainer from "../Map/PersonalMapContainer";
 import "antd/dist/antd.css";
 import "./mappage.css";
-function MapPage(props) {
+function PersonalMap(props) {
   console.log("MapPage:");
   console.log(props);
   return (
@@ -13,7 +13,7 @@ function MapPage(props) {
         padding: 0,
       }}
     >
-      <MapContainer
+      <PersonalMapContainer
         email={props.location.state.email}
         city1={props.location.state.city1}
         admin1={props.location.state.admin1}
@@ -36,4 +36,4 @@ function MapPage(props) {
   );
 }
 
-export default MapPage;
+export default PersonalMap;

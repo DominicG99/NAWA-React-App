@@ -80,10 +80,6 @@ function stateNameToAbbreviation(abbreviation) {
 function WeatherData(props) {
   let abbreviated_admin1 = stateNameToAbbreviation(props.admin1);
   let abbreviated_admin2 = stateNameToAbbreviation(props.admin2);
-  console.log(props.city1);
-  console.log(abbreviated_admin1);
-  console.log(props.city2);
-  console.log(abbreviated_admin2);
 
   var uri =
     "http://54.219.249.115/weather/multiple?city1=" +
@@ -94,7 +90,6 @@ function WeatherData(props) {
     abbreviated_admin1 +
     "&state2=" +
     abbreviated_admin2;
-  console.log(uri);
 
   const [forecasts, setForecasts] = useState(null);
 
@@ -102,7 +97,7 @@ function WeatherData(props) {
     const response = await axios.get(uri, { withCredentials: false });
 
     setForecasts(response.data);
-    console.log(response.data);
+
     axios.post("http://localhost:5000/api/users/weatherData", response.data, {
       withCredentials: true,
       credentials: "include",

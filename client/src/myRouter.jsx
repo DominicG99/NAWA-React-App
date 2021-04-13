@@ -15,7 +15,7 @@ import MyFooter from "./components/MyFooter";
 import login from "./components/pages/login";
 import EditProfile from "./components/pages/EditProfile";
 import MapPage from "./components/pages/MapPage";
-
+import PersonalMap from "./components/pages/PersonalMap";
 function MyRouter() {
   const { loggedIn } = useContext(AuthContext);
   return (
@@ -34,6 +34,7 @@ function MyRouter() {
         {loggedIn === true && (
           <>
             <Route exact path="/profile" component={EditProfile} />
+            <Route exact path="/personal-map" component={PersonalMap} />
           </>
         )}
 

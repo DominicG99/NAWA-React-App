@@ -1,13 +1,12 @@
 import React, { useContext } from "react";
-import MyMap from "./MyMap";
+import MyPersonalMap from "./PersonalizeMap";
 import WeatherData from "./WeatherData";
-import { Button } from "antd";
 import axios from "axios";
 import AuthContext from "../../context/AuthContext";
 import "./MapContainer.css";
 import "antd/dist/antd.css";
-import { Col, Row } from "antd";
-function MapContainer(props) {
+import { Row } from "antd";
+function PersonalMapContainer(props) {
   var hisValues = {
     email: props.email,
     startLat: props.start_lat,
@@ -53,7 +52,7 @@ function MapContainer(props) {
             justifyContent: "center",
           }}
         >
-          <MyMap
+          <MyPersonalMap
             origin={props.origin}
             destination={props.destination}
             start_lat={props.start_lat}
@@ -97,4 +96,4 @@ function MapContainer(props) {
   );
 }
 
-export default MapContainer;
+export default PersonalMapContainer;

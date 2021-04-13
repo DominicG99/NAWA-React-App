@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
+import "./personalmap.css";
 import MapboxDirections from "@mapbox/mapbox-gl-directions/dist/mapbox-gl-directions";
 import "@mapbox/mapbox-gl-directions/dist/mapbox-gl-directions.css";
 
@@ -10,7 +11,7 @@ const styles = {
   position: "relative",
 };
 
-function MyMap(props) {
+function MyPersonalMap(props) {
   console.log(props);
   const [map, setMap] = useState(null);
   const mapContainer = useRef(null);
@@ -42,11 +43,24 @@ function MyMap(props) {
         }
         directions.setDestination([props.dest_lng, props.dest_lat]);
 
+        var el = document.createElement("div");
+        el.className = "marker";
+        console.log("this is running");
+
+        new mapboxgl.Marker(el)
+
+          .setLngLat([-85.7, 42.9])
+          .setPopup(
+            new mapboxgl.Popup({ offset: 25 }).setHTML("<h1>Hello World!</h1>")
+          )
+          .addTo(map);
+
         map.addControl(directions, "top-left");
         setMap(map);
         map.resize();
       });
     };
+    // Set options
 
     if (!map) initializeMap({ setMap, mapContainer });
   }, [map]);
@@ -54,4 +68,4 @@ function MyMap(props) {
   return <div ref={(el) => (mapContainer.current = el)} style={styles} />;
 }
 
-export default MyMap;
+export default MyPersonalMap;

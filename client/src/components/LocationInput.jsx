@@ -43,7 +43,6 @@ function LocationInput() {
     }
   };
   let history = useHistory();
-  //const { getLocation } = useContext(LocationContext);
 
   const onFinish = (data) => {
     let mid0lat,

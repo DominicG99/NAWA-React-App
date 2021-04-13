@@ -15,7 +15,11 @@ function UserProfileInformation() {
     await axios
       .get("http://localhost:5000/api/users/historyCords")
       .then((response) => {
-        const userRoute = response.data;
+        let userRoute = response.data;
+        if (userRoute.length > 10) {
+          userRoute = userRoute.splice(userRoute.length - 10);
+        }
+
         setData(userRoute);
       });
   }, []);
@@ -23,7 +27,13 @@ function UserProfileInformation() {
     await axios
       .get("http://localhost:5000/api/users/savedRoute")
       .then((response) => {
-        const userFavoriteRoute = response.data;
+        let userFavoriteRoute = response.data;
+        if (userFavoriteRoute.length > 5) {
+          userFavoriteRoute = userFavoriteRoute.splice(
+            userFavoriteRoute.length - 5
+          );
+        }
+
         setSavedData(userFavoriteRoute);
       });
   }, []);
@@ -114,7 +124,7 @@ function UserProfileInformation() {
                 <Button
                   onClick={() => {
                     history.push({
-                      pathname: "/map",
+                      pathname: "/personal-map",
                       state: {
                         email: savedData[key].email,
                         city1: savedData[key].startCity,
