@@ -5,11 +5,11 @@ import "./Cards.css";
 const { Meta } = Card;
 function TeamCard(props) {
   return (
-    <Col xs={{ span: 24, offset: 4 }} lg={{ span: 5, offset: 1 }}>
+    <Col xs={{ span: 24, offset: 4 }} lg={{ span: 5, offset: 1}}>
       <Card
-        bodyStyle={{ paddingTop: "5px" }}
+        bodyStyle={{ paddingTop: "5px", paddingBottom: "10px"}}
         className="teamCardImage"
-        style={{ width: 240, textAlign: "center" }}
+        style={{ width: 300, textAlign: "center" }}
         cover={<img alt={props.name} src={props.image} />}
       >
         <Meta title={props.name} description={props.text} />

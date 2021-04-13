@@ -1,12 +1,13 @@
 import React from "react";
 import "./ProjectDescription.css";
+
 function ProjectDescription() {
   return (
     <div className="descriptionContainer">
       <h1 className="descriptionHeading">
-        <strong>Project Description</strong>
+        <strong>Our Mission</strong>
       </h1>
-      <hr className="descriptionLine" />
+     <hr className="descriptionLine" />
       <div className="descriptionText">
         <p
           style={{
@@ -14,21 +15,17 @@ function ProjectDescription() {
             textAlign: "center",
             margin: "0 auto",
             whiteSpace: "pre-wrap",
+            color: "white",
+            fontSize: "20px",
           }}
         >
-          Not a weather app is a leading-edge web based application that has the
-          ability to revolutionize a road trip experience. Vacationing is at an
-          all time high as road vehicles continually make it more efficient to
-          travel. Consumers rely on a map as an essential tool during travel.
-          Map platforms have changed significantly over the recent years due to
-          the rise of technology. Current applications often simply give the
-          customer a point A to point B route without any options to personalize
-          or modify their route. Not a weather app aims to transform the road
-          travel experience by giving users the ability to personalize their
-          trip. The numerous features provided by the application will allow the
-          user to configure their route seamlessly without worrying about a
-          complicated user interface.
+        We have one mission - improve the road trip experience! 
+        As a team we wanted to come up with an idea to improve the typical 
+        “point A to point B” road trip experience. 
+        This experience is boring and doesn’t add any excitement. Not Just a 
+        Weather App adds excitement!
         </p>
+
         <p
           style={{
             maxWidth: "120ch",
@@ -38,15 +35,13 @@ function ProjectDescription() {
           }}
         >
           <br />
-          Users have the ability to create an account with us for free to gain
-          access to immersive features. These features include route
-          personalization and route planning. Route personalization allows us to
-          give recommendations based on user interests. Just customize a profile
-          and we will do the rest for the user. We will provide a list of
-          different routes that will be more engaging than the typical fastest
-          A-B route. With route planning users can save the route for an
-          upcoming date all within the profile.
+          Not Just a Weather App is a leading-edge web based application that revolutionizes the traditional road trip experience. 
+          Consumers rely on a map as an essential tool while traveling. 
+          Current map applications give the user a “point A to point B” 
+          road trip experience without any options to personalize their route. 
+          That is why we designed our application with personalization in mind, offering multiple features to improve any road trip experience.
         </p>
+
         <p
           style={{
             maxWidth: "120ch",
@@ -56,13 +51,31 @@ function ProjectDescription() {
           }}
         >
           <br />
-          Using REST APIs, HTML, CSS, JavaScript and Nodejs, we’ve begun to
-          develop a stable and reliable web application. We have managed to
-          develop communication between our website and various weather and map
-          API’s. Doing this will allow us to implement these into our website.
-          We will be using Mongo/Mongoose for our database to store user login
-          and personalization information.
+          All of our features are seamless. With our clean user interface, creating a route is more convenient than ever. Create a personalized route as soon as you visit the website:
+          Add your starting point, destination point, and midpoints, 
+          and the map does the rest. The map will display the most efficient route 
+          between all points entered. Next to the map there are statistics to help you 
+          prepare for the road ahead, check them out! To drive the personalization experience 
+          we have designed a profile system. This profile system allows you to create 
+          and save those routes to plan ahead. The profile also allows you to save pictures 
+          and other information from your route, to revisit the fun adventures you had on your trip.
         </p>
+
+        <p
+          style={{
+            maxWidth: "120ch",
+            textAlign: "center",
+            margin: "0 auto",
+            whiteSpace: "pre-wrap",
+          }}
+        >
+          <br />
+          Overall, we know that your road trip experience 
+          will be better with Not Just a Weather App. So now, 
+          who’s ready to take a road trip with Not Just a Weather App. 
+          Your Adventure Starts Now!
+        </p>
+
       </div>
     </div>
   );

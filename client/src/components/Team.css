@@ -1,9 +1,40 @@
 .teamContainer {
     text-align: center;
     padding: 6%;
-    background-color: lightgray;
+    background-color: rgb(28, 39, 30);
 }
 
 .teamHeading {
     margin-bottom: 2%;
+}
+
+.whoAreWe{
+    text-align: center;
+    color: white;
+    font-size: 50px;
+}
+
+.individualDescription{
+    font-size: 15px;
+    padding-bottom: 1%;
+}
+
+.studentTitle{
+    font-size: 30px;
+    color: white;
+    text-decoration: underline;
+}
+
+.descriptionLine {
+    border: solid white 3px;
+    border-bottom: none;
+    width: 40%;
+    margin: 20px auto;
+}
+
+.instructors{
+    margin-top: 3%;
+    text-align: center;
+    color: white;
+    font-size: 50px;
 }

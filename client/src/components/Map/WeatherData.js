@@ -164,7 +164,7 @@ function WeatherData(props) {
               return (
                 <div className="forecast" key={index}>
                   <h3>Forecast for {formatDate(forecast.date)}</h3>
-                  <h2>{forecast.name}</h2>
+                  <h2></h2>
                   <div className="details">
                     <p data-tip data-for="LowTemp">
                       Low Temp: {celciusToFahrenheit(forecast.minTemp)} degrees

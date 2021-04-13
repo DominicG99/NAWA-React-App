@@ -4,7 +4,12 @@ import "antd/dist/antd.css";
 import "./mappage.css";
 function MapPage(props) {
   return (
-    <div className="mapContainer">
+    <div className="mapStuff"
+    style={{
+        margin: 0,
+        padding: 0,
+    }}
+    >
       <MapContainer
         email={props.location.state.email}
         city1={props.location.state.city1}
