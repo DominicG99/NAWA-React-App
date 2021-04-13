@@ -42,16 +42,13 @@ router.post("/changeImage");
 
 router.get("/retrieveImage", async (req, res) => {
   var email = userInfo.email;
-  console.log("emailskis: ", email);
   try {
     const existingUser = await imageUpload.findOne({ email });
     if (existingUser) {
       var url = existingUser.image;
       var email = existingUser.email;
-      console.log("URL is: ", url, email);
       res.json(url).send();
     } else {
-      console.log("Bruh");
       res.send("./images/placeholder-image.png");
     }
   } catch (err) {
@@ -60,6 +57,33 @@ router.get("/retrieveImage", async (req, res) => {
   }
 });
 
+router.get("/savedRoute", async (req, res) => {
+  var email = userInfo.email;
+  const existingRoute = await SaveRoute.find({ email });
+  try {
+    if (existingRoute) {
+      console.log("existingRoute:", existingRoute.startLat);
+    }
+  } catch {}
+});
+
+router.get("/historyCords", async (req, res) => {
+  var email = userInfo.email;
+  console.log(email);
+  const existingRoute = await HistoricInformation.find({ email });
+  try {
+    if (existingRoute) {
+      if (existingRoute.length() > 10) {
+        existingRoute = existingRoute.splice(10);
+      }
+
+      res.json(existingRoute).send();
+      console.log("existing route: ", existingRoute);
+    }
+  } catch {
+    console.log("Route failed");
+  }
+});
 //Historical routes captured from locationInput
 router.post("/historyCords", async (req, res) => {
   try {
