@@ -9,11 +9,9 @@ function ProjectHeader() {
       }}
     >
       <div>
-        <h1 className = "mainHeading">
-          Not Just a Weather App 
-        </h1>
+        <h1 className="mainHeading">Not Just a Weather App</h1>
 
-        <h5 className = "classHeading">
+        <h5 className="classHeading">
           CS 426 Senior Project in Computer Science
         </h5>
 
@@ -21,15 +19,10 @@ function ProjectHeader() {
           University of Nevada, Reno, CSE Department
         </h5>
 
-        <h5 className="semesterHeading">
-        Spring 2021
-        </h5>
-        
-        <h5 className="teamHeading">
-        Team #20
-        </h5>
-        
-        </div>
+        <h5 className="semesterHeading">Spring 2021</h5>
+
+        <h5 className="teamHeading">Team #20</h5>
+      </div>
     </div>
   );
 }

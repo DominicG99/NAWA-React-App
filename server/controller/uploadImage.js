@@ -2,7 +2,6 @@ const ImageSchema = require("../models/fileUpload");
 const imageUpload = require("../models/fileUpload");
 
 module.exports.UploadImage = async (req, res) => {
-  console.log(req.body.email);
   const imageUploaded = new imageUpload({
     email: req.body.email,
     image: req.file.path,

@@ -11,7 +11,7 @@ const SaveRoute = require("../../models/saveRoute");
 const { db } = require("../../models/user");
 const MyImage = require("../../models/image");
 const imageUpload = require("../../models/fileUpload");
-let multer = require('multer');
+let multer = require("multer");
 let upload = multer();
 var userInfo = {};
 const { UploadImage } = require("../../controller/uploadImage");
@@ -19,9 +19,6 @@ const ImageUploadRouter = require("express").Router();
 
 const parser = require("../../middleware/cloudinary.config");
 const { Router } = require("express");
-
-
-
 
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -38,21 +35,6 @@ var storage = multer.diskStorage({
   },
 });
 upload = multer({ storage: storage });
-
-
-
-router.post("/image", parser.single("image"), UploadImage, async (req, res) => {
- 
-      email = userInfo.email;
-      console.log("This is pringting");
-
-});
-
-
-
-
-
-
 
 router.get("/retrieveImage", async (req, res) => {
   var email = userInfo.email;
@@ -74,33 +56,40 @@ router.get("/retrieveImage", async (req, res) => {
   }
 });
 
-
-
 //Historical routes captured from locationInput
 router.post("/historyCords", async (req, res) => {
   try {
-    var email = userInfo.email;
-    var startLat = req.body[Object.keys(req.body)[0]];
-    var startLng = req.body[Object.keys(req.body)[1]];
-    var destLat = req.body[Object.keys(req.body)[2]];
-    var destLng = req.body[Object.keys(req.body)[3]];
-    console.log("this is printing");
-    console.log(startLat);
-    console.log(startLng);
-    console.log(destLat);
-    console.log(destLng);
+    var email = req.body[Object.keys(req.body)[0]];
+    var startLat = req.body[Object.keys(req.body)[1]];
+    var startLng = req.body[Object.keys(req.body)[2]];
+    var destLat = req.body[Object.keys(req.body)[3]];
+    var destLng = req.body[Object.keys(req.body)[4]];
+    var startCity = req.body[Object.keys(req.body)[5]];
+    var startAdmin = req.body[Object.keys(req.body)[6]];
+    var destCity = req.body[Object.keys(req.body)[7]];
+    var destAdmin = req.body[Object.keys(req.body)[8]];
+    var m1lat = req.body[Object.keys(req.body)[9]];
+    var m1lng = req.body[Object.keys(req.body)[10]];
+    var m2lat = req.body[Object.keys(req.body)[11]];
+    var m2lng = req.body[Object.keys(req.body)[12]];
+    var m3lat = req.body[Object.keys(req.body)[13]];
+    var m3lng = req.body[Object.keys(req.body)[14]];
     const newHistory = new HistoricInformation({
       email,
       startLat,
       startLng,
       destLat,
       destLng,
-      //m1lat,
-      //m1lng,
-      //m2lat,
-      //m2lng,
-      //m3lat,
-      //m3lng,
+      startCity,
+      startAdmin,
+      destCity,
+      destAdmin,
+      m1lat,
+      m1lng,
+      m2lat,
+      m2lng,
+      m3lat,
+      m3lng,
     });
     newHistory.save();
   } catch (err) {
@@ -111,31 +100,39 @@ router.post("/historyCords", async (req, res) => {
 
 //Pretty much same as historyCords, although will allow for user to save route, add image to this db as well
 router.post("/savedRoute", async (req, res) => {
+  console.log("savedRoute trigged");
   try {
-    var email = userInfo.email;
-    var startLat = req.body[Object.keys(req.body)[0]];
-    var startLng = req.body[Object.keys(req.body)[1]];
-    var destLat = req.body[Object.keys(req.body)[2]];
-    var destLng = req.body[Object.keys(req.body)[3]];
-
-    console.log("this is printing");
-    console.log(startLat);
-    console.log(startLng);
-    console.log(destLat);
-    console.log(destLng);
-
+    var email = req.body[Object.keys(req.body)[0]];
+    var startLat = req.body[Object.keys(req.body)[1]];
+    var startLng = req.body[Object.keys(req.body)[2]];
+    var destLat = req.body[Object.keys(req.body)[3]];
+    var destLng = req.body[Object.keys(req.body)[4]];
+    var startCity = req.body[Object.keys(req.body)[5]];
+    var startAdmin = req.body[Object.keys(req.body)[6]];
+    var destCity = req.body[Object.keys(req.body)[7]];
+    var destAdmin = req.body[Object.keys(req.body)[8]];
+    var m1lat = req.body[Object.keys(req.body)[9]];
+    var m1lng = req.body[Object.keys(req.body)[10]];
+    var m2lat = req.body[Object.keys(req.body)[11]];
+    var m2lng = req.body[Object.keys(req.body)[12]];
+    var m3lat = req.body[Object.keys(req.body)[13]];
+    var m3lng = req.body[Object.keys(req.body)[14]];
     const newSave = new SaveRoute({
       email,
       startLat,
       startLng,
       destLat,
       destLng,
-      //m1lat,
-      //m1lng,
-      //m2lat,
-      //m2lng,
-      //m3lat,
-      //m3lng,
+      startCity,
+      startAdmin,
+      destCity,
+      destAdmin,
+      m1lat,
+      m1lng,
+      m2lat,
+      m2lng,
+      m3lat,
+      m3lng,
     });
 
     newSave.save();
@@ -298,24 +295,6 @@ router.get("/loggedIn", (req, res) => {
   } catch (err) {
     res.json(false);
   }
-});
-
-router.get("/userFirstName", async (req, res) => {
-  try {
-    console.log("counting...");
-    //   var hardBreak = 0;
-    //   var userEmail = "noobnooberson2@gmail.com"
-    //   User.findOne({email: userEmail}).exec (function (err, User){
-    //     if (err) {
-    //       console.log("err");
-    //     } else {
-    //         var firstName = User;
-    //         console.log(firstName);
-    //         res.json(firstName);
-    //     }
-    //   })
-    // count++;
-  } catch {}
 });
 
 router.get("/userInfo", (req, res) => {
