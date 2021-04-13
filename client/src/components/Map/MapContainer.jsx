@@ -37,13 +37,11 @@ function MapContainer(props) {
   console.log(props);
   
   return (
-      <div classname = "stuff">
-          <div classname = "TripInfo" >
-            <h1 style={{ paddingLeft: 30, paddingTop: 20, paddingBottom: 0  }}>Trip Information for</h1>
-
-            <h3 style={{ paddingLeft: 30, paddingTop: 0,  paddingBottom: 30 }}>
-            {props.city1}, {props.admin1} to {props.city2}, {props.admin2}
-            </h3>
+      <div>
+          <div className = "mapTitle">
+            <h1>
+            <strong>Your Route:</strong>
+            </h1>
           </div>
         <div>
             <div classname = "MapInfo"
@@ -68,10 +66,19 @@ function MapContainer(props) {
                 />;
             </div>
         </div>
+        <div className = ".buttonArea">
+          <Row>
+            <h1 className = "tripInformation">
+              Your Trip Information:
+            </h1>
+            <
+          </Row>
+          
 
+        </div>
         <div classname = "saveButtonContainer"
         style={{
-            marginLeft: '46%',
+            marginLeft: '%',
             marginTop: '30px',
         }}>
             <button className="save-button" onClick={onFavoriteBtnClick}>
