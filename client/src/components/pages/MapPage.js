@@ -5,7 +5,12 @@ import "./mappage.css";
 function MapPage(props) {
   console.log(props);
   return (
-    <div className="mapContainer">
+    <div className="mapStuff"
+    style={{
+        margin: 0,
+        padding: 0,
+    }}
+    >
       <MapContainer
         city1={props.location.state.city1}
         admin1={props.location.state.admin1}

@@ -39,7 +39,7 @@ function MyRouter() {
 
         <Redirect to="404" />
       </Switch>
-      <MyFooter />
+      {/*}<MyFooter />--->*/}
     </Router>
   );
 }
