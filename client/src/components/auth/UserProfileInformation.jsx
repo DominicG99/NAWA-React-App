@@ -21,7 +21,7 @@ function UserProfileInformation() {
         )}
         <h1 className="userFirstAndLast">
 
-          {userInfo.userInfo.firstName} {userInfo.userInfo.lastName}
+          Hello There {userInfo.userInfo.firstName} {userInfo.userInfo.lastName}
         </h1>
         <h1 className="userEmail">{userInfo.userInfo.email}</h1>
       </Col>

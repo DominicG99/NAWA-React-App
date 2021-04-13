@@ -41,17 +41,12 @@ upload = multer({ storage: storage });
 
 
 
-router.post("/image", parser.single("image"), UploadImage, async (req, res) => {
- 
-      email = userInfo.email;
-      console.log("This is pringting");
-
-});
+router.post("/image", parser.single("image"), UploadImage);
 
 
 
 
-
+router.post("/changeImage")
 
 
 router.get("/retrieveImage", async (req, res) => {
