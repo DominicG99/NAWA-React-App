@@ -170,7 +170,7 @@ function WeatherData(props) {
                     </p>
                     <ReactTooltip
                       id="LowTemp"
-                      place="left"
+                      place="top"
                       type="info"
                       effect="solid"
                     >
@@ -183,7 +183,7 @@ function WeatherData(props) {
                     </p>
                     <ReactTooltip
                       id="HighTemp"
-                      place="left"
+                      place="top"
                       type="info"
                       effect="solid"
                     >
@@ -195,7 +195,7 @@ function WeatherData(props) {
                     </p>
                     <ReactTooltip
                       id="windSpeeds"
-                      place="left"
+                      place="top"
                       type="info"
                       effect="solid"
                     >
@@ -207,7 +207,7 @@ function WeatherData(props) {
                     </p>
                     <ReactTooltip
                       id="windGusts"
-                      place="left"
+                      place="top"
                       type="info"
                       effect="solid"
                     >
@@ -219,7 +219,7 @@ function WeatherData(props) {
                     </p>
                     <ReactTooltip
                       id="minHumidity"
-                      place="left"
+                      place="top"
                       type="info"
                       effect="solid"
                     >
@@ -231,7 +231,7 @@ function WeatherData(props) {
                     </p>
                     <ReactTooltip
                       id="maxHumidity"
-                      place="left"
+                      place="top"
                       type="info"
                       effect="solid"
                     >
@@ -244,7 +244,7 @@ function WeatherData(props) {
                     </p>
                     <ReactTooltip
                       id="maxChanceOfPrecip"
-                      place="left"
+                      place="top"
                       type="info"
                       effect="solid"
                     >
@@ -258,7 +258,7 @@ function WeatherData(props) {
                     </p>
                     <ReactTooltip
                       id="highestAvgChanceOfPrecip"
-                      place="left"
+                      place="top"
                       type="info"
                       effect="solid"
                     >
@@ -272,7 +272,7 @@ function WeatherData(props) {
                     </p>
                     <ReactTooltip
                       id="maxSnowfall"
-                      place="left"
+                      place="top"
                       type="info"
                       effect="solid"
                     >
@@ -294,7 +294,7 @@ function WeatherData(props) {
                     </p>
                     <ReactTooltip
                       id="LowTemp"
-                      place="left"
+                      place="top"
                       type="info"
                       effect="solid"
                     >
@@ -307,7 +307,7 @@ function WeatherData(props) {
                     </p>
                     <ReactTooltip
                       id="HighTemp"
-                      place="left"
+                      place="top"
                       type="info"
                       effect="solid"
                     >
@@ -319,7 +319,7 @@ function WeatherData(props) {
                     </p>
                     <ReactTooltip
                       id="windSpeeds"
-                      place="left"
+                      place="top"
                       type="info"
                       effect="solid"
                     >
@@ -331,7 +331,7 @@ function WeatherData(props) {
                     </p>
                     <ReactTooltip
                       id="windGusts"
-                      place="left"
+                      place="top"
                       type="info"
                       effect="solid"
                     >
@@ -343,7 +343,7 @@ function WeatherData(props) {
                     </p>
                     <ReactTooltip
                       id="minHumidity"
-                      place="left"
+                      place="top"
                       type="info"
                       effect="solid"
                     >
@@ -355,7 +355,7 @@ function WeatherData(props) {
                     </p>
                     <ReactTooltip
                       id="maxHumidity"
-                      place="left"
+                      place="top"
                       type="info"
                       effect="solid"
                     >
@@ -368,7 +368,7 @@ function WeatherData(props) {
                     </p>
                     <ReactTooltip
                       id="minimumVisibility"
-                      place="left"
+                      place="top"
                       type="info"
                       effect="solid"
                     >
@@ -381,7 +381,7 @@ function WeatherData(props) {
                     </p>
                     <ReactTooltip
                       id="maxChanceOfPrecip"
-                      place="left"
+                      place="top"
                       type="info"
                       effect="solid"
                     >
@@ -395,7 +395,7 @@ function WeatherData(props) {
                     </p>
                     <ReactTooltip
                       id="highestAvgChanceOfPrecip"
-                      place="left"
+                      place="top"
                       type="info"
                       effect="solid"
                     >
@@ -409,7 +409,7 @@ function WeatherData(props) {
                     </p>
                     <ReactTooltip
                       id="maxSnowfall"
-                      place="left"
+                      place="top"
                       type="info"
                       effect="solid"
                     >
