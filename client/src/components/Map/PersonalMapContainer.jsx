@@ -39,13 +39,16 @@ function PersonalMapContainer(props) {
   return (
     <div>
       <div className="mapTitle">
-        <h1>
+        <h1 className="margBottom">
           <strong>Your Route:</strong>
         </h1>
+        <p>
+          Interact with map to choose different starting and destination points!
+        </p>
       </div>
       <div>
         <div
-          classname="MapInfo"
+          className="mapInfo"
           style={{
             display: "flex",
             alignItems: "center",
@@ -68,30 +71,43 @@ function PersonalMapContainer(props) {
           />
           ;
         </div>
+        </div>
+      <div>
+
+            <h1 className="tripInformation" >Your Trip Information:</h1> 
+          
+            <p className="tripText">
+              Starting point: {hisValues.startCity}, {hisValues.startAdmin}
+            </p>
+
+            <p className="tripText">
+              Destination: {hisValues.destCity}, {hisValues.destAdmin}
+            </p>
+
+            <p className="tripText">
+              To view midpoint data, save route and visit the profile page!
+            </p>
       </div>
-      <div className=".buttonArea">
-        <Row>
-          <h1 className="tripInformation">Your Trip Information:</h1>
-        </Row>
-      </div>
-      <div
-        classname="saveButtonContainer"
-        style={{
-          marginLeft: "46%",
-          marginTop: "30px",
-        }}
-      >
-        <button className="save-button" onClick={onFavoriteBtnClick}>
-          Save This Trip
-        </button>
-      </div>
+
+      <div>
+          <Row>
+
+          </Row>
+        </div>
+
+         <div className="saveButtonContainer">
+         <Row>
+             <button className="save-button" onClick={onFavoriteBtnClick}>
+               Save This Trip
+             </button>
+         </Row>
+         </div>
       <WeatherData
         city1={props.city1}
         admin1={props.admin1}
         city2={props.city2}
         admin2={props.admin2}
       />
-      ;
     </div>
   );
 }

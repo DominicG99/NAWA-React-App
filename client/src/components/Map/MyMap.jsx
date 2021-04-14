@@ -5,9 +5,10 @@ import MapboxDirections from "@mapbox/mapbox-gl-directions/dist/mapbox-gl-direct
 import "@mapbox/mapbox-gl-directions/dist/mapbox-gl-directions.css";
 
 const styles = {
-  width: "50vw",
-  height: "calc(70vh - 80px)",
+  width: "90%",
+  height: "calc(85vh - 80px)",
   position: "relative",
+  
 };
 
 function MyMap(props) {
@@ -27,7 +28,7 @@ function MyMap(props) {
           //unit: "metric",
           profile: "mapbox/driving",
           accessToken: process.env.REACT_APP_MAPBOX_API_KEY,
-          controls: { inputs: false, instructions: false },
+          controls: { inputs: false, instructions: true },
         });
         directions.removeRoutes();
         directions.setOrigin([props.start_lng, props.start_lat]);
