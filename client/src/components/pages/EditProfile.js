@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import EditProfileForm from "../auth/EditProfileForm";
 import UserProfileInformation from "../auth/UserProfileInformation";
 import ImageUpload from "../ImageUpload";

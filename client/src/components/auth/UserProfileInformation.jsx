@@ -19,7 +19,6 @@ function UserProfileInformation() {
         if (userRoute.length > 10) {
           userRoute = userRoute.splice(userRoute.length - 10);
         }
-
         setData(userRoute);
       });
   }, []);

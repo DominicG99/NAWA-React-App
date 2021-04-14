@@ -95,3 +95,16 @@ font-family: 'Open Sans', sans-serif;
       width: 100%;
     }
   }
+
+.popUpImage {
+  width: 100px;
+  height: 100px;
+}
+
+.popUpImage:hover {
+  opacity: 100% !important;
+}
+
+.popUpCaption {
+  color: black;
+}

@@ -3,8 +3,6 @@ import PersonalMapContainer from "../Map/PersonalMapContainer";
 import "antd/dist/antd.css";
 import "./mappage.css";
 function PersonalMap(props) {
-  console.log("MapPage:");
-  console.log(props);
   return (
     <div
       className="mapStuff"

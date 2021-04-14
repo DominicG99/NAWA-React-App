@@ -5,7 +5,6 @@ import "./personalmap.css";
 import axios from "axios";
 import MapboxDirections from "@mapbox/mapbox-gl-directions/dist/mapbox-gl-directions";
 import "@mapbox/mapbox-gl-directions/dist/mapbox-gl-directions.css";
-
 const styles = {
   width: "50vw",
   height: "calc(70vh - 80px)",
@@ -16,27 +15,8 @@ function MyPersonalMap(props) {
   const [saveData, setSaveData] = useState("");
   const [map, setMap] = useState(null);
   const mapContainer = useRef(null);
-
-  useEffect( async () => {
-    var id = {id: props.id}
-    await axios.post("http://localhost:5000/api/users/routeImageRequest", id)
-    .then((response) => {
-      setSaveData(response.data);
-      console.log("save data: ", response.data);
-
-        // console.log("keys: ", saveData[4].lng);
-        //   var marker = new mapboxgl.Marker()
-        
-        //     .setLngLat([saveData[4].lng, saveData[4].lat])
-        //     .setPopup(new mapboxgl.Popup().setHTML("<h1>{saveData[4].description}}</h1>")) // add popup
-        //     .addTo(map);
-      
-    })
-    
-    console.log(props.id);
-  }, [])
-
-  useEffect( async () => {
+  const [someValue, setSomeValue] = useState("");
+  useEffect(async () => {
     const initializeMap = ({ setMap, mapContainer }) => {
       const map = new mapboxgl.Map({
         container: mapContainer.current,
@@ -50,6 +30,7 @@ function MyPersonalMap(props) {
           profile: "mapbox/driving",
           accessToken: process.env.REACT_APP_MAPBOX_API_KEY,
           controls: { inputs: false, instructions: false },
+          interactive: false,
         });
         directions.removeRoutes();
         directions.setOrigin([props.start_lng, props.start_lat]);
@@ -63,20 +44,44 @@ function MyPersonalMap(props) {
           directions.addWaypoint(3, [props.mid2_lng, props.mid2_lat]);
         }
         directions.setDestination([props.dest_lng, props.dest_lat]);
-          
-
 
         map.addControl(directions, "top-left");
         setMap(map);
         map.resize();
       });
     };
-    // Set options
+    var id = { id: props.id };
+    console.log("sending the id: ", props.id);
+    axios
+      .post("http://localhost:5000/api/users/routeImageRequest", id)
+      .then((response) => {
+        let data = response.data;
+        console.log("axios post response:", response.data);
+        setSaveData(data);
+        Object.keys(saveData).map(function (key) {
+          new mapboxgl.Marker()
 
+            .setLngLat([saveData[key].lng, saveData[key].lat])
+            .setPopup(
+              new mapboxgl.Popup().setHTML(
+                `<div><img class="popUpImage" src=${saveData[key].image}><h3 class="popUpCaption">${saveData[key].description}</h3></div>`
+              )
+            ) // add popup
+            .addTo(map);
+          setSomeValue(true);
+        });
+      });
+    // Set options
     if (!map) initializeMap({ setMap, mapContainer });
   }, [map]);
 
-  return <div ref={(el) => (mapContainer.current = el)} style={styles} />;
+  return (
+    <div
+      ref={(el) => (mapContainer.current = el)}
+      style={styles}
+      value={someValue}
+    />
+  );
 }
 
 export default MyPersonalMap;

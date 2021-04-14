@@ -36,7 +36,7 @@ function PersonalMapContainer(props) {
     }
   };
   console.log("Map Container");
-  console.log(props);
+  console.log(props.id);
 
   return (
     <div>
@@ -91,25 +91,8 @@ function PersonalMapContainer(props) {
         </p>
       </div>
 
-      <div>
-        <Row></Row>
-      </div>
-
-      <div className="saveButtonContainer">
-        <Row>
-          <button className="save-button" onClick={onFavoriteBtnClick}>
-            Save This Trip
-          </button>
-        </Row>
-      </div>
-      <WeatherData
-        city1={props.city1}
-        admin1={props.admin1}
-        city2={props.city2}
-        admin2={props.admin2}
-      />
       <div className="imageAdd">
-        <AddImagePopUp id={props.id}/>
+        <AddImagePopUp id={props.id} />
       </div>
     </div>
   );

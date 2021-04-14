@@ -41,26 +41,20 @@ upload = multer({ storage: storage });
 router.post("/image", parser.single("image"), UploadImage);
 router.post("/routeImage", parser.single("image"), RouteImage);
 
-
-
 router.post("/routeImageRequest", async (req, res) => {
-  try{
+  try {
     var id = req.body.id;
+    console.log(id);
     const existingImages = await routeImage.find({ route_id: id });
-    if(existingImages){
+    if (existingImages) {
       res.json(existingImages).send();
-    }
-    else{
+    } else {
       console.log("no images found");
     }
-  }
-  catch(err){
+  } catch (err) {
     console.log(err);
-  };
-})
-
-
-
+  }
+});
 
 router.get("/retrieveImage", async (req, res) => {
   var email = userInfo.email;
@@ -411,7 +405,6 @@ router.post("/weatherData", async (req, res) => {
     res.status(500).send();
   }
 });
-
 
 module.exports = router;
 
