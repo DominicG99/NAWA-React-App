@@ -5,7 +5,9 @@ import axios from "axios";
 import AuthContext from "../../context/AuthContext";
 import "./MapContainer.css";
 import "antd/dist/antd.css";
+
 import { Row } from "antd";
+import AddImagePopUp from "../AddImagePopUp";
 function PersonalMapContainer(props) {
   var hisValues = {
     email: props.email,
@@ -71,43 +73,43 @@ function PersonalMapContainer(props) {
           />
           ;
         </div>
-        </div>
+      </div>
       <div>
+        <h1 className="tripInformation">Your Trip Information:</h1>
 
-            <h1 className="tripInformation" >Your Trip Information:</h1> 
-          
-            <p className="tripText">
-              Starting point: {hisValues.startCity}, {hisValues.startAdmin}
-            </p>
+        <p className="tripText">
+          Starting point: {hisValues.startCity}, {hisValues.startAdmin}
+        </p>
 
-            <p className="tripText">
-              Destination: {hisValues.destCity}, {hisValues.destAdmin}
-            </p>
+        <p className="tripText">
+          Destination: {hisValues.destCity}, {hisValues.destAdmin}
+        </p>
 
-            <p className="tripText">
-              To view midpoint data, save route and visit the profile page!
-            </p>
+        <p className="tripText">
+          To view midpoint data, save route and visit the profile page!
+        </p>
       </div>
 
       <div>
-          <Row>
+        <Row></Row>
+      </div>
 
-          </Row>
-        </div>
-
-         <div className="saveButtonContainer">
-         <Row>
-             <button className="save-button" onClick={onFavoriteBtnClick}>
-               Save This Trip
-             </button>
-         </Row>
-         </div>
+      <div className="saveButtonContainer">
+        <Row>
+          <button className="save-button" onClick={onFavoriteBtnClick}>
+            Save This Trip
+          </button>
+        </Row>
+      </div>
       <WeatherData
         city1={props.city1}
         admin1={props.admin1}
         city2={props.city2}
         admin2={props.admin2}
       />
+      <div className="imageAdd">
+        <AddImagePopUp />
+      </div>
     </div>
   );
 }

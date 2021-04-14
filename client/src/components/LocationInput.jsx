@@ -26,7 +26,7 @@ function LocationInput() {
             >
               <AlgoliaPlaces
                 placeholder="Midpoint"
-                key={"key" + inputList.length}
+                key={inputList.length}
                 placeholder=""
                 options={{
                   appId: process.env.ALGOLIA_APP_ID,

@@ -1,5 +1,5 @@
 import React from "react";
-
+import "./ImageInput.css";
 const ImageInput = ({
   name,
   list,
@@ -39,6 +39,7 @@ const ImageInput = ({
   return (
     <div>
       <input
+        className="imageButton"
         style={{
           outline: outLine ? outLine : "none",
           paddingLeft: paddingLeft ? paddingLeft : null,

@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import "./personalmap.css";
+import axios from "axios";
 import MapboxDirections from "@mapbox/mapbox-gl-directions/dist/mapbox-gl-directions";
 import "@mapbox/mapbox-gl-directions/dist/mapbox-gl-directions.css";
 
@@ -28,6 +29,7 @@ function MyPersonalMap(props) {
           //unit: "metric",
           profile: "mapbox/driving",
           accessToken: process.env.REACT_APP_MAPBOX_API_KEY,
+          interactive: false,
           controls: { inputs: false, instructions: false },
         });
         directions.removeRoutes();
@@ -46,16 +48,24 @@ function MyPersonalMap(props) {
         var el = document.createElement("div");
         el.className = "marker";
         console.log("this is running");
-
-        new mapboxgl.Marker(el)
-
-          .setLngLat([-85.7, 42.9])
+        var marker = new mapboxgl.Marker()
+          .setLngLat([-96, 37.8])
           .setPopup(
-            new mapboxgl.Popup({ offset: 25 }).setHTML("<h1>Hello World!</h1>")
-          )
-          .addTo(map);
+            new mapboxgl.Popup().setHTML(
+              "<div><img id='myImg' src='./images/placeholder-image.png' alt='Placeholders' style='width:100%;max-width:300px'> <p>YO</p></div>",
 
+              "<div id='myModal' class='modal'>",
+              "<span class='close'>&times;</span>",
+              "<img class='modal-content' id='img01'>",
+              "<p>YO</p>",
+              "<div id='caption'></div>"
+
+              //"<img className='routeImage' src={'./images/placeholder-image.png'} alt='Route Image' />"
+            )
+          ) // add popup
+          .addTo(map);
         map.addControl(directions, "top-left");
+        //axios.post("http://localhost:5000/api/users/register", data, {});
         setMap(map);
         map.resize();
       });

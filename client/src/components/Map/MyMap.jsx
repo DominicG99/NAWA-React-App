@@ -8,7 +8,6 @@ const styles = {
   width: "90%",
   height: "calc(85vh - 80px)",
   position: "relative",
-  
 };
 
 function MyMap(props) {
@@ -19,7 +18,8 @@ function MyMap(props) {
     const initializeMap = ({ setMap, mapContainer }) => {
       const map = new mapboxgl.Map({
         container: mapContainer.current,
-        style: "mapbox://styles/mapbox/dark-v10", // stylesheet location
+        style: "mapbox://styles/mapbox/dark-v10",
+        interactive: false, // stylesheet location
         center: [props.start_lng, props.start_lat],
         zoom: 5,
       });

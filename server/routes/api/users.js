@@ -5,6 +5,7 @@ const jwt = require("jsonwebtoken");
 const auth = require("../../middleware/auth");
 const user = require("../../models/user");
 const app = require("../../app");
+const routeImage = require("../../models/routeImages");
 const LocationInformation = require("../../models/locationInformation");
 const HistoricInformation = require("../../models/historicInformation");
 const SaveRoute = require("../../models/saveRoute");
@@ -38,7 +39,19 @@ upload = multer({ storage: storage });
 
 router.post("/image", parser.single("image"), UploadImage);
 
-router.post("/changeImage");
+router.post("/routeImage", async (req, res) => {
+  try {
+    const image = req.file.path;
+    console.log("image: ", image);
+    const existingUser = new routeImage({
+      route_id,
+      email,
+      image,
+    });
+  } catch {
+    console.log("the route image didnt post");
+  }
+});
 
 router.get("/retrieveImage", async (req, res) => {
   var email = userInfo.email;
