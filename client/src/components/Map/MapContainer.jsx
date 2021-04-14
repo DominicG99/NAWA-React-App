@@ -45,7 +45,7 @@ function MapContainer(props) {
           <strong>Your Route:</strong>
         </h1>
         <p>
-          Interact with map to choose different starting and destination points!
+          Interact with the map to choose different start and end points!
         </p>
       </div>
       <div>
