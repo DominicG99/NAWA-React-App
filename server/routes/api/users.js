@@ -15,6 +15,7 @@ const imageUpload = require("../../models/fileUpload");
 let multer = require("multer");
 let upload = multer();
 var userInfo = {};
+const { RouteImage } = require("../../controller/routeImage");
 const { UploadImage } = require("../../controller/uploadImage");
 const ImageUploadRouter = require("express").Router();
 
@@ -38,20 +39,28 @@ var storage = multer.diskStorage({
 upload = multer({ storage: storage });
 
 router.post("/image", parser.single("image"), UploadImage);
+router.post("/routeImage", parser.single("image"), RouteImage);
 
-router.post("/routeImage", async (req, res) => {
-  try {
-    const image = req.file.path;
-    console.log("image: ", image);
-    const existingUser = new routeImage({
-      route_id,
-      email,
-      image,
-    });
-  } catch {
-    console.log("the route image didnt post");
+
+
+router.post("/routeImageRequest", async (req, res) => {
+  try{
+    var id = req.body.id;
+    const existingImages = await routeImage.find({ route_id: id });
+    if(existingImages){
+      res.json(existingImages).send();
+    }
+    else{
+      console.log("no images found");
+    }
   }
-});
+  catch(err){
+    console.log(err);
+  };
+})
+
+
+
 
 router.get("/retrieveImage", async (req, res) => {
   var email = userInfo.email;
@@ -402,7 +411,7 @@ router.post("/weatherData", async (req, res) => {
     res.status(500).send();
   }
 });
-router.post("/image", parser.single("image"), UploadImage);
+
 
 module.exports = router;
 

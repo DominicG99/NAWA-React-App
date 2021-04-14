@@ -1,5 +1,5 @@
 import React from "react";
-import "./ImageInput.css";
+
 const ImageInput = ({
   name,
   list,

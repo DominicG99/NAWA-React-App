@@ -14,6 +14,7 @@ function PersonalMap(props) {
       }}
     >
       <PersonalMapContainer
+        id={props.location.state.id}
         email={props.location.state.email}
         city1={props.location.state.city1}
         admin1={props.location.state.admin1}

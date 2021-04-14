@@ -5,7 +5,8 @@ var replacement = {};
 const options = { upsert: true, returnNewDocument: false };
 
 module.exports.UploadImage = async (req, res) => {
-  console.log("upload image.js", req.body.email);
+  console.log("upload image.js", req.body);
+
   email = req.body.email;
   (image = req.file.path),
     (replacement = {
@@ -22,7 +23,7 @@ module.exports.UploadImage = async (req, res) => {
           console.log(err);
         } else {
           userImageData = replacement;
-          console.log("The image upload is: ", imageUpload);
+          
         }
       });
   } else {

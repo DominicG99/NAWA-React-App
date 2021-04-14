@@ -13,10 +13,30 @@ const styles = {
 };
 
 function MyPersonalMap(props) {
-  console.log(props);
+  const [saveData, setSaveData] = useState("");
   const [map, setMap] = useState(null);
   const mapContainer = useRef(null);
-  useEffect(() => {
+
+  useEffect( async () => {
+    var id = {id: props.id}
+    await axios.post("http://localhost:5000/api/users/routeImageRequest", id)
+    .then((response) => {
+      setSaveData(response.data);
+      console.log("save data: ", response.data);
+
+        // console.log("keys: ", saveData[4].lng);
+        //   var marker = new mapboxgl.Marker()
+        
+        //     .setLngLat([saveData[4].lng, saveData[4].lat])
+        //     .setPopup(new mapboxgl.Popup().setHTML("<h1>{saveData[4].description}}</h1>")) // add popup
+        //     .addTo(map);
+      
+    })
+    
+    console.log(props.id);
+  }, [])
+
+  useEffect( async () => {
     const initializeMap = ({ setMap, mapContainer }) => {
       const map = new mapboxgl.Map({
         container: mapContainer.current,
@@ -29,7 +49,6 @@ function MyPersonalMap(props) {
           //unit: "metric",
           profile: "mapbox/driving",
           accessToken: process.env.REACT_APP_MAPBOX_API_KEY,
-          interactive: false,
           controls: { inputs: false, instructions: false },
         });
         directions.removeRoutes();
@@ -44,28 +63,10 @@ function MyPersonalMap(props) {
           directions.addWaypoint(3, [props.mid2_lng, props.mid2_lat]);
         }
         directions.setDestination([props.dest_lng, props.dest_lat]);
+          
 
-        var el = document.createElement("div");
-        el.className = "marker";
-        console.log("this is running");
-        var marker = new mapboxgl.Marker()
-          .setLngLat([-96, 37.8])
-          .setPopup(
-            new mapboxgl.Popup().setHTML(
-              "<div><img id='myImg' src='./images/placeholder-image.png' alt='Placeholders' style='width:100%;max-width:300px'> <p>YO</p></div>",
 
-              "<div id='myModal' class='modal'>",
-              "<span class='close'>&times;</span>",
-              "<img class='modal-content' id='img01'>",
-              "<p>YO</p>",
-              "<div id='caption'></div>"
-
-              //"<img className='routeImage' src={'./images/placeholder-image.png'} alt='Route Image' />"
-            )
-          ) // add popup
-          .addTo(map);
         map.addControl(directions, "top-left");
-        //axios.post("http://localhost:5000/api/users/register", data, {});
         setMap(map);
         map.resize();
       });

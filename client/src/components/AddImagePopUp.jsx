@@ -3,11 +3,12 @@ import AlgoliaPlaces from "algolia-places-react";
 import UserContext from "../context/UserContext";
 import axios from "axios";
 import ImageInput from "./ImageInput";
-import "./AddImagePopup.css";
-function AddImagePopUp() {
+function AddImagePopUp(props) {
+  console.log("props: ", props.id);
   const [images, setFile] = useState("");
   const [fileData, setFileData] = useState();
   const [locationData, setLocationData] = useState("");
+  const [description, setDescriptionData] = useState("");
   const { userInfo } = useContext(UserContext);
   const handleFileChange = ({ target }) => {
     setFileData(target.files[0]);
@@ -16,10 +17,18 @@ function AddImagePopUp() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
     const formdata = new FormData();
+    console.log("yo: ", locationData.latlng.lat);
+    formdata.append("id", props.id);
     formdata.append("email", userInfo.userInfo.email);
     formdata.append("image", fileData);
-    formdata.append("location", locationData.latlng);
+    formdata.append("lat", locationData.latlng.lat);
+    formdata.append("lng", locationData.latlng.lng);
+    formdata.append("description", description);
+    let sendskis = {fileData: fileData, location: locationData.latlng, email: userInfo.userInfo.email}
+    console.log(fileData);
+    console.log(sendskis);
     axios
       .post("http://localhost:5000/api/users/routeImage", formdata)
       .then((res) => console.log("res", res.data))
@@ -48,6 +57,9 @@ function AddImagePopUp() {
             countries: ["us"],
             //type: "address",
           }}
+        />
+        <input onChange={event => {setDescriptionData(event.target.value)}}
+        
         />
 
         <button className="save-button">Add Image</button>

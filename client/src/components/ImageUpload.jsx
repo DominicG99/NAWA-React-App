@@ -18,6 +18,7 @@ function ImageUpload() {
     const formdata = new FormData();
     formdata.append("email", userInfo.userInfo.email);
     formdata.append("image", fileData);
+    console.log("form:", formdata);
     axios
       .post("http://localhost:5000/api/users/image", formdata)
       .then((res) => console.log("res", res.data))

@@ -126,6 +126,7 @@ function UserProfileInformation() {
                     history.push({
                       pathname: "/personal-map",
                       state: {
+                        id: savedData[key]._id,
                         email: savedData[key].email,
                         city1: savedData[key].startCity,
                         admin1: savedData[key].startAdmin,

@@ -6,6 +6,8 @@ const RouteImage = new Schema(
     route_id: { type: String, required: true },
     email: { type: String, required: true },
     image: { type: String, required: true },
+    lat: {type: String, required: true }, 
+    lng: {type: String, required: true}, 
     description: { type: String, required: true },
   },
   { timestamps: true }

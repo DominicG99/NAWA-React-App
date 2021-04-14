@@ -58,6 +58,7 @@ function PersonalMapContainer(props) {
           }}
         >
           <MyPersonalMap
+            id={props.id}
             origin={props.origin}
             destination={props.destination}
             start_lat={props.start_lat}
@@ -108,7 +109,7 @@ function PersonalMapContainer(props) {
         admin2={props.admin2}
       />
       <div className="imageAdd">
-        <AddImagePopUp />
+        <AddImagePopUp id={props.id}/>
       </div>
     </div>
   );
