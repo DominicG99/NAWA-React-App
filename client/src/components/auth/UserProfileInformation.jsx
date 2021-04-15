@@ -11,6 +11,7 @@ function UserProfileInformation() {
   const { imageInfo } = useContext(ImageContext);
   const [data, setData] = useState("");
   const [savedData, setSavedData] = useState("");
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(async () => {
     await axios
       .get("http://localhost:5000/api/users/historyCords")
@@ -22,6 +23,7 @@ function UserProfileInformation() {
         setData(userRoute);
       });
   }, []);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(async () => {
     await axios
       .get("http://localhost:5000/api/users/savedRoute")
@@ -37,6 +39,7 @@ function UserProfileInformation() {
       });
   }, []);
   let history = useHistory();
+  
   return (
     <Row>
       <Col className="previousRoutesContainer" span={8}>
@@ -130,7 +133,7 @@ function UserProfileInformation() {
                         city1: savedData[key].startCity,
                         admin1: savedData[key].startAdmin,
                         city2: savedData[key].destCity,
-                        admin2: savedData[key].startAdmin,
+                        admin2: savedData[key].destAdmin,
                         origin: null,
                         destination: null,
                         dest_lat: savedData[key].destLat,

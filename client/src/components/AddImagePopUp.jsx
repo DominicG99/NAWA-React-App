@@ -3,7 +3,10 @@ import AlgoliaPlaces from "algolia-places-react";
 import UserContext from "../context/UserContext";
 import axios from "axios";
 import ImageInput from "./ImageInput";
+import "./AddImagePopUp.css";
 import { useHistory } from "react-router-dom";
+import WeatherData from "./Map/WeatherData";
+import { Row, Col } from "antd";
 function AddImagePopUp(props) {
   console.log("props: ", props.id);
   const [images, setFile] = useState("");
@@ -11,6 +14,7 @@ function AddImagePopUp(props) {
   const [locationData, setLocationData] = useState("");
   const [description, setDescriptionData] = useState("");
   const { userInfo } = useContext(UserContext);
+  
   let history = useHistory();
   const handleFileChange = ({ target }) => {
     setFileData(target.files[0]);
@@ -36,8 +40,37 @@ function AddImagePopUp(props) {
     });
   };
   return (
-    <div className="imageForm">
-      <form onSubmit={handleSubmit}>
+
+    <div>
+    <Row>
+      <Col span={12}>
+        <div className = "tripInfoDiv">
+        <h1 className = "tripInformation">Your Trip Information:</h1>
+
+        <p className="tripText">
+          Starting point: {props.startCity},  {props.startAdmin}
+        </p>
+
+        <p className="tripText">
+          Destination: {props.destCity}, {props.destAdmin}
+        </p>
+
+        <p className="tripText">
+          To view midpoint data, save route and visit the profile page!
+        </p>
+        </div>
+      
+ 
+    
+      </Col>
+
+
+      <Col span={12}>
+
+      <h1 className="addImageInformation">Enjoy your trip? Add some images below!</h1>
+
+    
+      <form onSubmit={handleSubmit} className = "chooseFile">
         <ImageInput
           type="file"
           name="file"
@@ -47,29 +80,45 @@ function AddImagePopUp(props) {
           placeholder="upload image"
           isRequired={true}
         />
-        <div style={{ width: "16.8%" }}>
-          <AlgoliaPlaces
-            onChange={({ suggestion }) => setLocationData(suggestion)}
-            placeholder="Image Location"
-            options={{
-              appId: process.env.ALGOLIA_APP_ID,
-              apiKey: process.env.ALGOLIA_API_KEY,
-              language: "en",
-              countries: ["us"],
-              //type: "address",
-            }}
-          />
-        </div>
-        <input
+
+          <div style={{ width: "30.8%" }}>
+            <AlgoliaPlaces
+              onChange={({ suggestion }) => setLocationData(suggestion)}
+              placeholder="Image Location"
+              options={{
+                appId: process.env.ALGOLIA_APP_ID,
+                apiKey: process.env.ALGOLIA_API_KEY,
+                language: "en",
+                countries: ["us"],
+                //type: "address",
+              }}
+            />
+          </div>
+
+        <input className = "description"
           placeholder="Enter a description!"
           onChange={(event) => {
             setDescriptionData(event.target.value);
           }}
         />
 
+        <div>
         <button className="save-button">Add Image</button>
+        </div>
       </form>
+      </Col>
+    </Row>
+
+    <div>
+        <WeatherData
+        city1={props.city1}
+        admin1={props.admin1}
+        city2={props.city2}
+        admin2={props.admin2}
+      />  
     </div>
+
+  </div>
   );
 }
 

@@ -6,8 +6,8 @@ import axios from "axios";
 import MapboxDirections from "@mapbox/mapbox-gl-directions/dist/mapbox-gl-directions";
 import "@mapbox/mapbox-gl-directions/dist/mapbox-gl-directions.css";
 const styles = {
-  width: "50vw",
-  height: "calc(70vh - 80px)",
+  width: "90%",
+  height: "calc(85vh - 80px)",
   position: "relative",
 };
 

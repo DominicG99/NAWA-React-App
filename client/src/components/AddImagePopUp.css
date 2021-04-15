@@ -1,0 +1,48 @@
+.imageLocation{
+    margin-left: 0%;
+    margin-top: 10px;   
+}
+.chooseFile{
+    padding-bottom: 10px;
+}
+
+.addDescription{
+    margin-top: 10%;
+    margin-bottom: 10%;   
+}
+
+.addImageInformation{
+    color: white;
+    margin-left: 0%;
+    font-size: 21px;
+    margin-top: 0%;
+    margin-bottom: 10px;
+    text-decoration: underline;
+}
+
+.tripText{
+    color: white;
+    margin-left: 7%;
+    font-size: 15px;
+    margin-top: 0%;
+    padding-left: 10px;
+  }
+  
+  .tripInformation{
+    color: white;
+    margin-left: 7%;
+    font-size: 22px;
+    margin-top: 1%;
+    margin-bottom: 0%;
+    text-decoration: underline;
+}
+
+.tripInfoDiv{
+    margin-left: 7%;
+}
+
+.description{
+    padding: 10px 10px; 
+    line-height: 20px;
+    width: 70%;
+}
