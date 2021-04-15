@@ -89,17 +89,17 @@ function PersonalMapContainer(props) {
         city2={props.city2}
         admin2={props.admin2}
         origin={props.origin}
-            destination={props.destination}
-            start_lat={props.start_lat}
-            start_lng={props.start_lng}
-            dest_lat={props.dest_lat}
-            dest_lng={props.dest_lng}
-            mid0_lat={props.mid0_lat}
-            mid0_lng={props.mid0_lng}
-            mid1_lat={props.mid1_lat}
-            mid1_lng={props.mid1_lng}
-            mid2_lat={props.mid2_lat}
-            mid2_lng={props.mid2_lng}
+        destination={props.destination}
+        start_lat={props.start_lat}
+        start_lng={props.start_lng}
+        dest_lat={props.dest_lat}
+        dest_lng={props.dest_lng}
+        mid0_lat={props.mid0_lat}
+        mid0_lng={props.mid0_lng}
+        mid1_lat={props.mid1_lat}
+        mid1_lng={props.mid1_lng}
+        mid2_lat={props.mid2_lat}
+        mid2_lng={props.mid2_lng}
         />
       </div>
 

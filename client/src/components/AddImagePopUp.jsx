@@ -59,56 +59,50 @@ function AddImagePopUp(props) {
           To view midpoint data, save route and visit the profile page!
         </p>
         </div>
-      
- 
-    
       </Col>
 
 
       <Col span={12}>
+        <h1 className="addImageInformation">Enjoy your trip? Add some images below!</h1>
+        <form onSubmit={handleSubmit} className = "chooseFile">
+          <ImageInput
+            type="file"
+            name="file"
+            value={images}
+            accept="image/*"
+            onChange={handleFileChange}
+            placeholder="upload image"
+            isRequired={true}
+          />
 
-      <h1 className="addImageInformation">Enjoy your trip? Add some images below!</h1>
+            <div style={{ width: "30.8%" }}>
+              <AlgoliaPlaces
+                onChange={({ suggestion }) => setLocationData(suggestion)}
+                placeholder="Image Location"
+                options={{
+                  appId: process.env.ALGOLIA_APP_ID,
+                  apiKey: process.env.ALGOLIA_API_KEY,
+                  language: "en",
+                  countries: ["us"],
+                  //type: "address",
+                }}
+              />
+            </div>
 
-    
-      <form onSubmit={handleSubmit} className = "chooseFile">
-        <ImageInput
-          type="file"
-          name="file"
-          value={images}
-          accept="image/*"
-          onChange={handleFileChange}
-          placeholder="upload image"
-          isRequired={true}
-        />
+          <input className = "description"
+            placeholder="Enter a description!"
+            onChange={(event) => {
+              setDescriptionData(event.target.value);
+            }}
+          />
 
-          <div style={{ width: "30.8%" }}>
-            <AlgoliaPlaces
-              onChange={({ suggestion }) => setLocationData(suggestion)}
-              placeholder="Image Location"
-              options={{
-                appId: process.env.ALGOLIA_APP_ID,
-                apiKey: process.env.ALGOLIA_API_KEY,
-                language: "en",
-                countries: ["us"],
-                //type: "address",
-              }}
-            />
+          <div>
+          <button className="save-button">Add Image</button>
           </div>
-
-        <input className = "description"
-          placeholder="Enter a description!"
-          onChange={(event) => {
-            setDescriptionData(event.target.value);
-          }}
-        />
-
-        <div>
-        <button className="save-button">Add Image</button>
-        </div>
-      </form>
+        </form>
       </Col>
     </Row>
-
+    
     <div>
         <WeatherData
         city1={props.city1}
