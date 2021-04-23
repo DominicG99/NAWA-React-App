@@ -30,6 +30,7 @@ mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 app.use("/api/users", users);
 app.use("/api/uploadImageRoute", ImageUploadRouter);
 //Used to set up React app.
+app.use(express.static(path.join(__dirname, "build")));
 app.get("/*", (req, res) => {
   res.sendFile(path.join(__dirname, "build", "index.html"));
 });
